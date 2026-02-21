@@ -6,12 +6,15 @@ package frc.robot.subsystems.intake;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+import com.ctre.phoenix6.hardware.TalonFX;
+import com.ctre.phoenix6.configs.TalonFXConfigurator;
+
 public class Intake_Neo_Kraken extends SubsystemBase {
-  /** Creates a new Intake_Neo_Kraken. */
+ 
   public Intake_Neo_Kraken() {}
 
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
+ 
   }
 }
