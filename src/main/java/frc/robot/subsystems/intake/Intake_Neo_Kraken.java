@@ -26,7 +26,7 @@ public class Intake_Neo_Kraken extends SubsystemBase {
   private final SparkClosedLoopController deployctrl = deploy.getClosedLoopController();
   
   public Intake_Neo_Kraken() {
-    rollerConfiguration.withSlot0(Intake_Constants.Intake_Kraken_Roller.ROLLER_SLOT0_CONFIGS);
+
     roller.getConfigurator().apply(rollerConfiguration);
   
     
