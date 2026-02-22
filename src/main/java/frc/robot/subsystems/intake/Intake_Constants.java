@@ -10,10 +10,10 @@ import com.ctre.phoenix6.configs.Slot0Configs;
 import com.ctre.phoenix6.configs.Slot1Configs;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.signals.StaticFeedforwardSignValue;
-import com.revrobotics.spark.config.MAXMotionConfig;
 
+import com.revrobotics.spark.config.SparkMaxConfig;
+import com.revrobotics.spark.config.SparkParameters;
 
-import com.revrobotics.spark.config.ClosedLoopConfig;
 
 
 
@@ -38,9 +38,7 @@ public class Intake_Constants {
         public static final double Max_Output = 1;//最大輸出
         public static final double Min_Output = -1;//最小輸出
 
-        public static final ClosedLoopConfig rollerConfig = new ClosedLoopConfig()
-        .feedbackSensor(null).p(Max_Output).i(Min_Output).d(Roller_ID)
-        .allowedClosedLoopError(Max_Output, null).maxOutput(Max_Output);
+      
     }
 
 
