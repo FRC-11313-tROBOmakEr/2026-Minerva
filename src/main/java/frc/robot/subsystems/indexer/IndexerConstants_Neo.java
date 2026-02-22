@@ -4,30 +4,5 @@
 
 package frc.robot.subsystems.indexer;
 
-import edu.wpi.first.wpilibj2.command.Command;
-
-/* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
-public class IndexerConstants_Neo extends Command {
-  /** Creates a new IndexerConstants. */
-  public IndexerConstants_Neo() {
-    // Use addRequirements() here to declare subsystem dependencies.
-  }
-
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {}
-
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {}
-
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {}
-
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return false;
-  }
-}
+/** Add your docs here. */
+public class IndexerConstants_Neo {}

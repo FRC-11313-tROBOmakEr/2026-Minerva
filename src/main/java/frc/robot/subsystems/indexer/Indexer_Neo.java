@@ -7,7 +7,7 @@ package frc.robot.subsystems.indexer;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Indexer_Neo extends SubsystemBase {
-  /** Creates a new Indexer. */
+  /** Creates a new Indexer_Neo. */
   public Indexer_Neo() {}
 
   @Override
