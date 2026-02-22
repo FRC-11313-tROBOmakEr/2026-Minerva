@@ -22,11 +22,11 @@ public class Indexer_Kraken extends SubsystemBase {
     indexerKraken.getConfigurator().apply(IndexerConstants.Indexer_Kraken.IndexerConfiguration);
   }
 
-   public void Run() {
+   public void run() {
     indexerKraken.setControl(new VelocityVoltage(IndexerConstants.Indexer_Kraken.run).withSlot(0));
   }
 
-  public void Stop() {
+  public void stop() {
     indexerKraken.stopMotor();
   }
 

@@ -38,12 +38,12 @@ public class Indexer_Neo extends SubsystemBase {
     indexerNeo.configure(indexerConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
   }
 
-  public void Run() {
+  public void run() {
     indexerCloseloop.setSetpoint(IndexerConstants.Indexer_Neo.RPM, SparkMax.ControlType.kVelocity,
         ClosedLoopSlot.kSlot0);
   }
 
-  public void Stop() {
+  public void stop() {
     indexerNeo.stopMotor();
   }
 
