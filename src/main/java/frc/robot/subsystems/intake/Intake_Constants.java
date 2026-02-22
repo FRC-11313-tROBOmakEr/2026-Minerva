@@ -45,7 +45,7 @@ public class Intake_Constants {
     public static class  Intake_Kraken_Roller {
         public static final int Roller_ID = 1;
 
-        public static final TalonFXConfiguration rolleConfiguration = new TalonFXConfiguration()
+        public static final TalonFXConfiguration rollerConfiguration = new TalonFXConfiguration()
         .withSlot0(new Slot0Configs().withKP(0.2).withKI(0).withKD(0.5)
         .withKS(0.1).withKV(0.12).withKA(0).withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign));
 

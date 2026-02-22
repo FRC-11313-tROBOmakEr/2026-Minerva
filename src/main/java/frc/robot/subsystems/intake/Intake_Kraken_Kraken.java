@@ -17,7 +17,7 @@ public class Intake_Kraken_Kraken extends SubsystemBase {
   public Intake_Kraken_Kraken() {
 
 
-    roller.getConfigurator().apply(Intake_Constants.Intake_Kraken_Roller.rolleConfiguration);
+    roller.getConfigurator().apply(Intake_Constants.Intake_Kraken_Roller.rollerConfiguration);
     deploy.getConfigurator().apply(Intake_Constants.Intake_Kraken_Deploy.deployConfiguration);
 
   }
