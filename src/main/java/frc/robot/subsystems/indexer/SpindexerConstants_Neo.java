@@ -7,9 +7,9 @@ package frc.robot.subsystems.indexer;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
-public class IndexerConstants_Kraken extends Command {
+public class SpindexerConstants_Neo extends Command {
   /** Creates a new IndexerConstants. */
-  public IndexerConstants_Kraken() {
+  public SpindexerConstants_Neo() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 

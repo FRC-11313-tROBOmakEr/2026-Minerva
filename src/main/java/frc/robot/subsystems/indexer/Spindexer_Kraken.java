@@ -2,13 +2,13 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.subsystems.intake;
+package frc.robot.subsystems.indexer;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class Intake_Neo_Neo extends SubsystemBase {
-  /** Creates a new Intake. */
-  public Intake_Neo_Neo() {}
+public class Spindexer_Kraken extends SubsystemBase {
+  /** Creates a new Indexer_Kraken. */
+  public Spindexer_Kraken() {}
 
   @Override
   public void periodic() {
