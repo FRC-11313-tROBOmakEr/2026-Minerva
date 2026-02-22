@@ -5,9 +5,20 @@
 package frc.robot.subsystems.intake;
 
 import com.ctre.phoenix6.CANBus;
+import com.ctre.phoenix6.configs.MotionMagicConfigs;
 import com.ctre.phoenix6.configs.Slot0Configs;
 import com.ctre.phoenix6.configs.Slot1Configs;
+import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.signals.StaticFeedforwardSignValue;
+import com.revrobotics.spark.config.MAXMotionConfig;
+
+
+import com.revrobotics.spark.config.ClosedLoopConfig;
+
+
+
+
+
 
 /** Add your docs here. */
 public class Intake_Constants {
@@ -26,17 +37,23 @@ public class Intake_Constants {
 
         public static final double Max_Output = 1;//最大輸出
         public static final double Min_Output = -1;//最小輸出
+
+        public static final ClosedLoopConfig rollerConfig = new ClosedLoopConfig()
+        .feedbackSensor(null).p(Max_Output).i(Min_Output).d(Roller_ID)
+        .allowedClosedLoopError(Max_Output, null).maxOutput(Max_Output);
     }
 
 
     public static class  Intake_Kraken_Roller {
         public static final int Roller_ID = 1;
 
+        public static final TalonFXConfiguration rolleConfiguration = new TalonFXConfiguration()
+        .withSlot0(new Slot0Configs().withKP(0.2).withKI(0).withKD(0.5)
+        .withKS(0.1).withKV(0.12).withKA(0).withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign));
+
+
         public static double Roller_Start = 80;//rps
-        public static final Slot0Configs ROLLER_SLOT0_CONFIGS = new Slot0Configs()
-        .withKP(0.2).withKI(0).withKD(0.5)
-        .withKS(0.1).withKV(0.12).withKA(0)
-        .withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign);
+
 
     }
 
@@ -68,19 +85,14 @@ public class Intake_Constants {
 
         public static double Deploy_Start = 10;//
         public static double Deploy_Back = -10;
-        public static final Slot0Configs Deploy_Slot0_Configs_F = new Slot0Configs()
-        .withKP(0.2).withKI(0).withKD(0.5)
-        .withKS(0.1).withKV(0.12).withKA(0)
-        .withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign);
-
-        public static double MotionMagicAcceleration = 400;
-        public static double MotionMagicCruiseVelocity = 80;
-        public static double MotionMagicJerk = 1000;
-
-        public static final Slot1Configs Deploy_Slot1_Configs_B = new Slot1Configs()
-        .withKP(0.2).withKI(0).withKD(0.5)
-        .withKS(0.1).withKV(0.12).withKA(0)
-        .withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign);
+        public static final TalonFXConfiguration deployConfiguration = new TalonFXConfiguration()
+        .withSlot0(new Slot0Configs() .withKP(0.2).withKI(0).withKD(0.5).withKS(0.1).withKV(0.12).withKA(0)
+        .withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign))
+        .withSlot1(new Slot1Configs().withKP(0.2).withKI(0).withKD(0.5).withKS(0.1).withKV(0.12).withKA(0)
+        .withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign))
+        .withMotionMagic(new MotionMagicConfigs().withMotionMagicAcceleration(400).withMotionMagicCruiseVelocity(80)
+        .withMotionMagicJerk(1000));
+        
     }
  
 }
