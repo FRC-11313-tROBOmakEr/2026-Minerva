@@ -8,12 +8,15 @@ import com.ctre.phoenix6.CANBus;
 import com.ctre.phoenix6.configs.MotionMagicConfigs;
 import com.ctre.phoenix6.configs.MotorOutputConfigs;
 import com.ctre.phoenix6.configs.Slot0Configs;
-import com.ctre.phoenix6.configs.Slot1Configs;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 import com.ctre.phoenix6.signals.StaticFeedforwardSignValue;
+import com.revrobotics.spark.ClosedLoopSlot;
+import com.revrobotics.spark.FeedbackSensor;
+import com.revrobotics.spark.config.ClosedLoopConfig;
 import com.revrobotics.spark.config.SparkMaxConfig;
+import com.revrobotics.spark.config.MAXMotionConfig;
 
 
 /** Add your docs here. */
@@ -28,8 +31,6 @@ public class IndexerConstants {
         public static final TalonFXConfiguration IndexerConfiguration = new TalonFXConfiguration()
         .withSlot0(new Slot0Configs() .withKP(0.2).withKI(0).withKD(0.5).withKS(0.1).withKV(0.12).withKA(0)
         .withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign))
-        .withMotionMagic(new MotionMagicConfigs().withMotionMagicAcceleration(400).withMotionMagicCruiseVelocity(80)
-        .withMotionMagicJerk(1000))
         .withMotorOutput(new MotorOutputConfigs().withNeutralMode(NeutralModeValue.Brake).withInverted(InvertedValue.Clockwise_Positive));
         }
         
@@ -37,9 +38,9 @@ public class IndexerConstants {
 
     public static class  Indexer_Neo {
         public static final int Indexer_ID = 1;
+        public static double RPM = 100;
 
-        public static double Run = 0.8;//目前為dutycycle，記得改
-        
+      
         public static final double Run_P = 0.1;
         public static final double Run_I = 0;
         public static final double Run_D = 0.001;
