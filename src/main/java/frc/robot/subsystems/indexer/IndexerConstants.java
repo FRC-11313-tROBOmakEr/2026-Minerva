@@ -5,18 +5,12 @@
 package frc.robot.subsystems.indexer;
 
 import com.ctre.phoenix6.CANBus;
-import com.ctre.phoenix6.configs.MotionMagicConfigs;
 import com.ctre.phoenix6.configs.MotorOutputConfigs;
 import com.ctre.phoenix6.configs.Slot0Configs;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 import com.ctre.phoenix6.signals.StaticFeedforwardSignValue;
-import com.revrobotics.spark.ClosedLoopSlot;
-import com.revrobotics.spark.FeedbackSensor;
-import com.revrobotics.spark.config.ClosedLoopConfig;
-import com.revrobotics.spark.config.SparkMaxConfig;
-import com.revrobotics.spark.config.MAXMotionConfig;
 
 
 /** Add your docs here. */
@@ -29,9 +23,9 @@ public class IndexerConstants {
 
         public static double run = 80;//rps
         public static final TalonFXConfiguration IndexerConfiguration = new TalonFXConfiguration()
-        .withSlot0(new Slot0Configs() .withKP(0.2).withKI(0).withKD(0.5).withKS(0.1).withKV(0.12).withKA(0)
-        .withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign))
-        .withMotorOutput(new MotorOutputConfigs().withNeutralMode(NeutralModeValue.Brake).withInverted(InvertedValue.Clockwise_Positive));
+        .withSlot0(new Slot0Configs() .withKP(0.2).withKI(0).withKD(0.5))
+        .withMotorOutput(new MotorOutputConfigs().withNeutralMode(NeutralModeValue.Brake)
+        .withInverted(InvertedValue.Clockwise_Positive));
         }
         
     
