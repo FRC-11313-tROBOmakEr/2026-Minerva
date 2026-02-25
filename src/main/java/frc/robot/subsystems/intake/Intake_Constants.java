@@ -11,8 +11,6 @@ import com.ctre.phoenix6.configs.Slot1Configs;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.signals.StaticFeedforwardSignValue;
 
-import com.revrobotics.spark.config.SparkMaxConfig;
-import com.revrobotics.spark.config.SparkParameters;
 
 
 
@@ -35,8 +33,10 @@ public class Intake_Constants {
         public static final double Roller_Start_D = 0.001;
         public static final double Roller_Start_F = 0;
 
-        public static final double Max_Output = 1;//最大輸出
-        public static final double Min_Output = -1;//最小輸出
+
+
+        public static final double maxAcceleration = 5;
+        public static final double cruiseVelocity = 2 ;
 
       
     }
@@ -73,8 +73,6 @@ public class Intake_Constants {
         public static final double Deploy_Back_D = 0.001;
         public static final double Deploy_Back_F = 0;
 
-        public static final double Max_Output = 1;//最大輸出
-        public static final double Min_Output = -1;//最小輸出
 
         public static final double maxAcceleration = 5;
         public static final double cruiseVelocity = 2 ;
