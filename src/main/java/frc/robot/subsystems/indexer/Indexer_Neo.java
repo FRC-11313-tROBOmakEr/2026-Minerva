@@ -6,7 +6,6 @@ package frc.robot.subsystems.indexer;
 
 import com.revrobotics.spark.SparkMax;
 
-import com.revrobotics.spark.config.ClosedLoopConfig;
 import com.revrobotics.spark.config.SparkMaxConfig;
 import com.revrobotics.PersistMode;
 import com.revrobotics.ResetMode;
