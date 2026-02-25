@@ -28,7 +28,7 @@ public class Intake_Constants {
     public static class  Intake_Neo_Roller {
         public static final int Roller_ID = 1;
 
-        public static double Roller_Start = 0.8;//目前為dutycycle，記得改
+        public static double Roller_Start = 10;//目前為dutycycle，記得改
         
         public static final double Roller_Start_P = 0.1;
         public static final double Roller_Start_I = 0;
@@ -59,8 +59,8 @@ public class Intake_Constants {
     public static class  Intake_Neo_Deploy {
         public static final int Deploy_ID = 2;
 
-        public static double Deploy_Forward = 0.8;//目前為dutycycle，記得改
-        public static double Deploy_Back = -0.8;
+        public static double Deploy_Forward = 10;//目前為dutycycle，記得改
+        public static double Deploy_Back = -10;
         
         public static final double Deploy_Forward_P = 0.1;
         public static final double Deploy_Forward_I = 0;
@@ -75,6 +75,9 @@ public class Intake_Constants {
 
         public static final double Max_Output = 1;//最大輸出
         public static final double Min_Output = -1;//最小輸出
+
+        public static final double maxAcceleration = 5;
+        public static final double cruiseVelocity = 2 ;
     }
 
 
