@@ -24,7 +24,7 @@ public class Spindexer_Neo extends SubsystemBase {
   /** Creates a new Indexer. */
   public Spindexer_Neo() {
     spindexerConfig.smartCurrentLimit(30)
-                   .idleMode(IdleMode.kBrake);
+                   .idleMode(IdleMode.kBrake) ;
 
     spindexerConfig.closedLoop
         .feedbackSensor(FeedbackSensor.kPrimaryEncoder)
@@ -37,12 +37,16 @@ public class Spindexer_Neo extends SubsystemBase {
     spindexerConfig.closedLoop.feedForward
         .kV(SpindexerConstants.Spindexer_Neo.Run_F, ClosedLoopSlot.kSlot0);
 
+    spindexerConfig.closedLoop.maxMotion.maxAcceleration(2000)
+                                        .cruiseVelocity(1000)
+                                        .allowedProfileError(5);
+
     spindexerNeo.configure(spindexerConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
   }
 
   public void run () {
-    spindexerCLoopController.setSetpoint(SpindexerConstants.Spindexer_Neo.RPM, ControlType.kPosition                    ,
+    spindexerCLoopController.setSetpoint(SpindexerConstants.Spindexer_Neo.RPM, ControlType.kMAXMotionVelocityControl                   ,
         ClosedLoopSlot.kSlot0);
   }
   public void stop(){
