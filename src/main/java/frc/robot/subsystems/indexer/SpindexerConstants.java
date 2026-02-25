@@ -15,6 +15,16 @@ public class SpindexerConstants  {
   }
   public static final class  Spindexer_Neo {
     public static final int Spindexer_ID = 1;
+    public static double RPM = 100;
+
+      
+    public static final double Run_P = 0.1;
+    public static final double Run_I = 0;
+    public static final double Run_D = 0.001;
+    public static final double Run_F = 0;
+
+    public static final double Max_Output = 1;//最大輸出
+    public static final double Min_Output = -1;//最小輸出
   }
 
 

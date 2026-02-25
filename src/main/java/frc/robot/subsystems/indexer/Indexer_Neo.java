@@ -5,7 +5,7 @@
 package frc.robot.subsystems.indexer;
 
 import com.revrobotics.spark.SparkMax;
-
+import com.revrobotics.spark.SparkBase.ControlType;
 import com.revrobotics.spark.config.SparkMaxConfig;
 import com.revrobotics.PersistMode;
 import com.revrobotics.ResetMode;
@@ -38,7 +38,7 @@ public class Indexer_Neo extends SubsystemBase {
   }
 
   public void run() {
-    indexerCloseloop.setSetpoint(IndexerConstants.Indexer_Neo.RPM, SparkMax.ControlType.kVelocity,
+    indexerCloseloop.setSetpoint(IndexerConstants.Indexer_Neo.RPM, ControlType.kMAXMotionVelocityControl,
         ClosedLoopSlot.kSlot0);
   }
 
