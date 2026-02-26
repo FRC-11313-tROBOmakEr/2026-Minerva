@@ -5,6 +5,7 @@
 package frc.robot.subsystems.indexer;
 
 import com.ctre.phoenix6.CANBus;
+import com.ctre.phoenix6.configs.MotionMagicConfigs;
 import com.ctre.phoenix6.configs.MotorOutputConfigs;
 import com.ctre.phoenix6.configs.Slot0Configs;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
@@ -21,7 +22,9 @@ public class SpindexerConstants  {
     public static final TalonFXConfiguration SpindexerConfiguration = new TalonFXConfiguration()
         .withSlot0(new Slot0Configs() .withKP(0.2).withKI(0).withKD(0.5))
         .withMotorOutput(new MotorOutputConfigs().withNeutralMode(NeutralModeValue.Brake)
-        .withInverted(InvertedValue.Clockwise_Positive));
+        .withInverted(InvertedValue.Clockwise_Positive))
+        .withMotionMagic(new MotionMagicConfigs().withMotionMagicAcceleration(2000).withMotionMagicCruiseVelocity(1000)
+        .withMotionMagicJerk(1000));
 
   }
   public static final class  Spindexer_Neo {
