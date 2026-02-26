@@ -34,6 +34,11 @@ public class Indexer_Neo extends SubsystemBase {
     indexerConfig.closedLoop.feedForward
         .kV(IndexerConstants.Indexer_Neo.Run_F, ClosedLoopSlot.kSlot0);
 
+    
+    indexerConfig.closedLoop.maxMotion.maxAcceleration(IndexerConstants.Indexer_Neo.maxAcceleration)
+                                      .cruiseVelocity(IndexerConstants.Indexer_Neo.cruiseVelocity)
+                                      .allowedProfileError(IndexerConstants.Indexer_Neo.allowedProfileError, ClosedLoopSlot.kSlot0);
+
     indexerNeo.configure(indexerConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
   }
 

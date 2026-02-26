@@ -42,6 +42,10 @@ public class IndexerConstants {
 
         public static final double Max_Output = 1;//最大輸出
         public static final double Min_Output = -1;//最小輸出
+
+         public static final double maxAcceleration = 2000;
+         public static final double cruiseVelocity = 1000;
+         public static final double allowedProfileError = 5;
     }
 
 

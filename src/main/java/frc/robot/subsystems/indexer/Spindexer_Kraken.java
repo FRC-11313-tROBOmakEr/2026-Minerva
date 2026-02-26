@@ -4,14 +4,23 @@
 
 package frc.robot.subsystems.indexer;
 
+import com.ctre.phoenix6.controls.VelocityVoltage;
+import com.ctre.phoenix6.hardware.TalonFX;
+import com.revrobotics.spark.SparkMax;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Spindexer_Kraken extends SubsystemBase {
+  private final TalonFX spindexerKraken = new TalonFX(SpindexerConstants.Spindexer_Karken.Spindexer_ID, SpindexerConstants.Can);
   /** Creates a new Indexer_Kraken. */
-  public Spindexer_Kraken() {}
+  public Spindexer_Kraken() {
+    spindexerKraken.getConfigurator().apply(SpindexerConstants.Spindexer_Karken.SpindexerConfiguration);
+  }
 
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
+  public void run(){
+    spindexerKraken.setControl(new VelocityVoltage(SpindexerConstants.Spindexer_Karken.run).withSlot(0));
+  }
+  public void stop (){
+    spindexerKraken.stopMotor();
   }
 }

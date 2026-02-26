@@ -5,6 +5,11 @@
 package frc.robot.subsystems.indexer;
 
 import com.ctre.phoenix6.CANBus;
+import com.ctre.phoenix6.configs.MotorOutputConfigs;
+import com.ctre.phoenix6.configs.Slot0Configs;
+import com.ctre.phoenix6.configs.TalonFXConfiguration;
+import com.ctre.phoenix6.signals.InvertedValue;
+import com.ctre.phoenix6.signals.NeutralModeValue;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
 public class SpindexerConstants  {
@@ -12,6 +17,12 @@ public class SpindexerConstants  {
 
   public static final class Spindexer_Karken {
     public static final int Spindexer_ID = 1;
+    public static double run = 80;//rps
+    public static final TalonFXConfiguration SpindexerConfiguration = new TalonFXConfiguration()
+        .withSlot0(new Slot0Configs() .withKP(0.2).withKI(0).withKD(0.5))
+        .withMotorOutput(new MotorOutputConfigs().withNeutralMode(NeutralModeValue.Brake)
+        .withInverted(InvertedValue.Clockwise_Positive));
+
   }
   public static final class  Spindexer_Neo {
     public static final int Spindexer_ID = 1;
@@ -25,6 +36,10 @@ public class SpindexerConstants  {
 
     public static final double Max_Output = 1;//最大輸出
     public static final double Min_Output = -1;//最小輸出
+
+    public static final double maxAcceleration = 2000;
+    public static final double cruiseVelocity = 1000;
+    public static final double allowedProfileError = 5;
   }
 
 

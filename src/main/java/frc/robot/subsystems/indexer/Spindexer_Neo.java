@@ -37,9 +37,10 @@ public class Spindexer_Neo extends SubsystemBase {
     spindexerConfig.closedLoop.feedForward
         .kV(SpindexerConstants.Spindexer_Neo.Run_F, ClosedLoopSlot.kSlot0);
 
-    spindexerConfig.closedLoop.maxMotion.maxAcceleration(2000)
-                                        .cruiseVelocity(1000)
-                                        .allowedProfileError(5);
+    spindexerConfig.closedLoop
+    .maxMotion.maxAcceleration(SpindexerConstants.Spindexer_Neo.maxAcceleration)
+              .cruiseVelocity(SpindexerConstants.Spindexer_Neo.cruiseVelocity)
+              .allowedProfileError(SpindexerConstants.Spindexer_Neo.allowedProfileError, ClosedLoopSlot.kSlot0);
 
     spindexerNeo.configure(spindexerConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
