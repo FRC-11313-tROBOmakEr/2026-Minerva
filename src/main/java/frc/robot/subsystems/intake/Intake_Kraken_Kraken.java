@@ -7,6 +7,7 @@ package frc.robot.subsystems.intake;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.ctre.phoenix6.hardware.TalonFX;
+import com.ctre.phoenix6.controls.MotionMagicVelocityVoltage;
 import com.ctre.phoenix6.controls.MotionMagicVoltage;
 import com.ctre.phoenix6.controls.VelocityVoltage;
 
@@ -23,7 +24,7 @@ public class Intake_Kraken_Kraken extends SubsystemBase {
   }
 
   public void rollerStart() {
-    roller.setControl(new VelocityVoltage(Intake_Constants.Intake_Kraken_Roller.Roller_Start).withSlot(0));
+    roller.setControl(new MotionMagicVelocityVoltage(Intake_Constants.Intake_Kraken_Roller.Roller_Start).withSlot(0));
   }
 
   public void rollerStop() {

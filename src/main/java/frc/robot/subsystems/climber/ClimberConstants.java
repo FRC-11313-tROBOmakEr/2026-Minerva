@@ -4,5 +4,12 @@
 
 package frc.robot.subsystems.climber;
 
-/** Add your docs here. */
-public class ClimberConstants {}
+import com.ctre.phoenix6.CANBus;
+
+
+public class ClimberConstants {
+    public static final CANBus Can = new CANBus("888");
+    public static class Climber_String{
+        public static final int Climber_String_ID = 1;
+    }
+}
