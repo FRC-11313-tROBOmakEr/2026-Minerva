@@ -20,6 +20,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Target extends SubsystemBase {
@@ -58,6 +59,9 @@ public class Target extends SubsystemBase {
     }
 
     public Rotation2d getAimingRotation(Pose2d robotPose) {
+        Optional<Alliance> alliance = DriverStation.getAlliance();
+        if (alliance.get() == Alliance.Red) TargetPose = REDPose;
+        else TargetPose = BLUEPose;
         double delax = TargetPose.getX() - robotPose.getX();
         double delay = TargetPose.getY() - robotPose.getY();
         return robotPose.getRotation().minus(new Rotation2d(delax,delay));

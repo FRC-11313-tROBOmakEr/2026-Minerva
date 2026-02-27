@@ -42,7 +42,6 @@ public class RobotContainer {
     private final SwerveRequest.RobotCentric forwardStraight = new SwerveRequest.RobotCentric()
             .withDriveRequestType(DriveRequestType.OpenLoopVoltage);
     
-    private final SwerveRequest.FieldCentric driveNormal = new SwerveRequest.FieldCentric();
     private final SwerveRequest.FieldCentricFacingAngle driveAutoAlign = new SwerveRequest.FieldCentricFacingAngle();
 
     private final Telemetry logger = new Telemetry(MaxSpeed);
@@ -100,7 +99,7 @@ public class RobotContainer {
             .withVelocityX(-joystick.getLeftY() * MaxSpeed) 
             .withVelocityY(-joystick.getLeftX() * MaxSpeed)
             .withTargetDirection(target.getAimingRotation(drivetrain.getState().Pose))));
-            
+
         joystick.povUp().whileTrue(drivetrain.applyRequest(() ->
             forwardStraight.withVelocityX(0.5).withVelocityY(0))
         );

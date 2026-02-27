@@ -50,8 +50,6 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     private Notifier m_simNotifier = null;
     private double m_lastSimTime;
     LimelightHelpers.PoseEstimate mt2 = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2("LL");
-    private boolean doRejectUpdate;
-    private boolean badTagData;
     public double fieldReverse;
     public Target target = new Target();
     private final Pigeon2 m_pigeon2 = new Pigeon2(31);
