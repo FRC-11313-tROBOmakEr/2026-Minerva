@@ -4,21 +4,22 @@ package frc.robot.subsystems.shooter;
 import edu.wpi.first.math.geometry.Pose2d;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.subsystems.indexer.IndexerConstants;
 
 import java.util.HashMap;
 import java.util.List;
 
 import com.revrobotics.spark.SparkMax;
-import com.revrobotics.spark.SparkBase.ControlType;
 import com.revrobotics.spark.config.SparkMaxConfig;
 import com.revrobotics.PersistMode;
 import com.revrobotics.ResetMode;
 import com.revrobotics.spark.ClosedLoopSlot;
 import com.revrobotics.spark.FeedbackSensor;
-import com.revrobotics.spark.SparkClosedLoopController;
+import com.revrobotics.spark.SparkAbsoluteEncoder;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
+
+import com.revrobotics.RelativeEncoder;
+import com.revrobotics.AbsoluteEncoder;
 
 import com.ctre.phoenix6.controls.Follower;
 import com.ctre.phoenix6.controls.MotionMagicVelocityVoltage;
@@ -33,11 +34,13 @@ public class Shooter extends SubsystemBase {
   private final TalonFX smallFlyWheel = new TalonFX(ShooterConstants.SmallFlyWheel.smallFlyWheel_ID,ShooterConstants.Can);
   private final SparkMax angle = new SparkMax(IndexerConstants.Indexer_Neo.Indexer_ID, MotorType.kBrushless);
   private final SparkMaxConfig angleConfig = new SparkMaxConfig();
-  private final SparkClosedLoopController angleCloseloop = angle.getClosedLoopController(); 
   
   public double targetSpeed = 0.8;
   public Pose2d TargetPose = new Pose2d();
   public static HashMap<Integer, List<Pose2d>> hubMap = new HashMap<>();
+
+  private final RelativeEncoder relativeEncoder;
+  private final AbsoluteEncoder absoluteEncoder;
 
     
 
@@ -61,6 +64,12 @@ public class Shooter extends SubsystemBase {
 
     angle.configure(angleConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
+    relativeEncoder = angle.getEncoder();
+
+    absoluteEncoder= angle.getAbsoluteEncoder();
+    relativeEncoder.setPosition(360);
+
+
 
   bigFlyWheel.setPosition(0);
   smallFlyWheel.setPosition(0);
@@ -71,13 +80,20 @@ public class Shooter extends SubsystemBase {
   }
 
 
-  public void Shooter_Out() {
+  public void shooter_Out() {
      bigFlyWheel.setControl(new MotionMagicVelocityVoltage(ShooterConstants.BigFlyWheel.bigFlyWheel).withSlot(0));
-     
   }
 
   public void stopFlyWheels() {
     bigFlyWheel.stopMotor();
+  }
+
+  public void angleup(){
+    angle.set(0.5);
+  }
+
+  public void angledown(){
+    angle.set(-0.5);
   }
 
 }
