@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
+import com.ctre.phoenix6.hardware.Pigeon2;
+
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Transform2d;
@@ -22,6 +24,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Target extends SubsystemBase {
   public CommandSwerveDrivetrain drivetrain;
+  public Pigeon2 m_Pigeon2;
   public Pose2d TargetPose = new Pose2d();
   public static HashMap<Integer, List<Pose2d>> hubMap = new HashMap<>();
   private boolean isValidTarget = false;
@@ -55,10 +58,9 @@ public class Target extends SubsystemBase {
     }
 
     public Rotation2d getAimingRotation(Pose2d robotPose) {
-        double delax = TargetPose.getX() + robotPose.getX();
-        double delay = TargetPose.getY() + robotPose.getY();
-
-        return new Rotation2d(Math.atan2(delay, delax));
+        double delax = TargetPose.getX() - robotPose.getX();
+        double delay = TargetPose.getY() - robotPose.getY();
+        return robotPose.getRotation().minus(new Rotation2d(delax,delay));
 
     }
 
