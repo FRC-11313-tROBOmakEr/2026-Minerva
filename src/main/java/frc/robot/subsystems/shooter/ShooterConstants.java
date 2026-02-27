@@ -18,7 +18,7 @@ public class ShooterConstants {
 
         public static final int bigFlyWheel_ID = 1;
         public static final boolean bigFlyWheel_Inverted = false;
-        public static double bigFlyWheel = -115;//rps
+        public static double bigFlyWheel = -100;//rps
 
         public static final TalonFXConfiguration bigflywheelConfiguration = new TalonFXConfiguration()
         .withSlot0(new Slot0Configs().withKP(0.2).withKI(0).withKD(0.5)
