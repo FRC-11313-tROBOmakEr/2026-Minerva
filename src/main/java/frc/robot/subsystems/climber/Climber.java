@@ -4,14 +4,33 @@
 
 package frc.robot.subsystems.climber;
 
+import com.ctre.phoenix6.controls.Follower;
+import com.ctre.phoenix6.controls.MotionMagicVelocityDutyCycle;
+import com.ctre.phoenix6.hardware.TalonFX;
+import com.ctre.phoenix6.signals.MotorAlignmentValue;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.subsystems.indexer.SpindexerConstants;
+
+import com.revrobotics.spark.SparkMax;
 
 public class Climber extends SubsystemBase {
   /** Creates a new Climber. */
-  public Climber() {}
+  private final TalonFX string= new TalonFX(ClimberConstants.string.string_ID);
+  private final TalonFX string2 = new TalonFX(ClimberConstants.string.string2_ID);
+  private final SparkMax angle = new SparkMax(ClimberConstants.angle.angle_ID, null);
+  
 
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
+  public Climber(){
+     string.getConfigurator().apply(ClimberConstants.string.stringConfiguration);
+    string2.setControl(new Follower(string.getDeviceID(),MotorAlignmentValue.Aligned));
+  }
+
+  public void out(){
+    string.setControl(new MotionMagicVelocityDutyCycle(ClimberConstants.string.out).withSlot(0));
+  }
+
+  public void back(){
+    string.setControl(new MotionMagicVelocityDutyCycle(ClimberConstants.string.back).withSlot(1));
   }
 }
