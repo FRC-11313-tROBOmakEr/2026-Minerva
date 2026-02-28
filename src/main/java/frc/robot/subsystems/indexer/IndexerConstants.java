@@ -32,7 +32,7 @@ public class IndexerConstants {
 
     public static class  Indexer_Neo {
         public static final int Indexer_ID = 1;
-        public static double RPM = 100;
+        public static double RPM = 90;
 
       
         public static final double Run_P = 0.1;
@@ -42,6 +42,10 @@ public class IndexerConstants {
 
         public static final double Max_Output = 1;//最大輸出
         public static final double Min_Output = -1;//最小輸出
+
+         public static final double maxAcceleration = 2000;
+         public static final double cruiseVelocity = 1000;
+         public static final double allowedProfileError = 5;
     }
 
 
