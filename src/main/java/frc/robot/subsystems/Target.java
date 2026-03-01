@@ -12,7 +12,7 @@ import com.ctre.phoenix6.hardware.Pigeon2;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
-
+import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -58,10 +58,8 @@ public class Target extends SubsystemBase {
         Optional<Alliance> alliance = DriverStation.getAlliance();
         if (alliance.get() == Alliance.Red) targetPose = REDPose;
         else targetPose = BLUEPose;
-        double delax = targetPose.getX() - robotPose.getX();
-        double delay = targetPose.getY() - robotPose.getY();
-        return robotPose.getRotation().minus(new Rotation2d(delax,delay));
-
+        Translation2d targetToBot = targetPose.relativeTo(robotPose).getTranslation();
+        return new Rotation2d(targetToBot.getX(), targetToBot.getY());
     }
 
     public double getDistanceToTarget(Pose2d robotPose) {
