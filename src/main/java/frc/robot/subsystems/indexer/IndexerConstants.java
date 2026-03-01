@@ -10,7 +10,6 @@ import com.ctre.phoenix6.configs.Slot0Configs;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
-import com.ctre.phoenix6.signals.StaticFeedforwardSignValue;
 
 
 /** Add your docs here. */
@@ -32,7 +31,7 @@ public class IndexerConstants {
 
     public static class  Indexer_Neo {
         public static final int Indexer_ID = 1;
-        public static double RPM = 90;
+        public static double RPM = 140;
 
       
         public static final double Run_P = 0.1;
