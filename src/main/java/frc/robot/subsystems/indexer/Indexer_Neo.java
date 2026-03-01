@@ -4,22 +4,19 @@
 
 package frc.robot.subsystems.indexer;
 
-import com.revrobotics.spark.SparkMax;
-import com.revrobotics.spark.SparkBase.ControlType;
 import com.revrobotics.spark.config.SparkMaxConfig;
-import com.revrobotics.PersistMode;
-import com.revrobotics.ResetMode;
 import com.revrobotics.spark.ClosedLoopSlot;
 import com.revrobotics.spark.FeedbackSensor;
-import com.revrobotics.spark.SparkClosedLoopController;
+import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
+import com.revrobotics.PersistMode;
+import com.revrobotics.ResetMode;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Indexer_Neo extends SubsystemBase {
   private final SparkMax indexerNeo = new SparkMax(IndexerConstants.Indexer_Neo.Indexer_ID, MotorType.kBrushless);
   private final SparkMaxConfig indexerConfig = new SparkMaxConfig();
-  private final SparkClosedLoopController indexerCloseloop = indexerNeo.getClosedLoopController();
 
   /** Creates a new Indexer_Neo. */
   public Indexer_Neo() {
@@ -43,8 +40,9 @@ public class Indexer_Neo extends SubsystemBase {
   }
 
   public void run() {
-    indexerCloseloop.setSetpoint(IndexerConstants.Indexer_Neo.RPM, ControlType.kMAXMotionVelocityControl,
-        ClosedLoopSlot.kSlot0);
+    // indexerCloseloop.setSetpoint(IndexerConstants.Indexer_Neo.RPM, ControlType.kCurrent,
+    //     ClosedLoopSlot.kSlot0);
+    indexerNeo.set(-0.7);
   }
 
   public void stop() {

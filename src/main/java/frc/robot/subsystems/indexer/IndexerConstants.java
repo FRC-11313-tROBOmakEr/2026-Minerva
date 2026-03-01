@@ -10,7 +10,6 @@ import com.ctre.phoenix6.configs.Slot0Configs;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
-import com.ctre.phoenix6.signals.StaticFeedforwardSignValue;
 
 
 /** Add your docs here. */
@@ -21,18 +20,17 @@ public class IndexerConstants {
     public static class  Indexer_Kraken {
         public static final int Indexer_ID = 1;
 
-        public static double run = 80;//rps
+        public static double Run = 80;//rps
         public static final TalonFXConfiguration IndexerConfiguration = new TalonFXConfiguration()
         .withSlot0(new Slot0Configs() .withKP(0.2).withKI(0).withKD(0.5))
         .withMotorOutput(new MotorOutputConfigs().withNeutralMode(NeutralModeValue.Brake)
         .withInverted(InvertedValue.Clockwise_Positive));
-        }
-        
-    
+
+    }
 
     public static class  Indexer_Neo {
         public static final int Indexer_ID = 1;
-        public static double RPM = 90;
+        public static double RPM = 140;
 
       
         public static final double Run_P = 0.1;

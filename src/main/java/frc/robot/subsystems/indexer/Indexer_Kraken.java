@@ -4,10 +4,8 @@
 
 package frc.robot.subsystems.indexer;
 
-
 import com.ctre.phoenix6.controls.VelocityVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
-
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -21,7 +19,7 @@ public class Indexer_Kraken extends SubsystemBase {
   }
 
    public void run() {
-    indexerKraken.setControl(new VelocityVoltage(IndexerConstants.Indexer_Kraken.run).withSlot(0));
+    indexerKraken.setControl(new VelocityVoltage(IndexerConstants.Indexer_Kraken.Run).withSlot(0));
   }
 
   public void stop() {
