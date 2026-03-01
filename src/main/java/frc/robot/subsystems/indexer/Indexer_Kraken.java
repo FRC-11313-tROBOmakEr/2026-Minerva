@@ -19,7 +19,7 @@ public class Indexer_Kraken extends SubsystemBase {
   }
 
    public void run() {
-    indexerKraken.setControl(new VelocityVoltage(IndexerConstants.Indexer_Kraken.run).withSlot(0));
+    indexerKraken.setControl(new VelocityVoltage(IndexerConstants.Indexer_Kraken.Run).withSlot(0));
   }
 
   public void stop() {
