@@ -37,7 +37,7 @@ public class ClimberConstants {
         .withMotionMagic(new MotionMagicConfigs().withMotionMagicAcceleration(2000).withMotionMagicCruiseVelocity(1000)
         .withMotionMagicJerk(60));
     }
-     public static class  angle {
+     public static class Angle {
         public static final int Angle_ID = 1;
         public static double RPM = 90;
 
