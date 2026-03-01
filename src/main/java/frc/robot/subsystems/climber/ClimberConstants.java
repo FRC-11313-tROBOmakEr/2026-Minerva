@@ -17,19 +17,20 @@ import com.ctre.phoenix6.signals.NeutralModeValue;
 public class ClimberConstants {
     public static final CANBus Can = new CANBus("888");
     public static class string{
-        public static final int string_ID = 1;
-        public static final int string2_ID = 2;
+        public static final int String_ID = 1;
+        public static final int String2_ID = 2;
 
-        public static double out = 80;
-        public static double back = -80;
+        public static double Out = 80;
+        public static double Back = -80;
 
-    public static final TalonFXConfiguration stringConfiguration = new TalonFXConfiguration()
+        public static final TalonFXConfiguration stringConfiguration = new TalonFXConfiguration()
         .withSlot0(new Slot0Configs() .withKP(0).withKI(0).withKD(0).withKG(0).withKV(0.2).withKA(0.3))
         .withMotorOutput(new MotorOutputConfigs().withNeutralMode(NeutralModeValue.Brake)
         .withInverted(InvertedValue.Clockwise_Positive))
         .withMotionMagic(new MotionMagicConfigs().withMotionMagicAcceleration(2000).withMotionMagicCruiseVelocity(1000)
         .withMotionMagicJerk(60));
-    public static final TalonFXConfiguration string2figuration = new TalonFXConfiguration()
+
+        public static final TalonFXConfiguration string2Configuration = new TalonFXConfiguration()
         .withSlot1(new Slot1Configs() .withKP(0).withKI(0).withKD(0.5).withKG(0).withKV(0.2).withKA(0.3))
         .withMotorOutput(new MotorOutputConfigs().withNeutralMode(NeutralModeValue.Brake)
         .withInverted(InvertedValue.Clockwise_Positive))
@@ -37,7 +38,7 @@ public class ClimberConstants {
         .withMotionMagicJerk(60));
     }
      public static class  angle {
-        public static final int Indexer_ID = 1;
+        public static final int Angle_ID = 1;
         public static double RPM = 90;
 
       
@@ -49,8 +50,8 @@ public class ClimberConstants {
         public static final double Max_Output = 1;//最大輸出
         public static final double Min_Output = -1;//最小輸出
 
-         public static final double maxAcceleration = 2000;
-         public static final double cruiseVelocity = 1000;
-         public static final double allowedProfileError = 5;
+        public static final double MaxAcceleration = 2000;
+        public static final double CruiseVelocity = 1000;
+        public static final double AllowedProfileError = 5;
     }
 }
