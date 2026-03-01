@@ -22,7 +22,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class Target extends SubsystemBase {
   public CommandSwerveDrivetrain drivetrain;
   public Pigeon2 m_Pigeon2;
-  public Pose2d TargetPose = new Pose2d();
+  public Pose2d targetPose = new Pose2d();
   public static HashMap<Integer, List<Pose2d>> hubMap = new HashMap<>();
   private boolean isValidTarget = false;
   private final Pose2d REDPose = new Pose2d(8.27, 4.035, new Rotation2d(180));
@@ -40,12 +40,12 @@ public class Target extends SubsystemBase {
                         && ((aprilTagsID >= 2 && aprilTagsID <= 5) || (aprilTagsID >= 8 && aprilTagsID <= 11))) {
                     isValidTarget = true;
 
-                    TargetPose = REDPose;
+                    targetPose = REDPose;
 
                 } else if (alliance.get() == Alliance.Blue
                         && ((aprilTagsID >= 18 && aprilTagsID <= 21) || (aprilTagsID >= 24 && aprilTagsID <= 27))) {
                     isValidTarget = true;
-                    TargetPose = BLUEPose;
+                    targetPose = BLUEPose;
 
                 } else {
                     isValidTarget = false;
@@ -56,16 +56,16 @@ public class Target extends SubsystemBase {
 
     public Rotation2d getAimingRotation(Pose2d robotPose) {
         Optional<Alliance> alliance = DriverStation.getAlliance();
-        if (alliance.get() == Alliance.Red) TargetPose = REDPose;
-        else TargetPose = BLUEPose;
-        double delax = TargetPose.getX() - robotPose.getX();
-        double delay = TargetPose.getY() - robotPose.getY();
+        if (alliance.get() == Alliance.Red) targetPose = REDPose;
+        else targetPose = BLUEPose;
+        double delax = targetPose.getX() - robotPose.getX();
+        double delay = targetPose.getY() - robotPose.getY();
         return robotPose.getRotation().minus(new Rotation2d(delax,delay));
 
     }
 
     public double getDistanceToTarget(Pose2d robotPose) {
-        return robotPose.getTranslation().getDistance(TargetPose.getTranslation());
+        return robotPose.getTranslation().getDistance(targetPose.getTranslation());
     }
 
     public boolean isTargetValid() {
