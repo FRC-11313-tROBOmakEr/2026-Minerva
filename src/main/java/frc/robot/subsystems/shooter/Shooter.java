@@ -65,8 +65,6 @@ public class Shooter extends SubsystemBase {
 
   @Override
   public void periodic() {
-    // TODO Auto-generated method stub
-    super.periodic();
     SmartDashboard.putNumber("Current Velocity", bigFlyWheel.getVelocity().getValueAsDouble());
   }
 
