@@ -288,7 +288,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
 
     @Override
     public void periodic() {
-        var mt2 = LimelightHelpers.getBotPoseEstimate_wpiBlue("alenwhy");
+        var mt2 = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2("alenwhy");
         if (mt2 != null && mt2.pose != null) 
         addVisionMeasurement(mt2.pose,mt2.timestampSeconds);
         
