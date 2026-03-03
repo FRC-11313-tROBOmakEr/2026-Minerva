@@ -13,6 +13,7 @@ import com.revrobotics.spark.ClosedLoopSlot;
 import com.revrobotics.spark.FeedbackSensor;
 import com.revrobotics.spark.SparkClosedLoopController;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
+import edu.wpi.first.wpilibj.DutyCycle;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -43,8 +44,9 @@ public class Indexer_Neo extends SubsystemBase {
   }
 
   public void run() {
-    indexerCloseloop.setSetpoint(IndexerConstants.Indexer_Neo.RPM, ControlType.kMAXMotionVelocityControl,
-        ClosedLoopSlot.kSlot0);
+    // indexerCloseloop.setSetpoint(IndexerConstants.Indexer_Neo.RPM, ControlType.kCurrent,
+    //     ClosedLoopSlot.kSlot0);
+    indexerNeo.set(-0.7);
   }
 
   public void stop() {
