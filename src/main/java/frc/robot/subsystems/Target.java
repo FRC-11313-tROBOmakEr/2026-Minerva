@@ -33,10 +33,6 @@ public class Target extends SubsystemBase {
   private boolean isValidTarget = false;
   private final Pose2d REDPose = new Pose2d(8.27, 4.035, new Rotation2d(180));
   private final Pose2d BLUEPose = new Pose2d(4.03, 4.035, new Rotation2d(0));
-  private Rotation2d rotation2d = new Rotation2d();
-
-
-  
 
   /** Creates a new Target. */
   public Command getTargetStatus(double aprilTagsID) {
