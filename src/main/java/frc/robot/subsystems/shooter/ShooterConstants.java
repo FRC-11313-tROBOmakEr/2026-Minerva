@@ -3,6 +3,8 @@ package frc.robot.subsystems.shooter;
 import com.ctre.phoenix6.CANBus;
 import com.ctre.phoenix6.configs.CurrentLimitsConfigs;
 import com.ctre.phoenix6.configs.MotionMagicConfigs;
+import com.ctre.phoenix6.configs.CurrentLimitsConfigs;
+import com.ctre.phoenix6.configs.MotionMagicConfigs;
 import com.ctre.phoenix6.configs.Slot0Configs;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.signals.StaticFeedforwardSignValue;
@@ -21,8 +23,13 @@ public class ShooterConstants {
         public static final int bigFlyWheel_ID = 1;
         public static final boolean bigFlyWheel_Inverted = false;
         public static double bigFlyWheel = 60;//rps
+        public static double bigFlyWheel = 60;//rps
 
         public static final TalonFXConfiguration bigflywheelConfiguration = new TalonFXConfiguration()
+        .withMotionMagic(new MotionMagicConfigs().withMotionMagicAcceleration(160))
+        .withSlot0(new Slot0Configs().withKP(1).withKI(0).withKD(0)
+        .withKS(0.225).withKV(0.12).withKA(0.3).withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign))
+        .withCurrentLimits(new CurrentLimitsConfigs().withStatorCurrentLimit(40));
         .withMotionMagic(new MotionMagicConfigs().withMotionMagicAcceleration(160))
         .withSlot0(new Slot0Configs().withKP(1).withKI(0).withKD(0)
         .withKS(0.225).withKV(0.12).withKA(0.3).withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign))
