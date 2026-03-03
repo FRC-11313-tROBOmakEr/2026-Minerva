@@ -3,6 +3,8 @@ package frc.robot.subsystems.shooter;
 import com.ctre.phoenix6.CANBus;
 import com.ctre.phoenix6.configs.CurrentLimitsConfigs;
 import com.ctre.phoenix6.configs.MotionMagicConfigs;
+import com.ctre.phoenix6.configs.CurrentLimitsConfigs;
+import com.ctre.phoenix6.configs.MotionMagicConfigs;
 import com.ctre.phoenix6.configs.Slot0Configs;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.signals.StaticFeedforwardSignValue;
@@ -10,7 +12,7 @@ import com.ctre.phoenix6.signals.StaticFeedforwardSignValue;
 
 /** Add your docs here. */
 public class ShooterConstants {
-    public static final CANBus Can = new CANBus("1");
+    public static final CANBus Can = new CANBus("a1enwhy");
 
     public static final int angleMotor_ID = 4;
 
@@ -27,6 +29,7 @@ public class ShooterConstants {
         .withSlot0(new Slot0Configs().withKP(1).withKI(0).withKD(0)
         .withKS(0.225).withKV(0.12).withKA(0.3).withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign))
         .withCurrentLimits(new CurrentLimitsConfigs().withStatorCurrentLimit(40));
+
     }
 
     public static class SmallFlyWheel{
@@ -36,20 +39,20 @@ public class ShooterConstants {
 
     public static class Angle  {
         public static final int Angle_ID = 8;
-        public static double RPM = 90;
+        public static double RPM = 20;
 
       
-        public static final double Run_P = 0.3;
+        public static final double Run_P = 0.05;
         public static final double Run_I = 0;
-        public static final double Run_D = 0.001;
+        public static final double Run_D = 0;
         public static final double Run_F = 0;
 
         public static final double Max_Output = 1;//最大輸出
         public static final double Min_Output = -1;//最小輸出
 
-         public static final double maxAcceleration = 2000;
-         public static final double cruiseVelocity = 1000;
-         public static final double allowedProfileError = 5;
+         public static final double maxAcceleration = 80;
+         public static final double cruiseVelocity = 10;
+         public static final double allowedProfileError = 50;
     }
 
     

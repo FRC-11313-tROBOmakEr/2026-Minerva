@@ -15,20 +15,24 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.smartdashboard.Field2d;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.LimelightHelpers;
+import frc.robot.generated.TunerConstants;
 
 public class Target extends SubsystemBase {
-  public CommandSwerveDrivetrain drivetrain;
+ 
+
   public Pigeon2 m_Pigeon2;
   public Pose2d targetPose = new Pose2d();
   public static HashMap<Integer, List<Pose2d>> hubMap = new HashMap<>();
   private boolean isValidTarget = false;
   private final Pose2d REDPose = new Pose2d(8.27, 4.035, new Rotation2d(180));
   private final Pose2d BLUEPose = new Pose2d(4.03, 4.035, new Rotation2d(0));
-  
-  
 
   /** Creates a new Target. */
   public Command getTargetStatus(double aprilTagsID) {
@@ -68,8 +72,11 @@ public class Target extends SubsystemBase {
 
     public boolean isTargetValid() {
         return isValidTarget;
-    }
+    }   
 
-
-  
+@Override
+public void periodic() {
+    
+    
+}
 }
