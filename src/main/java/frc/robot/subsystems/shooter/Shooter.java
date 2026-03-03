@@ -32,7 +32,7 @@ public class Shooter extends SubsystemBase {
 
   public Shooter() {
     angleConfig.closedLoop
-        .feedbackSensor(FeedbackSensor.kPrimaryEncoder)
+        .feedbackSensor(FeedbackSensor.kAbsoluteEncoder)
         .pid(ShooterConstants.Angle.Run_P,
              ShooterConstants.Angle.Run_I, 
              ShooterConstants.Angle.Run_D, 
@@ -46,9 +46,12 @@ public class Shooter extends SubsystemBase {
     angleConfig.closedLoop.maxMotion.maxAcceleration(ShooterConstants.Angle.maxAcceleration)
                                       .cruiseVelocity(ShooterConstants.Angle.cruiseVelocity)
                                       .allowedProfileError(ShooterConstants.Angle.allowedProfileError, ClosedLoopSlot.kSlot0);
-    angleConfig.idleMode(IdleMode.kBrake);                              
+    angleConfig.idleMode(IdleMode.kBrake);
+    angleConfig.absoluteEncoder.zeroOffset(0.05);
+    angleConfig.inverted(true);                              
 
     angle.configure(angleConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    
 
 
   bigFlyWheel.setPosition(0);
