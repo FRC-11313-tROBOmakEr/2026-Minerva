@@ -21,8 +21,7 @@ public class SpindexerConstants  {
   public static final class Spindexer_Karken {
     public static final int Spindexer_ID = 10;
     public static double run = 60;//rps
-    public static final int Spindexer_ID = 10;
-    public static double run = 60;//rps
+
     public static final TalonFXConfiguration SpindexerConfiguration = new TalonFXConfiguration()
         .withSlot0(new Slot0Configs() .withKP(0.3).withKI(0.01).withKD(0.01)
         .withKS(0.404).withKV(0.0875).withKA(0.075).withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign))
@@ -36,10 +35,7 @@ public class SpindexerConstants  {
   public static final class  Spindexer_Neo {
     public static final int Spindexer_ID = 12;
     public static double RPM = 110;
-    public static final int Spindexer_ID = 12;
-    public static double RPM = 110;
-
-      
+    
     public static final double Run_P = 0.1;
     public static final double Run_I = 0;
     public static final double Run_D = 0.001;

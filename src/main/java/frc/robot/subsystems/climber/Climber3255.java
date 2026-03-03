@@ -12,8 +12,8 @@ import com.ctre.phoenix6.signals.MotorAlignmentValue;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Climber3255 extends SubsystemBase {
-  private final TalonFX string = new TalonFX(ClimberConstants.string.string_ID);
-  private final TalonFX string2 = new TalonFX(ClimberConstants.string.string2_ID);
+  private final TalonFX string = new TalonFX(ClimberConstants.string.String_ID);
+  private final TalonFX string2 = new TalonFX(ClimberConstants.string.String2_ID);
 
   public Climber3255() {
     string.getConfigurator().apply(ClimberConstants.string.stringConfiguration);
@@ -21,10 +21,10 @@ public class Climber3255 extends SubsystemBase {
   }
 
   public void out() {
-    string.setControl(new MotionMagicVelocityDutyCycle(ClimberConstants.string.out).withSlot(0));
+    string.setControl(new MotionMagicVelocityDutyCycle(ClimberConstants.string.Out).withSlot(0));
   }
 
   public void back() {
-    string.setControl(new MotionMagicVelocityDutyCycle(ClimberConstants.string.back).withSlot(1));
+    string.setControl(new MotionMagicVelocityDutyCycle(ClimberConstants.string.Back).withSlot(1));
   }
 }
