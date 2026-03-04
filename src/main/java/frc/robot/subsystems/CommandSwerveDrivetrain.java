@@ -307,14 +307,13 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
 
         PoseEstimate mt2 = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2("alenwhy");
         if (mt2 != null && mt2.pose != null){
-            addVisionMeasurement(mt2.pose, mt2.timestampSeconds);}
+            addVisionMeasurement(mt2.pose, mt2.timestampSeconds);
+            field.setRobotPose(mt2.pose);
+            SmartDashboard.putData("Vision", field);
+        }
         
         m_field.setRobotPose(this.getState().Pose);
         SmartDashboard.putData("Field", m_field);
-        
-
-        field.setRobotPose(mt2.pose);
-        SmartDashboard.putData("Vision", field);
 
         if (!m_hasAppliedOperatorPerspective || DriverStation.isDisabled()) {
             DriverStation.getAlliance().ifPresent(allianceColor -> {
