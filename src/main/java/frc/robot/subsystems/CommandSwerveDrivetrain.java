@@ -23,6 +23,7 @@ import com.pathplanner.lib.controllers.PPHolonomicDriveController;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.Matrix;
 import edu.wpi.first.math.VecBuilder;
+import edu.wpi.first.math.estimator.PoseEstimator;
 import edu.wpi.first.math.estimator.SwerveDrivePoseEstimator;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -41,6 +42,7 @@ import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
 import frc.robot.LimelightHelpers;
+import frc.robot.LimelightHelpers.PoseEstimate;
 import frc.robot.generated.TunerConstants.TunerSwerveDrivetrain;
 
 /**
@@ -303,9 +305,9 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
                 m_pigeon2.getRoll().getValueAsDouble(),
                 m_pigeon2.getAngularVelocityXWorld().getValueAsDouble());
 
-        var mt2 = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2("alenwhy");
-        if (mt2 != null && mt2.pose != null)
-            addVisionMeasurement(mt2.pose, mt2.timestampSeconds);
+        PoseEstimate mt2 = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2("alenwhy");
+        if (mt2 != null && mt2.pose != null){
+            addVisionMeasurement(mt2.pose, mt2.timestampSeconds);}
         
         m_field.setRobotPose(this.getState().Pose);
         SmartDashboard.putData("Field", m_field);

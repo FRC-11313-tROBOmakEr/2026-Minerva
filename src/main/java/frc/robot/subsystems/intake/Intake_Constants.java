@@ -51,7 +51,7 @@ public class Intake_Constants {
         .withSlot0(new Slot0Configs().withKP(0.2).withKI(0).withKD(0.5)
         .withKS(0.1).withKV(0.12).withKA(0).withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign));
 
-        public static double Roller_Start = 80;//rps
+        public static double Roller_Start = 50;//rps
 
 
     }
@@ -80,8 +80,8 @@ public class Intake_Constants {
     public static class  Intake_Kraken_Deploy {
         public static final int Deploy_ID = 2;
 
-        // public static double Deploy_Start = 10;
-        // public static double Deploy_Back = -10;
+        public static double Deploy_Start = 10;
+        public static double Deploy_Back = -10;
 
         public static double OutRotaintion = 0.25;
         public static double BackRotaintion = 0;

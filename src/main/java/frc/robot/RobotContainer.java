@@ -45,8 +45,8 @@ public class RobotContainer {
     private final SwerveRequest.FieldCentricFacingAngle driveAutoAlign = new SwerveRequest.FieldCentricFacingAngle();
     private final Telemetry logger = new Telemetry(MaxSpeed);
     private final frc.robot.subsystems.Target target = new frc.robot.subsystems.Target();
-    private final CommandXboxController joystick = new CommandXboxController(0);
-    private final CommandXboxController joystick2 = new CommandXboxController(1);
+    private final CommandXboxController joystick = new CommandXboxController(1);
+    private final CommandXboxController joystick2 = new CommandXboxController(0);
 
     public final CommandXboxController[] joysticks = {joystick};
 
@@ -118,8 +118,8 @@ public class RobotContainer {
 
         drivetrain.registerTelemetry(logger::telemeterize);
 
-        joystick2.x().whileTrue(new InstantCommand(intake::Out));
-        joystick2.y().whileTrue(new InstantCommand(intake::Back));
+        joystick2.x().whileTrue(new InstantCommand(intake::rollerStart)).onFalse(new InstantCommand(intake::rollerStop));
+        //joystick2.y().whileTrue(new InstantCommand(intake::Back));
     }
 
     public Command getAutonomousCommand() {
