@@ -21,12 +21,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.LimelightHelpers;
-import frc.robot.generated.TunerConstants;
 
 public class Target extends SubsystemBase {
- 
-
   public Pigeon2 m_Pigeon2;
   public Pose2d targetPose = new Pose2d();
   public static HashMap<Integer, List<Pose2d>> hubMap = new HashMap<>();
@@ -35,28 +31,6 @@ public class Target extends SubsystemBase {
   private final Pose2d BLUEPose = new Pose2d(4.03, 4.035, new Rotation2d(0));
 
   /** Creates a new Target. */
-  public Command getTargetStatus(double aprilTagsID) {
-        return Commands.run(() -> {
-
-            Optional<Alliance> alliance = DriverStation.getAlliance();
-            if (alliance.isPresent()) {
-                if (alliance.get() == Alliance.Red
-                        && ((aprilTagsID >= 2 && aprilTagsID <= 5) || (aprilTagsID >= 8 && aprilTagsID <= 11))) {
-                    isValidTarget = true;
-
-                    targetPose = REDPose;
-
-                } else if (alliance.get() == Alliance.Blue
-                        && ((aprilTagsID >= 18 && aprilTagsID <= 21) || (aprilTagsID >= 24 && aprilTagsID <= 27))) {
-                    isValidTarget = true;
-                    targetPose = BLUEPose;
-
-                } else {
-                    isValidTarget = false;
-                }
-            }
-        });
-    }
 
     public Rotation2d getAimingRotation(Pose2d robotPose) {
         Optional<Alliance> alliance = DriverStation.getAlliance();
@@ -72,11 +46,28 @@ public class Target extends SubsystemBase {
 
     public boolean isTargetValid() {
         return isValidTarget;
-    }   
+    } 
 
-@Override
-public void periodic() {
-    
-    
-}
+    //   public Command getTargetStatus(double aprilTagsID) {
+//         return Commands.run(() -> {
+
+//             Optional<Alliance> alliance = DriverStation.getAlliance();
+//             if (alliance.isPresent()) {
+//                 if (alliance.get() == Alliance.Red
+//                         && ((aprilTagsID >= 2 && aprilTagsID <= 5) || (aprilTagsID >= 8 && aprilTagsID <= 11))) {
+//                     isValidTarget = true;
+
+//                     targetPose = REDPose;
+
+//                 } else if (alliance.get() == Alliance.Blue
+//                         && ((aprilTagsID >= 18 && aprilTagsID <= 21) || (aprilTagsID >= 24 && aprilTagsID <= 27))) {
+//                     isValidTarget = true;
+//                     targetPose = BLUEPose;
+
+//                 } else {
+//                     isValidTarget = false;
+//                 }
+//             }
+//         });
+//     }  
 }
