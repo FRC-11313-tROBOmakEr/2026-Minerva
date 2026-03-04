@@ -8,6 +8,7 @@ import static edu.wpi.first.units.Units.*;
 
 import java.lang.instrument.Instrumentation;
 
+
 import com.ctre.phoenix6.swerve.SwerveModule.DriveRequestType;
 import com.ctre.phoenix6.swerve.SwerveRequest;
 
@@ -41,9 +42,9 @@ public class RobotContainer {
     private final SwerveRequest.PointWheelsAt point = new SwerveRequest.PointWheelsAt();
     private final SwerveRequest.RobotCentric forwardStraight = new SwerveRequest.RobotCentric()
             .withDriveRequestType(DriveRequestType.OpenLoopVoltage);
-
+    private final SwerveRequest.FieldCentricFacingAngle driveAutoAlign = new SwerveRequest.FieldCentricFacingAngle();
     private final Telemetry logger = new Telemetry(MaxSpeed);
-
+    private final frc.robot.subsystems.Target target = new frc.robot.subsystems.Target();
     private final CommandXboxController joystick = new CommandXboxController(0);
     private final CommandXboxController joystick2 = new CommandXboxController(1);
 
@@ -91,6 +92,12 @@ public class RobotContainer {
         joystick.b().whileTrue(drivetrain.applyRequest(() ->
             point.withModuleDirection(new Rotation2d(-joystick.getLeftY(), -joystick.getLeftX()))
         ));
+
+        joystick.x().whileTrue(drivetrain.applyRequest(
+            ()->driveAutoAlign
+            .withVelocityX(-joystick.getLeftY() * MaxSpeed) 
+            .withVelocityY(-joystick.getLeftX() * MaxSpeed)
+            .withTargetDirection(target.getAimingRotation(drivetrain.getState().Pose))));
 
         joystick.povUp().whileTrue(drivetrain.applyRequest(() ->
             forwardStraight.withVelocityX(0.5).withVelocityY(0))
