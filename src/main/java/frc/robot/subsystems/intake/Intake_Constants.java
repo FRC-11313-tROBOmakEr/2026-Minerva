@@ -83,8 +83,8 @@ public class Intake_Constants {
         public static double Deploy_Start = 10;
         public static double Deploy_Back = -10;
 
-        public static double OutRotaintion = 0.25;
-        public static double BackRotaintion = 0;
+        public static double OutPositionInRot = 0.25;
+        public static double BackPositionInRot = 0;
 
         
         public static final TalonFXConfiguration deployConfiguration = new TalonFXConfiguration()

@@ -38,10 +38,10 @@ public class Intake_Kraken_Kraken extends SubsystemBase {
   // }
 
   public void Out(){
-    deploy.setControl(new MotionMagicVoltage(Intake_Constants.Intake_Kraken_Deploy.OutRotaintion).withSlot(0));
+    deploy.setControl(new MotionMagicVoltage(Intake_Constants.Intake_Kraken_Deploy.OutPositionInRot).withSlot(0));
   }
   public void Back(){
-    deploy.setControl(new MotionMagicVoltage(Intake_Constants.Intake_Kraken_Deploy.BackRotaintion).withSlot(1));
+    deploy.setControl(new MotionMagicVoltage(Intake_Constants.Intake_Kraken_Deploy.BackPositionInRot).withSlot(1));
   }
 
   public double getCurrentPosition(){
