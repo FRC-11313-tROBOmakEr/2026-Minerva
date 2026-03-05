@@ -93,11 +93,11 @@ public class RobotContainer {
             point.withModuleDirection(new Rotation2d(-joystick.getLeftY(), -joystick.getLeftX()))
         ));
 
-        joystick.x().whileTrue(drivetrain.applyRequest(
-            ()->driveAutoAlign
-            .withVelocityX(-joystick.getLeftY() * MaxSpeed) 
-            .withVelocityY(-joystick.getLeftX() * MaxSpeed)
-            .withTargetDirection(target.getAimingRotation(drivetrain.getState().Pose))));
+        // joystick.x().whileTrue(drivetrain.applyRequest(
+        //     ()->driveAutoAlign
+        //     .withVelocityX(-joystick.getLeftY() * MaxSpeed) 
+        //     .withVelocityY(-joystick.getLeftX() * MaxSpeed)
+        //     .withTargetDirection(target.getAimingRotation(drivetrain.getState().Pose))));
 
         joystick.povUp().whileTrue(drivetrain.applyRequest(() ->
             forwardStraight.withVelocityX(0.5).withVelocityY(0))
@@ -119,7 +119,8 @@ public class RobotContainer {
         drivetrain.registerTelemetry(logger::telemeterize);
 
         joystick2.x().whileTrue(new InstantCommand(intake::rollerStart)).onFalse(new InstantCommand(intake::rollerStop));
-        //joystick2.y().whileTrue(new InstantCommand(intake::Back));
+        joystick2.y().whileTrue(new InstantCommand(intake::Back));
+        joystick2.a().whileTrue(new InstantCommand(intake::Out));
     }
 
     public Command getAutonomousCommand() {
