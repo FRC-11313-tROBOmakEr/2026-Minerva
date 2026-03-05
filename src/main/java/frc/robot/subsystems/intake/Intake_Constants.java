@@ -83,7 +83,7 @@ public class Intake_Constants {
         public static double Deploy_Start = 10;
         public static double Deploy_Back = -10;
 
-        public static double OutPositionInRot = 0.25;
+        public static double OutPositionInRot = 1.75;
         public static double BackPositionInRot = 0;
 
         
@@ -95,7 +95,7 @@ public class Intake_Constants {
 
         .withMotionMagic(new MotionMagicConfigs()
         .withMotionMagicCruiseVelocity(50)
-        .withMotionMagicAcceleration(5))
+        .withMotionMagicAcceleration(100))
 
         .withFeedback(new FeedbackConfigs()
         .withFeedbackSensorSource(FeedbackSensorSourceValue.RemoteCANcoder)
@@ -111,7 +111,7 @@ public class Intake_Constants {
         .withContinuousWrap(false))
         
         .withSoftwareLimitSwitch(new SoftwareLimitSwitchConfigs()
-        .withForwardSoftLimitThreshold(0.28)
+        .withForwardSoftLimitThreshold(1.8)
         .withForwardSoftLimitEnable(true)
         .withReverseSoftLimitThreshold(-0.2)
         .withReverseSoftLimitEnable(true));
