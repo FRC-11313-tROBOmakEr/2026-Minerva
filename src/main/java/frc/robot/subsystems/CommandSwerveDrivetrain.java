@@ -58,7 +58,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     private double m_lastSimTime;
     public double fieldReverse;
     public Target target = new Target();
-    private final Pigeon2 m_pigeon2 = new Pigeon2(31);
+    private final Pigeon2 m_pigeon2 = new Pigeon2(0,"888");
     private final Field2d m_field = new Field2d();
     private final Field2d field = new Field2d();
 
@@ -309,8 +309,8 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         if (mt2 != null && mt2.pose != null){
             addVisionMeasurement(mt2.pose, mt2.timestampSeconds);
             field.setRobotPose(mt2.pose);
-            SmartDashboard.putData("Vision", field);
         }
+        SmartDashboard.putData("Vision", field);
         
         m_field.setRobotPose(this.getState().Pose);
         SmartDashboard.putData("Field", m_field);
