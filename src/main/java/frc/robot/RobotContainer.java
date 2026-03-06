@@ -16,6 +16,7 @@ import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.commands.FollowPathCommand;
 
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -27,8 +28,12 @@ import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
-import frc.robot.subsystems.intake.Intake_Constants;
+import frc.robot.subsystems.indexer.Indexer_Kraken;
+import frc.robot.subsystems.indexer.Spindexer_Kraken;
+//import frc.robot.subsystems.intake.Intake_Constants;
 import frc.robot.subsystems.intake.Intake_Kraken_Kraken;
+import frc.robot.subsystems.shooter.Shoot;
+import frc.robot.subsystems.shooter.Shooter;
 
 public class RobotContainer {
     private double MaxSpeed = 1.0 * TunerConstants.kSpeedAt12Volts.in(MetersPerSecond); // kSpeedAt12Volts desired top speed
@@ -45,14 +50,18 @@ public class RobotContainer {
     private final SwerveRequest.FieldCentricFacingAngle driveAutoAlign = new SwerveRequest.FieldCentricFacingAngle();
     private final Telemetry logger = new Telemetry(MaxSpeed);
     private final frc.robot.subsystems.Target target = new frc.robot.subsystems.Target();
-    private final CommandXboxController joystick = new CommandXboxController(1);
-    private final CommandXboxController joystick2 = new CommandXboxController(0);
+    private final CommandXboxController joystick = new CommandXboxController(0);
+    // private final CommandXboxController joystick2 = new CommandXboxController(0);
 
     public final CommandXboxController[] joysticks = {joystick};
 
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
 
-    private final Intake_Kraken_Kraken intake = new Intake_Kraken_Kraken();
+    // private final Intake_Kraken_Kraken intake = new Intake_Kraken_Kraken();
+    // private final Shooter shooter = new Shooter();
+    // private final Spindexer_Kraken spindexer = new Spindexer_Kraken();
+    // private final Indexer_Kraken indexer = new Indexer_Kraken();
+    // private final Shoot shoot = new Shoot (shooter, indexer, spindexer);
 
 
 
@@ -64,6 +73,7 @@ public class RobotContainer {
         SmartDashboard.putData("Auto Mode", autoChooser);
 
         configureBindings();
+      
 
         // Warmup PathPlanner to avoid Java pauses
         CommandScheduler.getInstance().schedule(FollowPathCommand.warmupCommand());
@@ -118,12 +128,23 @@ public class RobotContainer {
 
         drivetrain.registerTelemetry(logger::telemeterize);
 
-        joystick2.x().whileTrue(new InstantCommand(intake::rollerStart)).onFalse(new InstantCommand(intake::rollerStop));
+        // joystick2.b().whileTrue(shoot)
+        //             .onFalse(new InstantCommand(shooter::stopFlyWheels)
+        //             .alongWith(new InstantCommand(spindexer::stop)
+        //             .alongWith(new InstantCommand(indexer::stop))));
+
+        //joystick.x().whileTrue(new InstantCommand(intake::rollerStart)).onFalse(new InstantCommand(intake::rollerStop));
         //joystick2.y().whileTrue(new InstantCommand(intake::Back));
     }
 
     public Command getAutonomousCommand() {
         /* Run the path selected from the auto chooser */
         return autoChooser.getSelected();
+    }
+    public void enabled(){
+        if(DriverStation.isEnabled() == true){
+        System.out.print("Did you deploy the code?");
+        }
+        
     }
 }

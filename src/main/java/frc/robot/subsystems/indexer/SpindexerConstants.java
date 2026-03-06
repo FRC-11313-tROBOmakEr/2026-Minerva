@@ -16,7 +16,7 @@ import com.ctre.phoenix6.signals.StaticFeedforwardSignValue;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
 public class SpindexerConstants  {
-  public static final CANBus Can = new CANBus("a1enwhy");
+  public static final CANBus Can = new CANBus("888");
 
   public static final class Spindexer_Karken {
     public static final int Spindexer_ID = 10;

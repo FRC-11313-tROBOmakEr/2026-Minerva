@@ -102,4 +102,7 @@ public class Shooter extends SubsystemBase {
   public void anglein(){
     anglectrl.setSetpoint(0, ControlType.kPosition, ClosedLoopSlot.kSlot0);
   }
+  public boolean isVelocityTarget() {
+    return Math.abs(bigFlyWheel.getClosedLoopError().getValueAsDouble()) < 5;
+  }
 }
