@@ -12,7 +12,7 @@ import com.ctre.phoenix6.signals.StaticFeedforwardSignValue;
 
 /** Add your docs here. */
 public class ShooterConstants {
-    public static final CANBus Can = new CANBus("a1enwhy");
+    public static final CANBus Can = new CANBus("888");
 
     public static final int angleMotor_ID = 4;
 
