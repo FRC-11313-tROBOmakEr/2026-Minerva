@@ -6,10 +6,12 @@ package frc.robot.subsystems.intake;
 
 import java.lang.module.Configuration;
 
+import com.ctre.phoenix.motorcontrol.RemoteLimitSwitchSource;
 import com.ctre.phoenix6.CANBus;
 import com.ctre.phoenix6.configs.ClosedLoopGeneralConfigs;
 import com.ctre.phoenix6.configs.CurrentLimitsConfigs;
 import com.ctre.phoenix6.configs.FeedbackConfigs;
+import com.ctre.phoenix6.configs.HardwareLimitSwitchConfigs;
 import com.ctre.phoenix6.configs.MotionMagicConfigs;
 import com.ctre.phoenix6.configs.MotorOutputConfigs;
 import com.ctre.phoenix6.configs.Slot0Configs;
@@ -18,6 +20,7 @@ import com.ctre.phoenix6.configs.SoftwareLimitSwitchConfigs;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.hardware.CANcoder;
 import com.ctre.phoenix6.signals.FeedbackSensorSourceValue;
+import com.ctre.phoenix6.signals.ForwardLimitSourceValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 import com.ctre.phoenix6.signals.StaticFeedforwardSignValue;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
@@ -83,14 +86,14 @@ public class Intake_Constants {
         public static double Deploy_Start = 10;
         public static double Deploy_Back = -10;
 
-        public static double OutPositionInRot = 1.75;
+        public static double OutPositionInRot = 0.7;
         public static double BackPositionInRot = 0;
 
         
         public static final TalonFXConfiguration deployConfiguration = new TalonFXConfiguration()
-        .withSlot0(new Slot0Configs() .withKP(0).withKI(0).withKD(0).withKS(0).withKV(0).withKA(0)
+        .withSlot0(new Slot0Configs() .withKP(0.1).withKI(0).withKD(0.001).withKS(0).withKV(0).withKA(0)
         .withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign))
-        .withSlot1(new Slot1Configs().withKP(0).withKI(0).withKD(0).withKS(0).withKV(0).withKA(0)
+        .withSlot1(new Slot1Configs().withKP(0.1).withKI(0).withKD(0.001).withKS(0).withKV(0).withKA(0)
         .withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign))
 
         .withMotionMagic(new MotionMagicConfigs()
@@ -99,7 +102,7 @@ public class Intake_Constants {
 
         .withFeedback(new FeedbackConfigs()
         .withFeedbackSensorSource(FeedbackSensorSourceValue.RemoteCANcoder)
-        .withFeedbackRemoteSensorID(TunerConstants.FrontLeft.EncoderId)
+        .withFeedbackRemoteSensorID(30)
         .withSensorToMechanismRatio(16.0/44.0))
         
         .withMotorOutput(new MotorOutputConfigs().withNeutralMode(NeutralModeValue.Brake))
@@ -111,10 +114,21 @@ public class Intake_Constants {
         .withContinuousWrap(false))
         
         .withSoftwareLimitSwitch(new SoftwareLimitSwitchConfigs()
-        .withForwardSoftLimitThreshold(1.8)
+        .withForwardSoftLimitThreshold(0.9)
         .withForwardSoftLimitEnable(true)
         .withReverseSoftLimitThreshold(-0.2)
-        .withReverseSoftLimitEnable(true));
+        .withReverseSoftLimitEnable(true))
+        
+        .withHardwareLimitSwitch(new HardwareLimitSwitchConfigs()
+        .withForwardLimitEnable(true)
+        .withForwardLimitRemoteSensorID(30)
+        .withForwardLimitAutosetPositionEnable(true)
+        .withForwardLimitAutosetPositionValue(0.8)
+        .withReverseLimitEnable(true)
+        .withReverseLimitRemoteSensorID(30)
+        .withReverseLimitAutosetPositionEnable(true)
+        .withReverseLimitAutosetPositionValue(0.8)
+        );
         
     }
  
