@@ -56,9 +56,8 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     private static final double kSimLoopPeriod = 0.004; // 4 ms
     private Notifier m_simNotifier = null;
     private double m_lastSimTime;
+
     public double fieldReverse;
-    public Target target = new Target();
-    private final Pigeon2 m_pigeon2 = new Pigeon2(0,"888");
     private final Field2d m_field = new Field2d();
     private final Field2d field = new Field2d();
 
@@ -291,19 +290,19 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     }
 
     public void resetPigeon() {
-        m_pigeon2.setYaw(360);
+        getPigeon2().setYaw(360);
     };
 
     @Override
     public void periodic() {
         LimelightHelpers.SetRobotOrientation
                 ("alenwhy", 
-                m_pigeon2.getYaw().getValueAsDouble(),
-                m_pigeon2.getAngularVelocityZWorld().getValueAsDouble(),
-                m_pigeon2.getPitch().getValueAsDouble(),
-                m_pigeon2.getAngularVelocityYWorld().getValueAsDouble(),
-                m_pigeon2.getRoll().getValueAsDouble(),
-                m_pigeon2.getAngularVelocityXWorld().getValueAsDouble());
+                getPigeon2().getYaw().getValueAsDouble(),
+                getPigeon2().getAngularVelocityZWorld().getValueAsDouble(),
+                getPigeon2().getPitch().getValueAsDouble(),
+                getPigeon2().getAngularVelocityYWorld().getValueAsDouble(),
+                getPigeon2().getRoll().getValueAsDouble(),
+                getPigeon2().getAngularVelocityXWorld().getValueAsDouble());
 
         PoseEstimate mt2 = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2("alenwhy");
         if (mt2 != null && mt2.pose != null){
