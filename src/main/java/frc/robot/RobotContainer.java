@@ -34,6 +34,7 @@ import frc.robot.subsystems.indexer.Spindexer_Kraken;
 import frc.robot.subsystems.intake.Intake_Kraken_Kraken;
 import frc.robot.subsystems.shooter.Shoot;
 import frc.robot.subsystems.shooter.Shooter;
+import frc.robot.utils.Target;
 
 public class RobotContainer {
     private double MaxSpeed = 1.0 * TunerConstants.kSpeedAt12Volts.in(MetersPerSecond); // kSpeedAt12Volts desired top speed
@@ -49,7 +50,7 @@ public class RobotContainer {
             .withDriveRequestType(DriveRequestType.OpenLoopVoltage);
     private final SwerveRequest.FieldCentricFacingAngle driveAutoAlign = new SwerveRequest.FieldCentricFacingAngle();
     private final Telemetry logger = new Telemetry(MaxSpeed);
-    private final frc.robot.subsystems.Target target = new frc.robot.subsystems.Target();
+
     private final CommandXboxController joystick = new CommandXboxController(0);
     // private final CommandXboxController joystick2 = new CommandXboxController(0);
 
@@ -107,7 +108,7 @@ public class RobotContainer {
             ()->driveAutoAlign
             .withVelocityX(-joystick.getLeftY() * MaxSpeed) 
             .withVelocityY(-joystick.getLeftX() * MaxSpeed)
-            .withTargetDirection(target.getAimingRotation(drivetrain.getState().Pose))));
+            .withTargetDirection(Target.getAimingRotation(drivetrain.getState().Pose))));
 
         joystick.povUp().whileTrue(drivetrain.applyRequest(() ->
             forwardStraight.withVelocityX(0.5).withVelocityY(0))
