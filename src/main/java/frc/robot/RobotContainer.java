@@ -26,10 +26,12 @@ import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
 import frc.robot.subsystems.indexer.Indexer_Kraken;
 import frc.robot.subsystems.indexer.Spindexer_Kraken;
+import frc.robot.subsystems.indexer.IndexerConstants.Indexer_Neo;
 //import frc.robot.subsystems.intake.Intake_Constants;
 import frc.robot.subsystems.intake.Intake_Kraken_Kraken;
 import frc.robot.subsystems.shooter.Shoot;
 import frc.robot.subsystems.shooter.Shooter;
+import frc.robot.subsystems.shooter.Shootstop;
 import frc.robot.utils.Target;
 
 public class RobotContainer {
@@ -47,20 +49,20 @@ public class RobotContainer {
     private final SwerveRequest.FieldCentricFacingAngle driveAutoAlign = new SwerveRequest.FieldCentricFacingAngle();
 
     private final Telemetry logger = new Telemetry(MaxSpeed);
-
-    private final CommandXboxController joystick = new CommandXboxController(0);
-    // private final CommandXboxController joystick2 = new CommandXboxController(0);
+    private final Shooter shooter = new Shooter();
+    private final CommandXboxController joystick = new CommandXboxController(1);
+    private final CommandXboxController joystick2 = new CommandXboxController(0);
 
     public final CommandXboxController[] joysticks = {joystick};
 
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
+   
 
-    // private final Intake_Kraken_Kraken intake = new Intake_Kraken_Kraken();
-    // private final Shooter shooter = new Shooter();
-    // private final Spindexer_Kraken spindexer = new Spindexer_Kraken();
-    // private final Indexer_Kraken indexer = new Indexer_Kraken();
-    // private final Shoot shoot = new Shoot (shooter, indexer, spindexer);
-
+    private final Intake_Kraken_Kraken intake = new Intake_Kraken_Kraken();
+    private final Spindexer_Kraken spindexer = new Spindexer_Kraken();
+    private final frc.robot.subsystems.indexer.Indexer_Neo indexer = new frc.robot.subsystems.indexer.Indexer_Neo();
+    private final Shoot shoot = new Shoot (shooter, indexer , spindexer);
+    private final Shootstop shootstop = new Shootstop(shooter, indexer, spindexer) ;
 
 
     /* Path follower */
@@ -126,10 +128,11 @@ public class RobotContainer {
 
         drivetrain.registerTelemetry(logger::telemeterize);
 
-        // joystick2.b().whileTrue(shoot)
-        //             .onFalse(new InstantCommand(shooter::stopFlyWheels)
-        //             .alongWith(new InstantCommand(spindexer::stop)
-        //             .alongWith(new InstantCommand(indexer::stop))));
+        joystick2.a().whileTrue(shoot)
+                    .onFalse(shootstop);
+
+        joystick2.leftBumper().whileTrue(new InstantCommand(shooter::angleup)).onFalse(new InstantCommand(shooter::anglestop));
+        joystick2.rightBumper().whileTrue(new InstantCommand(shooter::angledown)).onFalse(new InstantCommand(shooter::anglestop));
 
         //joystick.x().whileTrue(new InstantCommand(intake::rollerStart)).onFalse(new InstantCommand(intake::rollerStop));
         //joystick2.y().whileTrue(new InstantCommand(intake::Back));

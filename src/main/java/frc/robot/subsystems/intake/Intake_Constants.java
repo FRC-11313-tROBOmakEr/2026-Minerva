@@ -81,7 +81,7 @@ public class Intake_Constants {
 
 
     public static class  Intake_Kraken_Deploy {
-        public static final int Deploy_ID = 2;
+        public static final int Deploy_ID = 14;
 
         public static double Deploy_Start = 10;
         public static double Deploy_Back = -10;
