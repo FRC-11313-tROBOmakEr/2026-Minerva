@@ -15,6 +15,9 @@ import com.revrobotics.spark.SparkLowLevel.MotorType;
 
 import com.revrobotics.PersistMode;
 import com.revrobotics.ResetMode;
+
+import javax.lang.model.util.ElementScanner14;
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix6.controls.Follower;
 import com.ctre.phoenix6.controls.VelocityVoltage;
@@ -103,6 +106,6 @@ public class Shooter extends SubsystemBase {
     anglectrl.setSetpoint(0, ControlType.kPosition, ClosedLoopSlot.kSlot0);
   }
   public boolean isVelocityTarget() {
-    return Math.abs(bigFlyWheel.getClosedLoopError().getValueAsDouble()) < 5;
+   return Math.abs(bigFlyWheel.getClosedLoopError().getValueAsDouble() - (ShooterConstants.BigFlyWheel.bigFlyWheel)) < 5;
   }
 }
