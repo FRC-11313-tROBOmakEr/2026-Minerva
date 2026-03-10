@@ -16,9 +16,6 @@ import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.PersistMode;
 import com.revrobotics.ResetMode;
 
-import javax.lang.model.util.ElementScanner14;
-
-import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix6.controls.Follower;
 import com.ctre.phoenix6.controls.VelocityVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
