@@ -21,7 +21,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.RobotModeTriggers;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
-
+import frc.robot.command.Shoot;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
 import frc.robot.subsystems.indexer.Indexer_Kraken;
@@ -29,9 +29,8 @@ import frc.robot.subsystems.indexer.Spindexer_Kraken;
 import frc.robot.subsystems.indexer.IndexerConstants.Indexer_Neo;
 //import frc.robot.subsystems.intake.Intake_Constants;
 import frc.robot.subsystems.intake.Intake_Kraken_Kraken;
-import frc.robot.subsystems.shooter.Shoot;
 import frc.robot.subsystems.shooter.Shooter;
-import frc.robot.subsystems.shooter.Shootstop;
+import frc.robot.command.Shootstop;
 import frc.robot.utils.Target;
 
 public class RobotContainer {
@@ -130,6 +129,9 @@ public class RobotContainer {
 
         joystick2.a().whileTrue(shoot)
                     .onFalse(shootstop);
+
+        // joystick2.b().whileTrue(new InstantCommand(intake::Out)).whileFalse(new InstantCommand(intake::DeployStop));
+        // joystick2.y().whileTrue(new InstantCommand(intake::Back)).whileFalse(new InstantCommand(intake::DeployStop));
 
         joystick2.leftBumper().whileTrue(new InstantCommand(shooter::angleup)).onFalse(new InstantCommand(shooter::anglestop));
         joystick2.rightBumper().whileTrue(new InstantCommand(shooter::angledown)).onFalse(new InstantCommand(shooter::anglestop));

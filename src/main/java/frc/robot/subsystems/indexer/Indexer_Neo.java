@@ -45,7 +45,7 @@ public class Indexer_Neo extends SubsystemBase {
   public void run() {
     // indexerctrl.setSetpoint(IndexerConstants.Indexer_Neo.RPM, ControlType.kVelocity,
     //     ClosedLoopSlot.kSlot0);
-     indexerNeo.set(-0.7);
+     indexerNeo.set(-0.85);
   }
 
   public void stop() {

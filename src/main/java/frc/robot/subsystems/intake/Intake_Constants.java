@@ -23,6 +23,7 @@ import com.ctre.phoenix6.signals.FeedbackSensorSourceValue;
 import com.ctre.phoenix6.signals.ForwardLimitSourceValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 import com.ctre.phoenix6.signals.StaticFeedforwardSignValue;
+import com.revrobotics.spark.config.EncoderConfig;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
 import frc.robot.generated.TunerConstants;
@@ -86,18 +87,18 @@ public class Intake_Constants {
         public static double Deploy_Start = 10;
         public static double Deploy_Back = -10;
 
-        public static double OutPositionInRot = 0.7;
-        public static double BackPositionInRot = 0;
+        public static double OutPositionInRot = 0;
+        public static double BackPositionInRot = -0.842;
 
         
         public static final TalonFXConfiguration deployConfiguration = new TalonFXConfiguration()
-        .withSlot0(new Slot0Configs() .withKP(0.1).withKI(0).withKD(0.001).withKS(0).withKV(0).withKA(0)
+        .withSlot0(new Slot0Configs() .withKP(1.8).withKI(0).withKD(0.01).withKS(0.1).withKV(0.02).withKA(0)
         .withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign))
-        .withSlot1(new Slot1Configs().withKP(0.1).withKI(0).withKD(0.001).withKS(0).withKV(0).withKA(0)
+        .withSlot1(new Slot1Configs().withKP(3).withKI(0.02).withKD(0.01).withKS(0.5).withKV(0.8).withKA(0.2).withKG(6)
         .withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign))
 
         .withMotionMagic(new MotionMagicConfigs()
-        .withMotionMagicCruiseVelocity(50)
+        .withMotionMagicCruiseVelocity(30)
         .withMotionMagicAcceleration(100))
 
         .withFeedback(new FeedbackConfigs()
@@ -110,8 +111,8 @@ public class Intake_Constants {
         .withStatorCurrentLimit(40)
         .withStatorCurrentLimitEnable(true))
         
-        .withClosedLoopGeneral(new ClosedLoopGeneralConfigs()
-        .withContinuousWrap(false))
+        //withClosedLoopGeneral(new ClosedLoopGeneralConfigs()
+        //.withContinuousWrap(false))
         
         .withSoftwareLimitSwitch(new SoftwareLimitSwitchConfigs()
         .withForwardSoftLimitThreshold(0.9)
