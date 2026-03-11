@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.controls.MotionMagicVelocityVoltage;
 import com.ctre.phoenix6.controls.MotionMagicVoltage;
+import com.ctre.phoenix6.controls.PositionVoltage;
 
 public class Intake_Kraken_Kraken extends SubsystemBase {
   private final TalonFX roller = new TalonFX(Intake_Constants.Intake_Kraken_Roller.Roller_ID, Intake_Constants.Can);
@@ -29,6 +30,7 @@ public class Intake_Kraken_Kraken extends SubsystemBase {
     roller.stopMotor();
   }
 
+
   // public void deployOut() {
   //   deploy.setControl(new MotionMagicVoltage(Intake_Constants.Intake_Kraken_Deploy.Deploy_Start).withSlot(0));
   // }
@@ -38,15 +40,20 @@ public class Intake_Kraken_Kraken extends SubsystemBase {
   // }
 
   public void Out(){
-    deploy.setControl(new MotionMagicVoltage(Intake_Constants.Intake_Kraken_Deploy.OutPositionInRot).withSlot(0));
+    //deploy.setControl(new MotionMagicVoltage(Intake_Constants.Intake_Kraken_Deploy.OutPositionInRot).withSlot(0));
     System.out.println(deploy.getPosition());
+    deploy.setControl(new MotionMagicVoltage(Intake_Constants.Intake_Kraken_Deploy.OutPositionInRot).withSlot(0));
   }
   public void Back(){
     deploy.setControl(new MotionMagicVoltage(Intake_Constants.Intake_Kraken_Deploy.BackPositionInRot).withSlot(1));
   }
+  public void DeployStop(){
+    deploy.stopMotor();
+  }
 
   public double getCurrentPosition(){
     return deploy.getPosition().getValueAsDouble();
+
   }
 
   @Override
