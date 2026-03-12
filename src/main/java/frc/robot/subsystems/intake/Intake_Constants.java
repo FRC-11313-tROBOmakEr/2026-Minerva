@@ -35,7 +35,7 @@ public class Intake_Constants {
     public static final CANBus Can = new CANBus("888");
 
     public static class  Intake_Neo_Roller {
-        public static final int Roller_ID = 1;
+        public static final int Roller_ID = 11;
         public static double Roller_Start = 10;//目前為dutycycle，記得改
 
         public static final double Roller_Start_P = 0.1;
@@ -49,13 +49,13 @@ public class Intake_Constants {
     }
 
     public static class  Intake_Kraken_Roller {
-        public static final int Roller_ID = 1;
+        public static final int Roller_ID = 11;
 
         public static final TalonFXConfiguration rollerConfiguration = new TalonFXConfiguration()
-        .withSlot0(new Slot0Configs().withKP(0.2).withKI(0).withKD(0.5)
-        .withKS(0.1).withKV(0.12).withKA(0).withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign));
+        .withSlot0(new Slot0Configs().withKP(0.15).withKI(0).withKD(0.2)
+        .withKS(0.05).withKV(0.1).withKA(0).withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign));
 
-        public static double Roller_Start = 50;//rps
+        public static double Roller_Start = 40;//rps
 
 
     }
