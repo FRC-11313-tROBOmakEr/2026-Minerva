@@ -11,6 +11,7 @@ import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.controls.MotionMagicVelocityVoltage;
 import com.ctre.phoenix6.controls.MotionMagicVoltage;
 import com.ctre.phoenix6.controls.PositionVoltage;
+import com.ctre.phoenix6.controls.VelocityVoltage;
 
 public class Intake_Kraken_Kraken extends SubsystemBase {
   private final TalonFX roller = new TalonFX(Intake_Constants.Intake_Kraken_Roller.Roller_ID, Intake_Constants.Can);
@@ -23,7 +24,7 @@ public class Intake_Kraken_Kraken extends SubsystemBase {
   }
 
   public void rollerStart() {
-    roller.setControl(new MotionMagicVelocityVoltage(Intake_Constants.Intake_Kraken_Roller.Roller_Start).withSlot(0));
+    roller.setControl(new VelocityVoltage(Intake_Constants.Intake_Kraken_Roller.Roller_Start).withSlot(0));
   }
 
   public void rollerStop() {
