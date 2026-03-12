@@ -50,11 +50,11 @@ public class Intake_Kraken_Kraken extends SubsystemBase {
   }
   public void DeployStop(){
     deploy.stopMotor();
+    deploy.setControl(new PositionVoltage(getCurrentPosition()));
   }
 
   public double getCurrentPosition(){
     return deploy.getPosition().getValueAsDouble();
-
   }
 
   @Override
