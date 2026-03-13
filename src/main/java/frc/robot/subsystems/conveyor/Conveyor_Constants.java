@@ -11,8 +11,8 @@ public class Conveyor_Constants {
      public static final int Conveyor_ID = 20;
 
         public static final TalonFXConfiguration conveyorConfiguration = new TalonFXConfiguration()
-        .withSlot0(new Slot0Configs().withKP(0.1).withKI(0).withKD(0.2)
-        .withKS(0.1).withKV(0.12).withKA(0).withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign));
+        .withSlot0(new Slot0Configs().withKP(0.05).withKI(0.02).withKD(0)
+        .withKS(0.05).withKV(0.03).withKA(0).withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign));
 
-        public static double Conveyor_Start = 40;
+        public static double Conveyor_Start = 30;
 }
