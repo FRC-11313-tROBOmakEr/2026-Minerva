@@ -21,6 +21,7 @@ import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.hardware.CANcoder;
 import com.ctre.phoenix6.signals.FeedbackSensorSourceValue;
 import com.ctre.phoenix6.signals.ForwardLimitSourceValue;
+import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 import com.ctre.phoenix6.signals.StaticFeedforwardSignValue;
 import com.revrobotics.spark.config.EncoderConfig;
@@ -52,10 +53,10 @@ public class Intake_Constants {
         public static final int Roller_ID = 11;
 
         public static final TalonFXConfiguration rollerConfiguration = new TalonFXConfiguration()
-        .withSlot0(new Slot0Configs().withKP(0.15).withKI(0).withKD(0.2)
+        .withSlot0(new Slot0Configs().withKP(0.12).withKI(0).withKD(0)
         .withKS(0.05).withKV(0.1).withKA(0).withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign));
 
-        public static double Roller_Start = 40;//rps
+        public static double Roller_Start = -40;//rps
 
 
     }
@@ -87,12 +88,12 @@ public class Intake_Constants {
         public static double Deploy_Start = 10;
         public static double Deploy_Back = -10;
 
-        public static double OutPositionInRot = 0;
-        public static double BackPositionInRot = -0.842;
+        public static double OutPositionInRot = -4;
+        public static double BackPositionInRot = -1.4;
 
         
         public static final TalonFXConfiguration deployConfiguration = new TalonFXConfiguration()
-        .withSlot0(new Slot0Configs() .withKP(1.8).withKI(0).withKD(0.01).withKS(0.1).withKV(0.02).withKA(0)
+        .withSlot0(new Slot0Configs() .withKP(0.1).withKI(0).withKD(0.01).withKS(0.1).withKV(0.02).withKA(0)
         .withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign))
         .withSlot1(new Slot1Configs().withKP(3).withKI(0.02).withKD(0.01).withKS(0.5).withKV(0.8).withKA(0.2).withKG(6)
         .withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign))
@@ -102,34 +103,34 @@ public class Intake_Constants {
         .withMotionMagicAcceleration(100))
 
         .withFeedback(new FeedbackConfigs()
-        .withFeedbackSensorSource(FeedbackSensorSourceValue.RemoteCANcoder)
-        .withFeedbackRemoteSensorID(30)
-        .withSensorToMechanismRatio(16.0/44.0))
+        .withFeedbackSensorSource(FeedbackSensorSourceValue.RotorSensor)
+        // .withFeedbackRemoteSensorID(30)
+         .withSensorToMechanismRatio(16.0/44.0))
         
-        .withMotorOutput(new MotorOutputConfigs().withNeutralMode(NeutralModeValue.Brake))
+        .withMotorOutput(new MotorOutputConfigs().withNeutralMode(NeutralModeValue.Brake).withInverted(InvertedValue.Clockwise_Positive))
         .withCurrentLimits(new CurrentLimitsConfigs()
         .withStatorCurrentLimit(40)
-        .withStatorCurrentLimitEnable(true))
+        .withStatorCurrentLimitEnable(true));
         
         //withClosedLoopGeneral(new ClosedLoopGeneralConfigs()
-        //.withContinuousWrap(false))
+        // //.withContinuousWrap(false))
         
-        .withSoftwareLimitSwitch(new SoftwareLimitSwitchConfigs()
-        .withForwardSoftLimitThreshold(0.9)
-        .withForwardSoftLimitEnable(true)
-        .withReverseSoftLimitThreshold(-0.2)
-        .withReverseSoftLimitEnable(true))
+        // .withSoftwareLimitSwitch(new SoftwareLimitSwitchConfigs()
+        // .withForwardSoftLimitThreshold(0.9)
+        // .withForwardSoftLimitEnable(true)
+        // .withReverseSoftLimitThreshold(-0.2)
+        // .withReverseSoftLimitEnable(true))
         
-        .withHardwareLimitSwitch(new HardwareLimitSwitchConfigs()
-        .withForwardLimitEnable(true)
-        .withForwardLimitRemoteSensorID(30)
-        .withForwardLimitAutosetPositionEnable(true)
-        .withForwardLimitAutosetPositionValue(0.8)
-        .withReverseLimitEnable(true)
-        .withReverseLimitRemoteSensorID(30)
-        .withReverseLimitAutosetPositionEnable(true)
-        .withReverseLimitAutosetPositionValue(0.8)
-        );
+        // .withHardwareLimitSwitch(new HardwareLimitSwitchConfigs()
+        // .withForwardLimitEnable(true)
+        // .withForwardLimitRemoteSensorID(30)
+        // .withForwardLimitAutosetPositionEnable(true)
+        // .withForwardLimitAutosetPositionValue(0.8)
+        // .withReverseLimitEnable(true)
+        // .withReverseLimitRemoteSensorID(30)
+        // .withReverseLimitAutosetPositionEnable(true)
+        // .withReverseLimitAutosetPositionValue(0.8)
+        
         
     }
  
