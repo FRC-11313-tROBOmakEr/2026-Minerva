@@ -22,11 +22,11 @@ public class ShooterConstants {
 
         public static final int bigFlyWheel_ID = 12;
         public static final boolean bigFlyWheel_Inverted = false;
-        public static double bigFlyWheel = 60;//rps
+        public static double bigFlyWheel = 40;//rps
 
         public static final TalonFXConfiguration bigflywheelConfiguration = new TalonFXConfiguration()
-        .withMotionMagic(new MotionMagicConfigs().withMotionMagicAcceleration(160))
-        .withSlot0(new Slot0Configs().withKP(1).withKI(0).withKD(0)
+        .withMotionMagic(new MotionMagicConfigs().withMotionMagicAcceleration(130))
+        .withSlot0(new Slot0Configs().withKP(0.3).withKI(0).withKD(0)
         .withKS(0.225).withKV(0.12).withKA(0.3).withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign))
         .withCurrentLimits(new CurrentLimitsConfigs().withStatorCurrentLimit(40))
         .withMotorOutput(new MotorOutputConfigs().withInverted(InvertedValue.Clockwise_Positive))
