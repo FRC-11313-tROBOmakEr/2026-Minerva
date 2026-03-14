@@ -84,36 +84,37 @@ public class Intake_Constants {
 
     public static class  Intake_Kraken_Deploy {
         public static final int Deploy_ID = 14;
+        public static final int Encoder_ID = 30;
 
         public static double Deploy_Start = 10;
         public static double Deploy_Back = -10;
 
-        public static double OutPositionInRot = -4;
-        public static double BackPositionInRot = -1.4;
+        public static double OutPositionInRot = 0.25;
+        public static double BackPositionInRot = 0;
 
         
         public static final TalonFXConfiguration deployConfiguration = new TalonFXConfiguration()
-        .withSlot0(new Slot0Configs() .withKP(0.1).withKI(0).withKD(0.01).withKS(0.1).withKV(0.02).withKA(0)
+        .withSlot0(new Slot0Configs().withKP(2).withKI(0).withKD(0.01).withKS(0.1).withKV(0.02).withKA(0)
         .withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign))
-        .withSlot1(new Slot1Configs().withKP(3).withKI(0.02).withKD(0.01).withKS(0.5).withKV(0.8).withKA(0.2).withKG(6)
+        .withSlot1(new Slot1Configs().withKP(3).withKI(0.02).withKD(0.01).withKS(0.5).withKV(0.8).withKA(0.2)
         .withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign))
 
         .withMotionMagic(new MotionMagicConfigs()
-        .withMotionMagicCruiseVelocity(30)
-        .withMotionMagicAcceleration(100))
+        .withMotionMagicCruiseVelocity(2)
+        .withMotionMagicAcceleration(1))
 
         .withFeedback(new FeedbackConfigs()
-        .withFeedbackSensorSource(FeedbackSensorSourceValue.RotorSensor)
-        // .withFeedbackRemoteSensorID(30)
-         .withSensorToMechanismRatio(16.0/44.0))
+        .withFeedbackSensorSource(FeedbackSensorSourceValue.RemoteCANcoder)
+        .withFeedbackRemoteSensorID(Encoder_ID)
+        .withSensorToMechanismRatio(44.0/16.0))
         
-        .withMotorOutput(new MotorOutputConfigs().withNeutralMode(NeutralModeValue.Brake).withInverted(InvertedValue.Clockwise_Positive))
+        .withMotorOutput(new MotorOutputConfigs().withNeutralMode(NeutralModeValue.Brake))
         .withCurrentLimits(new CurrentLimitsConfigs()
         .withStatorCurrentLimit(40)
-        .withStatorCurrentLimitEnable(true));
+        .withStatorCurrentLimitEnable(true))
         
-        //withClosedLoopGeneral(new ClosedLoopGeneralConfigs()
-        // //.withContinuousWrap(false))
+        .withClosedLoopGeneral(new ClosedLoopGeneralConfigs()
+        .withContinuousWrap(false));
         
         // .withSoftwareLimitSwitch(new SoftwareLimitSwitchConfigs()
         // .withForwardSoftLimitThreshold(0.9)
