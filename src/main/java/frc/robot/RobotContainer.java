@@ -137,6 +137,12 @@ public class RobotContainer {
         // joystick2.x().whileTrue(new InstantCommand(conveyor::run)).whileFalse(new InstantCommand(conveyor::stop));
         joystick2.a().whileTrue(new InstantCommand(intake::Out)).whileFalse(new InstantCommand(intake::DeployStop));
         joystick2.y().whileTrue(new InstantCommand(conveyor::run)).whileFalse(new InstantCommand(conveyor::stop));
+        
+                    
+        joystick2.b().whileTrue(new InstantCommand(spindexer::runInverted)).onFalse(new InstantCommand(spindexer::stop));
+
+        // joystick2.b().whileTrue(new InstantCommand(intake::Out)).whileFalse(new InstantCommand(intake::DeployStop));
+        // joystick2.y().whileTrue(new InstantCommand(intake::Back)).whileFalse(new InstantCommand(intake::DeployStop));
 
         joystick2.leftBumper().whileTrue(new InstantCommand(shooter::angleup)).onFalse(new InstantCommand(shooter::anglestop));
         joystick2.rightBumper().whileTrue(new InstantCommand(shooter::angledown)).onFalse(new InstantCommand(shooter::anglestop));

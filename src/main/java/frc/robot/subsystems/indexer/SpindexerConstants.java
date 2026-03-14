@@ -21,6 +21,7 @@ public class SpindexerConstants  {
   public static final class Spindexer_Karken {
     public static final int Spindexer_ID = 15;
     public static double run = 60;//rps
+    public static double runInverted = -50;//rps
 
     public static final TalonFXConfiguration SpindexerConfiguration = new TalonFXConfiguration()
         .withSlot0(new Slot0Configs() .withKP(0.27).withKI(0.01).withKD(0.01)
@@ -30,8 +31,12 @@ public class SpindexerConstants  {
         // .withInverted(InvertedValue.Clockwise_Positive))
         // .withMotionMagic(new MotionMagicConfigs().withMotionMagicAcceleration(2000).withMotionMagicCruiseVelocity(400)
         // .withMotionMagicJerk(5));
+    
+    
+    }
 
-  }
+  
+    
   public static final class  Spindexer_Neo {
     public static final int Spindexer_ID = 12;
     public static double RPM = 110;
