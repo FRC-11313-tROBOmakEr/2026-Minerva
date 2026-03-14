@@ -289,17 +289,12 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         LimelightHelpers.SetRobotOrientation
                 ("alenwhy", 
                 getPigeon2().getYaw().getValueAsDouble(),
-                getPigeon2().getAngularVelocityZWorld().getValueAsDouble(),
-                getPigeon2().getPitch().getValueAsDouble(),
-                getPigeon2().getAngularVelocityYWorld().getValueAsDouble(),
-                getPigeon2().getRoll().getValueAsDouble(),
-                getPigeon2().getAngularVelocityXWorld().getValueAsDouble());
+                0, 0, 0, 0, 0);
 
         PoseEstimate mt2 = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2("alenwhy");
-        if (mt2 != null && mt2.pose != null){
-            addVisionMeasurement(mt2.pose, mt2.timestampSeconds);
-            field.setRobotPose(mt2.pose);
-        }
+        
+        addVisionMeasurement(mt2.pose, mt2.timestampSeconds);
+        field.setRobotPose(mt2.pose);
         SmartDashboard.putData("Vision", field);
         
         m_field.setRobotPose(this.getState().Pose);
