@@ -30,6 +30,7 @@ import frc.robot.subsystems.indexer.IndexerConstants.Indexer_Neo;
 //import frc.robot.subsystems.intake.Intake_Constants;
 import frc.robot.subsystems.intake.Intake_Kraken_Kraken;
 import frc.robot.subsystems.shooter.Shooter;
+import frc.robot.subsystems.conveyor.Conveyor;
 import frc.robot.command.Shootstop;
 import frc.robot.utils.Target;
 
@@ -59,9 +60,11 @@ public class RobotContainer {
 
     private final Intake_Kraken_Kraken intake = new Intake_Kraken_Kraken();
     private final Spindexer_Kraken spindexer = new Spindexer_Kraken();
+    private final Conveyor conveyor = new Conveyor();
     private final frc.robot.subsystems.indexer.Indexer_Neo indexer = new frc.robot.subsystems.indexer.Indexer_Neo();
-    private final Shoot shoot = new Shoot (shooter, indexer , spindexer);
-    private final Shootstop shootstop = new Shootstop(shooter, indexer, spindexer) ;
+    private final Shoot shoot = new Shoot (shooter, indexer , spindexer, conveyor);
+    private final Shootstop shootstop = new Shootstop(shooter, indexer, spindexer, conveyor) ;
+
 
 
     /* Path follower */
@@ -72,7 +75,6 @@ public class RobotContainer {
         SmartDashboard.putData("Auto Mode", autoChooser);
 
         configureBindings();
-      
 
         // Warmup PathPlanner to avoid Java pauses
         CommandScheduler.getInstance().schedule(FollowPathCommand.warmupCommand());
@@ -129,15 +131,17 @@ public class RobotContainer {
 
         joystick2.a().whileTrue(shoot)
                     .onFalse(shootstop);
-
-        // joystick2.b().whileTrue(new InstantCommand(intake::Out)).whileFalse(new InstantCommand(intake::DeployStop));
-        // joystick2.y().whileTrue(new InstantCommand(intake::Back)).whileFalse(new InstantCommand(intake::DeployStop));
+                    
+        joystick2.b().whileTrue(new InstantCommand(intake::rollerStart)).whileFalse(new InstantCommand(intake::rollerStop));
+        // joystick2.x().whileTrue(new InstantCommand(conveyor::run)).whileFalse(new InstantCommand(conveyor::stop));
+        joystick2.x().whileTrue(new InstantCommand(intake::Out));
+        //joystick2.y().whileTrue(new InstantCommand(conveyor::run)).whileFalse(new InstantCommand(conveyor::stop));
 
         joystick2.leftBumper().whileTrue(new InstantCommand(shooter::angleup)).onFalse(new InstantCommand(shooter::anglestop));
         joystick2.rightBumper().whileTrue(new InstantCommand(shooter::angledown)).onFalse(new InstantCommand(shooter::anglestop));
 
         //joystick.x().whileTrue(new InstantCommand(intake::rollerStart)).onFalse(new InstantCommand(intake::rollerStop));
-        //joystick2.y().whileTrue(new InstantCommand(intake::Back));
+        joystick2.y().whileTrue(new InstantCommand(intake::Back));
     }
 
     public Command getAutonomousCommand() {

@@ -3,7 +3,6 @@ package frc.robot.subsystems;
 import static edu.wpi.first.units.Units.*;
 
 import java.util.Optional;
-import java.util.function.DoubleSupplier;
 import java.util.function.Supplier;
 
 import com.ctre.phoenix6.SignalLogger;
@@ -11,6 +10,7 @@ import com.ctre.phoenix6.Utils;
 import com.ctre.phoenix6.swerve.SwerveDrivetrainConstants;
 import com.ctre.phoenix6.swerve.SwerveModuleConstants;
 import com.ctre.phoenix6.swerve.SwerveRequest;
+
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.config.PIDConstants;
 import com.pathplanner.lib.config.RobotConfig;
@@ -19,10 +19,10 @@ import com.pathplanner.lib.controllers.PPHolonomicDriveController;
 import edu.wpi.first.math.Matrix;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.numbers.N1;
 import edu.wpi.first.math.numbers.N3;
+
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.Notifier;
@@ -32,8 +32,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
+
 import frc.robot.LimelightHelpers;
 import frc.robot.LimelightHelpers.PoseEstimate;
+
 import frc.robot.generated.TunerConstants.TunerSwerveDrivetrain;
 
 /**
@@ -48,9 +50,9 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     private Notifier m_simNotifier = null;
     private double m_lastSimTime;
 
-    public double fieldReverse;
-    private final Field2d m_field = new Field2d();
-    private final Field2d field = new Field2d();
+    private final Field2d bField = new Field2d();
+    private final Field2d vField = new Field2d();
+    private boolean rejectUpdate = false;
 
     /* Blue alliance sees forward as 0 degrees (toward red alliance wall) */
     private static final Rotation2d kBlueAlliancePerspectiveRotation = Rotation2d.kZero;
@@ -286,24 +288,28 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
 
     @Override
     public void periodic() {
+        rejectUpdate = false;
+
         LimelightHelpers.SetRobotOrientation
-                ("alenwhy", 
-                getPigeon2().getYaw().getValueAsDouble(),
-                getPigeon2().getAngularVelocityZWorld().getValueAsDouble(),
-                getPigeon2().getPitch().getValueAsDouble(),
-                getPigeon2().getAngularVelocityYWorld().getValueAsDouble(),
-                getPigeon2().getRoll().getValueAsDouble(),
-                getPigeon2().getAngularVelocityXWorld().getValueAsDouble());
+                ("alenwhy", getState().Pose.getRotation().getDegrees(),
+                0, 0, 0, 0, 0);
 
         PoseEstimate mt2 = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2("alenwhy");
-        if (mt2 != null && mt2.pose != null){
-            addVisionMeasurement(mt2.pose, mt2.timestampSeconds);
-            field.setRobotPose(mt2.pose);
+
+        if (mt2.tagCount == 0) {
+            rejectUpdate = true;
+        } else if (getPigeon2().getAngularVelocityZWorld().getValueAsDouble() > 360) {
+            rejectUpdate = true;
         }
-        SmartDashboard.putData("Vision", field);
-        
-        m_field.setRobotPose(this.getState().Pose);
-        SmartDashboard.putData("Field", m_field);
+
+        if (!rejectUpdate) {
+            addVisionMeasurement(mt2.pose, mt2.timestampSeconds);
+            vField.setRobotPose(mt2.pose);
+            SmartDashboard.putData("Vision", vField);
+        }
+
+        bField.setRobotPose(this.getState().Pose);
+        SmartDashboard.putData("Field", bField);
 
         if (!m_hasAppliedOperatorPerspective || DriverStation.isDisabled()) {
             DriverStation.getAlliance().ifPresent(allianceColor -> {
@@ -384,11 +390,4 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     public Optional<Pose2d> samplePoseAt(double timestampSeconds) {
         return super.samplePoseAt(Utils.fpgaToCurrentTime(timestampSeconds));
     }
-
-    public Rotation2d swerveRotationCombination() {
-        double rotation1 = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2("alenwhy").pose.getRotation()
-                .getDegrees();
-        return new Rotation2d(rotation1);
-    }
-
 }
