@@ -48,9 +48,9 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     private Notifier m_simNotifier = null;
     private double m_lastSimTime;
 
-    public double fieldReverse;
-    private final Field2d m_field = new Field2d();
-    private final Field2d field = new Field2d();
+    private final Field2d bField = new Field2d();
+    private final Field2d vField = new Field2d();
+    private boolean rejectUpdate = false;
 
     /* Blue alliance sees forward as 0 degrees (toward red alliance wall) */
     private static final Rotation2d kBlueAlliancePerspectiveRotation = Rotation2d.kZero;
@@ -286,19 +286,28 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
 
     @Override
     public void periodic() {
+        rejectUpdate = false;
+
         LimelightHelpers.SetRobotOrientation
-                ("alenwhy", 
-                getPigeon2().getYaw().getValueAsDouble(),
+                ("alenwhy", getState().Pose.getRotation().getDegrees(),
                 0, 0, 0, 0, 0);
 
         PoseEstimate mt2 = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2("alenwhy");
-        
-        addVisionMeasurement(mt2.pose, mt2.timestampSeconds);
-        field.setRobotPose(mt2.pose);
-        SmartDashboard.putData("Vision", field);
-        
-        m_field.setRobotPose(this.getState().Pose);
-        SmartDashboard.putData("Field", m_field);
+
+        if (mt2.tagCount == 0) {
+            rejectUpdate = true;
+        } else if (getPigeon2().getAngularVelocityZWorld().getValueAsDouble() > 360) {
+            rejectUpdate = true;
+        }
+
+        if (!rejectUpdate) {
+            addVisionMeasurement(mt2.pose, mt2.timestampSeconds);
+            vField.setRobotPose(mt2.pose);
+            SmartDashboard.putData("Vision", vField);
+        }
+
+        bField.setRobotPose(this.getState().Pose);
+        SmartDashboard.putData("Field", bField);
 
         if (!m_hasAppliedOperatorPerspective || DriverStation.isDisabled()) {
             DriverStation.getAlliance().ifPresent(allianceColor -> {
@@ -379,11 +388,4 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     public Optional<Pose2d> samplePoseAt(double timestampSeconds) {
         return super.samplePoseAt(Utils.fpgaToCurrentTime(timestampSeconds));
     }
-
-    public Rotation2d swerveRotationCombination() {
-        double rotation1 = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2("alenwhy").pose.getRotation()
-                .getDegrees();
-        return new Rotation2d(rotation1);
-    }
-
 }
