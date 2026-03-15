@@ -2,11 +2,9 @@
 package frc.robot.subsystems.conveyor;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.subsystems.indexer.SpindexerConstants;
 
 import com.ctre.phoenix6.hardware.TalonFX;
-import com.ctre.phoenix6.configs.TalonFXConfigurator;
-import com.ctre.phoenix6.controls.MotionMagicVelocityVoltage;
+
 import com.ctre.phoenix6.controls.VelocityVoltage;
 
 public class Conveyor extends SubsystemBase {
