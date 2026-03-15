@@ -22,7 +22,7 @@ public class ShooterConstants {
 
         public static final int bigFlyWheel_ID = 12;
         public static final boolean bigFlyWheel_Inverted = false;
-        public static double bigFlyWheel = 40;//rps
+        public static double bigFlyWheel = 48;//rps
 
         public static final TalonFXConfiguration bigflywheelConfiguration = new TalonFXConfiguration()
         .withMotionMagic(new MotionMagicConfigs().withMotionMagicAcceleration(130))
@@ -34,10 +34,9 @@ public class ShooterConstants {
     }
 
     public static class SmallFlyWheel{
-        public static final int smallFlyWheel_ID = 13;
+        public static final int smallFlyWheel_ID = 17;
         public static final boolean smallFlyWheel_Inverted = false;
     }
-
     public static class Angle  {
         public static final int Angle_ID = 8;
         public static double RPM = 20;
