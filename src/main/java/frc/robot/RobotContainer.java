@@ -35,7 +35,7 @@ import frc.robot.command.Shootstop;
 import frc.robot.utils.Target;
 
 public class RobotContainer {
-    private double MaxSpeed = 1.0 * TunerConstants.kSpeedAt12Volts.in(MetersPerSecond); // kSpeedAt12Volts desired top speed
+    private double MaxSpeed = 0.5 * TunerConstants.kSpeedAt12Volts.in(MetersPerSecond); // kSpeedAt12Volts desired top speed
     private double MaxAngularRate = RotationsPerSecond.of(0.75).in(RadiansPerSecond); // 3/4 of a rotation per second max angular velocity
 
     /* Setting up bindings for necessary control of the swerve drive platform */
@@ -46,7 +46,8 @@ public class RobotContainer {
     private final SwerveRequest.PointWheelsAt point = new SwerveRequest.PointWheelsAt();
     private final SwerveRequest.RobotCentric forwardStraight = new SwerveRequest.RobotCentric()
             .withDriveRequestType(DriveRequestType.OpenLoopVoltage);
-    private final SwerveRequest.FieldCentricFacingAngle driveAutoAlign = new SwerveRequest.FieldCentricFacingAngle();
+    private final SwerveRequest.FieldCentricFacingAngle driveAutoAlign = new SwerveRequest.FieldCentricFacingAngle()
+    .withHeadingPID(0.5, 0.1, 0.3);
 
     private final Telemetry logger = new Telemetry(MaxSpeed);
     private final Shooter shooter = new Shooter();
@@ -104,10 +105,10 @@ public class RobotContainer {
             point.withModuleDirection(new Rotation2d(-joystick.getLeftY(), -joystick.getLeftX()))
         ));
 
-        joystick.x().whileTrue(drivetrain.applyRequest(
+        joystick2.x().whileTrue(drivetrain.applyRequest(
             ()->driveAutoAlign
-            .withVelocityX(-joystick.getLeftY() * MaxSpeed) 
-            .withVelocityY(-joystick.getLeftX() * MaxSpeed)
+            .withVelocityX(-joystick2.getLeftY() * MaxSpeed) 
+            .withVelocityY(-joystick2.getLeftX() * MaxSpeed)
             .withTargetDirection(Target.getAimingRotation(drivetrain.getState().Pose))));
 
         joystick.povUp().whileTrue(drivetrain.applyRequest(() ->
@@ -134,7 +135,7 @@ public class RobotContainer {
                     
         joystick2.b().whileTrue(new InstantCommand(intake::rollerStart)).whileFalse(new InstantCommand(intake::rollerStop));
         // joystick2.x().whileTrue(new InstantCommand(conveyor::run)).whileFalse(new InstantCommand(conveyor::stop));
-        joystick2.x().whileTrue(new InstantCommand(intake::Out));
+        //joystick2.x().whileTrue(new InstantCommand(intake::Out));
         //joystick2.y().whileTrue(new InstantCommand(conveyor::run)).whileFalse(new InstantCommand(conveyor::stop));
 
         joystick2.leftBumper().whileTrue(new InstantCommand(shooter::angleup)).onFalse(new InstantCommand(shooter::anglestop));

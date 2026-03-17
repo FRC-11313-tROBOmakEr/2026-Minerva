@@ -22,7 +22,7 @@ public class IndexerConstants {
 
         public static double Run = 80;//rps
         public static final TalonFXConfiguration IndexerConfiguration = new TalonFXConfiguration()
-        .withSlot0(new Slot0Configs() .withKP(0.2).withKI(0).withKD(0.5))
+        .withSlot0(new Slot0Configs() .withKP(0.1).withKI(0).withKD(0.001))
         .withMotorOutput(new MotorOutputConfigs().withNeutralMode(NeutralModeValue.Brake)
         .withInverted(InvertedValue.Clockwise_Positive));
 

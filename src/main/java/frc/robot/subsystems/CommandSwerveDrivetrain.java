@@ -17,12 +17,14 @@ import com.pathplanner.lib.config.RobotConfig;
 import com.pathplanner.lib.controllers.PPHolonomicDriveController;
 
 import edu.wpi.first.math.Matrix;
+import edu.wpi.first.math.estimator.PoseEstimator;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
+import edu.wpi.first.math.kinematics.Odometry;
 import edu.wpi.first.math.numbers.N1;
 import edu.wpi.first.math.numbers.N3;
-
+import edu.wpi.first.units.AngularVelocityUnit;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.Notifier;
@@ -288,25 +290,38 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
 
     @Override
     public void periodic() {
+        
+   
         rejectUpdate = false;
 
         LimelightHelpers.SetRobotOrientation
-                ("alenwhy", getState().Pose.getRotation().getDegrees(),
-                0, 0, 0, 0, 0);
+                ("limelight-alenwhy", getState().Pose.getRotation().getDegrees(),
+                0, -47.71, 0, 0, 0);
+        
 
-        PoseEstimate mt2 = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2("alenwhy");
+        PoseEstimate mt2 = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2("limelight-alenwhy");
+        System.out.print(mt2.latency);
 
         if (mt2.tagCount == 0) {
             rejectUpdate = true;
-        } else if (getPigeon2().getAngularVelocityZWorld().getValueAsDouble() > 360) {
+
+            
+        } else if (getPigeon2().getAngularVelocityZWorld().getValueAsDouble() > 720) {
             rejectUpdate = true;
+
         }
+        SmartDashboard.putBoolean("reject", rejectUpdate);
+        SmartDashboard.putNumber("tagcount", mt2.tagCount);
+        
 
         if (!rejectUpdate) {
             addVisionMeasurement(mt2.pose, mt2.timestampSeconds);
-            vField.setRobotPose(mt2.pose);
+            // vField.setRobotPose(mt2.pose);
+            vField.setRobotPose(11.91, 4.035, kBlueAlliancePerspectiveRotation);;
             SmartDashboard.putData("Vision", vField);
-        }
+           
+            
+         }
 
         bField.setRobotPose(this.getState().Pose);
         SmartDashboard.putData("Field", bField);

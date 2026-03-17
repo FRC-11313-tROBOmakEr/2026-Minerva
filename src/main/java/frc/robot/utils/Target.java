@@ -16,8 +16,8 @@ import edu.wpi.first.wpilibj.DriverStation.Alliance;
 public final class Target {
 //   public static HashMap<Integer, List<Pose2d>> hubMap = new HashMap<>();
 //   private boolean isValidTarget = false;
-  private static final Pose2d REDPose = new Pose2d(8.27, 4.035, new Rotation2d(180));
-  private static final Pose2d BLUEPose = new Pose2d(4.03, 4.035, new Rotation2d(0));
+  private static final Pose2d REDPose = new Pose2d(11.91, 4.035, new Rotation2d(180));
+  private static final Pose2d BLUEPose = new Pose2d(4.62, 4.035, new Rotation2d(0));
 
   /** Creates a new Target. */
 
