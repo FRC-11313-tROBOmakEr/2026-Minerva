@@ -8,9 +8,11 @@ import com.ctre.phoenix6.controls.VelocityVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.generated.TunerConstants;
+import frc.robot.Constants;
 
 public class Spindexer_Kraken extends SubsystemBase {
-  private final TalonFX spindexerKraken = new TalonFX(SpindexerConstants.Spindexer_Karken.Spindexer_ID, SpindexerConstants.Can);
+  private final TalonFX spindexerKraken = new TalonFX(SpindexerConstants.Spindexer_Karken.Spindexer_ID, Constants.CANBusName);
   /** Creates a new Indexer_Kraken. */
   public Spindexer_Kraken() {
     spindexerKraken.getConfigurator().apply(SpindexerConstants.Spindexer_Karken.SpindexerConfiguration);

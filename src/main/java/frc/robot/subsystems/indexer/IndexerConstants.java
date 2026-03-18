@@ -14,8 +14,6 @@ import com.ctre.phoenix6.signals.NeutralModeValue;
 
 /** Add your docs here. */
 public class IndexerConstants {
-    public static final CANBus Can = new CANBus("888");
-    
 
     public static class  Indexer_Kraken {
         public static final int Indexer_ID = 1;

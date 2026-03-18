@@ -37,8 +37,9 @@ import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
 
 import frc.robot.LimelightHelpers;
 import frc.robot.LimelightHelpers.PoseEstimate;
-
+import frc.robot.generated.TunerConstants;
 import frc.robot.generated.TunerConstants.TunerSwerveDrivetrain;
+import frc.robot.Constants;
 
 /**
  * Class that extends the Phoenix 6 SwerveDrivetrain class and implements
@@ -295,11 +296,11 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         rejectUpdate = false;
 
         LimelightHelpers.SetRobotOrientation
-                ("limelight-alenwhy", getState().Pose.getRotation().getDegrees(),
+                (Constants.LimelightName, getState().Pose.getRotation().getDegrees(),
                 0, -47.71, 0, 0, 0);
         
 
-        PoseEstimate mt2 = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2("limelight-alenwhy");
+        PoseEstimate mt2 = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2(Constants.LimelightName);
         System.out.print(mt2.latency);
 
         if (mt2.tagCount == 0) {

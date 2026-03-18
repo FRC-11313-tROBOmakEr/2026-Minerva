@@ -1,13 +1,12 @@
 package frc.robot.subsystems.conveyor;
 
-import com.ctre.phoenix6.CANBus;
+
 import com.ctre.phoenix6.configs.Slot0Configs;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.signals.StaticFeedforwardSignValue;
 
 public class Conveyor_Constants {
-        
-  public static final CANBus Can = new CANBus("888");
+   
      public static final int Conveyor_ID = 20;
 
         public static final TalonFXConfiguration conveyorConfiguration = new TalonFXConfiguration()
