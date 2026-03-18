@@ -149,10 +149,5 @@ public class RobotContainer {
         /* Run the path selected from the auto chooser */
         return autoChooser.getSelected();
     }
-    public void enabled(){
-        if(DriverStation.isEnabled() == true){
-        System.out.print("Did you deploy the code?");
-        }
-        
-    }
+
 }
