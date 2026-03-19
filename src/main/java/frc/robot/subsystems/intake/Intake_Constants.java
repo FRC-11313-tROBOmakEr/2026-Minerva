@@ -27,6 +27,7 @@ import com.ctre.phoenix6.signals.NeutralModeValue;
 import com.ctre.phoenix6.signals.SensorDirectionValue;
 import com.ctre.phoenix6.signals.StaticFeedforwardSignValue;
 
+
 import frc.robot.Constants;
 
 
@@ -54,7 +55,7 @@ public class Intake_Constants {
         .withSlot0(new Slot0Configs().withKP(0.12).withKI(0).withKD(0)
         .withKS(0.05).withKV(0.1).withKA(0).withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign));
 
-        public static double Roller_Start = -40;//rps
+        public static double Roller_Start = -60;//rps
 
 
     }
@@ -144,8 +145,8 @@ public class Intake_Constants {
         public static double Deploy_Start = 10;
         public static double Deploy_Back = -10;
 
-        public static double OutPositionInRot = 0.09;
-        public static double BackPositionInRot = 0.001;
+        public static double OutPositionInRot = 0.2395;
+        public static double BackPositionInRot = -0.48;
 
         public static double Kg_Max = 0.4;
         public static double GearRatio = (44.0/16.0)*3;
@@ -153,10 +154,10 @@ public class Intake_Constants {
         
         
     public static final TalonFXConfiguration deployConfiguration= new TalonFXConfiguration()
-    .withSlot0(new Slot0Configs().withKP(0.1).withKI(0).withKD(0.01).withKS(0.1).withKV(0.02).withKA(0)
+    .withSlot0(new Slot0Configs().withKP(0.15).withKI(0).withKD(0.08).withKS(0).withKV(0.001).withKA(0.01)
     .withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign).withGravityArmPositionOffset(OffSet))
     
-    .withSlot1(new Slot1Configs().withKP(0.45).withKI(0.02).withKD(0.01).withKS(0.5).withKV(0.5).withKA(0.2)
+    .withSlot1(new Slot1Configs().withKP(0.4).withKI(0.2).withKD(0).withKS(0.1).withKV(0.2).withKA(0.3)
     .withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign))
 
     .withFeedback(new FeedbackConfigs()
@@ -185,8 +186,9 @@ public class Intake_Constants {
     
     public static final CANcoderConfiguration encoderConfiguration = new CANcoderConfiguration()
     .withMagnetSensor(new MagnetSensorConfigs().withMagnetOffset(OffSet)
-    .withAbsoluteSensorDiscontinuityPoint(0.8)
-    .withSensorDirection(SensorDirectionValue.Clockwise_Positive));
+    .withAbsoluteSensorDiscontinuityPoint(0.5)
+    // .withSensorDirection(SensorDirectionValue.Clockwise_Positive)
+    );
     
 }
 }

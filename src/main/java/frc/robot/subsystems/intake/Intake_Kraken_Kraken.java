@@ -6,7 +6,6 @@ package frc.robot.subsystems.intake;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.generated.TunerConstants;
 
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.hardware.CANcoder;
@@ -14,7 +13,6 @@ import com.ctre.phoenix6.hardware.CANcoder;
 import com.ctre.phoenix6.controls.MotionMagicVoltage;
 import com.ctre.phoenix6.controls.VelocityVoltage;
 
-import com.ctre.phoenix6.configs.Slot0Configs;
 import frc.robot.Constants;
 
 public class Intake_Kraken_Kraken extends SubsystemBase {
@@ -59,15 +57,17 @@ public class Intake_Kraken_Kraken extends SubsystemBase {
   // }
 
   public void Out(){
-    // System.out.println("deploy out");
+    System.out.println("deploy out");
     deploy.setControl(new MotionMagicVoltage(Intake_Constants.Intake_Kraken_Deploy.OutPositionInRot).withSlot(0)
     .withFeedForward(this.dynamic));
     SmartDashboard.putNumber("Position",deploy.getPosition().getValueAsDouble());
   }
   public void Back(){
     System.out.println("deploy back");
-   deploy.setControl(new MotionMagicVoltage(Intake_Constants.Intake_Kraken_Deploy.BackPositionInRot).withSlot(1)
-   .withFeedForward(this.dynamic));
+    if(encoder.getPosition().getValueAsDouble()>0.0003) deploy.set(-0.06);
+    else deploy.stopMotor();
+  //   deploy.setControl(new MotionMagicVoltage(Intake_Constants.Intake_Kraken_Deploy.BackPositionInRot).withSlot(1)
+  //  .withFeedForward(this.dynamic));
   }
   public void DeployStop(){
     deploy.getPosition().getValueAsDouble();
@@ -77,7 +77,6 @@ public class Intake_Kraken_Kraken extends SubsystemBase {
   public double getCurrentPosition(){
     return deploy.getPosition().getValueAsDouble();
   }
-
 
 
 }
