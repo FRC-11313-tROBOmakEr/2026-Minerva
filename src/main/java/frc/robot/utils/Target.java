@@ -43,37 +43,4 @@ public final class Target {
       return Math.abs(0.1*getDistanceToTarget(LimelightHelpers.getBotPose2d_wpiBlue(Constants.LimelightName))-0);
     }
 
-
-
-
-    // public static double getDistanceToTarget(Pose2d robotPose) {
-    //     return robotPose.getTranslation().getDistance(targetPose.getTranslation());
-    // }
-
-    // public boolean isTargetValid() {
-    //     return isValidTarget;
-    // } 
-
-    //   public Command getTargetStatus(double aprilTagsID) {
-    //         return Commands.run(() -> {
-
-    //             Optional<Alliance> alliance = DriverStation.getAlliance();
-    //             if (alliance.isPresent()) {
-    //                 if (alliance.get() == Alliance.Red
-    //                         && ((aprilTagsID >= 2 && aprilTagsID <= 5) || (aprilTagsID >= 8 && aprilTagsID <= 11))) {
-    //                     isValidTarget = true;
-
-    //                     targetPose = REDPose;
-
-    //                 } else if (alliance.get() == Alliance.Blue
-    //                         && ((aprilTagsID >= 18 && aprilTagsID <= 21) || (aprilTagsID >= 24 && aprilTagsID <= 27))) {
-    //                     isValidTarget = true;
-    //                     targetPose = BLUEPose;
-
-    //                 } else {
-    //                     isValidTarget = false;
-    //                 }
-    //             }
-    //         });
-    //     }  
-}
+  }
