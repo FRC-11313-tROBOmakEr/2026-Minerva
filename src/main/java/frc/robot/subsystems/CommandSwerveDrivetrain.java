@@ -295,13 +295,13 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
    
         rejectUpdate = false;
 
-        LimelightHelpers.SetRobotOrientation
+         LimelightHelpers.SetRobotOrientation
                 (Constants.LimelightName, getState().Pose.getRotation().getDegrees(),
-                0, -47.71, 0, 0, 0);
+                0, 0, 0, 0, 0);
         
 
         PoseEstimate mt2 = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2(Constants.LimelightName);
-        System.out.print(mt2.latency);
+      
 
         if (mt2.tagCount == 0) {
             rejectUpdate = true;
@@ -312,16 +312,14 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
 
         }
         SmartDashboard.putBoolean("reject", rejectUpdate);
-        SmartDashboard.putNumber("tagcount", mt2.tagCount);
+        // SmartDashboard.putNumber("tagcount", mt2.tagCount);
         
 
         if (!rejectUpdate) {
             addVisionMeasurement(mt2.pose, mt2.timestampSeconds);
             // vField.setRobotPose(mt2.pose);
-            vField.setRobotPose(11.91, 4.035, kBlueAlliancePerspectiveRotation);;
+            vField.setRobotPose(mt2.pose);
             SmartDashboard.putData("Vision", vField);
-           
-            
          }
 
         bField.setRobotPose(this.getState().Pose);
