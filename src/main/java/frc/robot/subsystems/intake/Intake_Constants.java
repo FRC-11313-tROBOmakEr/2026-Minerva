@@ -23,6 +23,7 @@ import com.ctre.phoenix6.configs.SoftwareLimitSwitchConfigs;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.hardware.core.CoreCANcoder;
 import com.ctre.phoenix6.signals.FeedbackSensorSourceValue;
+import com.ctre.phoenix6.signals.GravityTypeValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 import com.ctre.phoenix6.signals.SensorDirectionValue;
 import com.ctre.phoenix6.signals.StaticFeedforwardSignValue;
@@ -34,7 +35,74 @@ import frc.robot.Constants;
 /** Add your docs here. */
 public class Intake_Constants {
 
-    public static class  Intake_Neo_Roller {
+    public static class  Intake_Kraken_Roller {
+        public static final int Roller_ID = 11;
+
+        public static final TalonFXConfiguration rollerConfiguration = new TalonFXConfiguration()
+        .withSlot0(new Slot0Configs().withKP(0.12).withKI(0).withKD(0)
+        .withKS(0.05).withKV(0.1).withKA(0).withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign));
+
+        public static double Roller_Start = -60;//rps
+
+
+    }
+
+    public static class  Intake_Kraken_Deploy {
+        public static final int Deploy_ID = 13;
+        public static final int Encoder_ID = 30;
+
+        public static double Deploy_Start = 10;
+        public static double Deploy_Back = -10;
+
+        public static double OutPositionInRot = 0.2;
+        public static double BackPositionInRot = -0.21;
+
+        // public static double KG_Max = 0.4;
+        public static double GearRatio = (44.0/16.0)*3;
+        public static double OffSet = 0.0;
+        
+        
+    public static final TalonFXConfiguration deployConfiguration= new TalonFXConfiguration()
+    .withSlot0(new Slot0Configs()
+    .withKP(0.15).withKI(0).withKD(0)
+    .withKS(0.1).withKV(0).withKA(0)
+    .withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign)
+    .withGravityType(GravityTypeValue.Arm_Cosine))
+    
+    .withSlot1(new Slot1Configs()
+    .withKP(14.8).withKI(0.000009).withKD(0.0002)
+    .withKS(0.2).withKV(0).withKA(0)
+    .withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign)
+    .withGravityType(GravityTypeValue.Arm_Cosine))
+
+    .withFeedback(new FeedbackConfigs()
+    .withFeedbackSensorSource(FeedbackSensorSourceValue.RotorSensor)
+    // .withFeedbackRemoteSensorID(Encoder_ID)
+    .withSensorToMechanismRatio(44.0*3/16.0))
+
+    .withMotorOutput(new MotorOutputConfigs()
+    .withNeutralMode(NeutralModeValue.Brake))
+    
+    .withMotionMagic(new MotionMagicConfigs()
+    .withMotionMagicCruiseVelocity(1.5)
+    .withMotionMagicAcceleration(1))
+    
+    .withCurrentLimits(new CurrentLimitsConfigs()
+    .withSupplyCurrentLimit(35)
+    .withSupplyCurrentLimitEnable(true))
+
+    .withClosedLoopGeneral(new ClosedLoopGeneralConfigs()
+    .withContinuousWrap(false)); 
+    
+    public static final CANcoderConfiguration encoderConfiguration = new CANcoderConfiguration()
+    .withMagnetSensor(new MagnetSensorConfigs()
+    //.withMagnetOffset(OffSet)
+    .withAbsoluteSensorDiscontinuityPoint(0.5)
+    // .withSensorDirection(SensorDirectionValue.Clockwise_Positive)
+       );
+    
+    }
+   public static class  Intake_Neo_Roller {
         public static final int Roller_ID = 11;
         public static double Roller_Start = 10;//目前為dutycycle，記得改
 
@@ -45,18 +113,6 @@ public class Intake_Constants {
 
         public static final double maxAcceleration = 5;
         public static final double cruiseVelocity = 2 ;
-
-    }
-
-    public static class  Intake_Kraken_Roller {
-        public static final int Roller_ID = 11;
-
-        public static final TalonFXConfiguration rollerConfiguration = new TalonFXConfiguration()
-        .withSlot0(new Slot0Configs().withKP(0.12).withKI(0).withKD(0)
-        .withKS(0.05).withKV(0.1).withKA(0).withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign));
-
-        public static double Roller_Start = -60;//rps
-
 
     }
 
@@ -80,8 +136,7 @@ public class Intake_Constants {
         public static final double cruiseVelocity = 2 ;
     }
 
-
-//     public static class  Intake_Kraken_Deploy {
+    //     public static class  Intake_Kraken_Deploy {
 //         public static final int Deploy_ID = 13;
 //         public static final int Encoder_ID = 30;
 
@@ -137,58 +192,4 @@ public class Intake_Constants {
         
 //     }
 // }
-
-    public static class  Intake_Kraken_Deploy {
-        public static final int Deploy_ID = 13;
-        public static final int Encoder_ID = 30;
-
-        public static double Deploy_Start = 10;
-        public static double Deploy_Back = -10;
-
-        public static double OutPositionInRot = 0.2395;
-        public static double BackPositionInRot = -0.48;
-
-        public static double Kg_Max = 0.4;
-        public static double GearRatio = (44.0/16.0)*3;
-        public static double OffSet = 0.0000244;
-        
-        
-    public static final TalonFXConfiguration deployConfiguration= new TalonFXConfiguration()
-    .withSlot0(new Slot0Configs().withKP(0.15).withKI(0).withKD(0.08).withKS(0).withKV(0.001).withKA(0.01)
-    .withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign).withGravityArmPositionOffset(OffSet))
-    
-    .withSlot1(new Slot1Configs().withKP(0.4).withKI(0.2).withKD(0).withKS(0.1).withKV(0.2).withKA(0.3)
-    .withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign))
-
-    .withFeedback(new FeedbackConfigs()
-
-
-    .withFeedbackSensorSource(FeedbackSensorSourceValue.RemoteCANcoder)
-    .withFeedbackRemoteSensorID(Encoder_ID)
-    .withSensorToMechanismRatio(44.0*3/16.0))
-
-    .withMotorOutput(new MotorOutputConfigs()
-    .withNeutralMode(NeutralModeValue.Brake))
-    
-    .withMotionMagic(new MotionMagicConfigs()
-    .withMotionMagicCruiseVelocity(1.5)
-    .withMotionMagicAcceleration(1))
-    .withCurrentLimits(new CurrentLimitsConfigs()
-    .withStatorCurrentLimit(60)
-    .withStatorCurrentLimitEnable(true))
-
-    .withSlot0(new Slot0Configs()
-    .withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign)
-    .withGravityArmPositionOffset(OffSet))
-
-    .withClosedLoopGeneral(new ClosedLoopGeneralConfigs()
-    .withContinuousWrap(false)); 
-    
-    public static final CANcoderConfiguration encoderConfiguration = new CANcoderConfiguration()
-    .withMagnetSensor(new MagnetSensorConfigs().withMagnetOffset(OffSet)
-    .withAbsoluteSensorDiscontinuityPoint(0.5)
-    // .withSensorDirection(SensorDirectionValue.Clockwise_Positive)
-    );
-    
-}
 }
