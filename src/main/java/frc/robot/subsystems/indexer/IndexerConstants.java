@@ -5,6 +5,7 @@
 package frc.robot.subsystems.indexer;
 
 import com.ctre.phoenix6.CANBus;
+import com.ctre.phoenix6.configs.CurrentLimitsConfigs;
 import com.ctre.phoenix6.configs.MotorOutputConfigs;
 import com.ctre.phoenix6.configs.Slot0Configs;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
@@ -20,9 +21,12 @@ public class IndexerConstants {
 
         public static double Run = 80;//rps
         public static final TalonFXConfiguration IndexerConfiguration = new TalonFXConfiguration()
-        .withSlot0(new Slot0Configs() .withKP(0.1).withKI(0).withKD(0.001))
+        .withSlot0(new Slot0Configs() 
+        .withKP(0.1).withKI(0).withKD(0.001))
         .withMotorOutput(new MotorOutputConfigs().withNeutralMode(NeutralModeValue.Brake)
-        .withInverted(InvertedValue.Clockwise_Positive));
+        .withInverted(InvertedValue.Clockwise_Positive))
+        .withCurrentLimits(new CurrentLimitsConfigs()
+        .withStatorCurrentLimit(35));
 
     }
 

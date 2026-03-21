@@ -27,7 +27,7 @@ public class ShooterConstants {
         .withMotionMagic(new MotionMagicConfigs().withMotionMagicAcceleration(130))
         .withSlot0(new Slot0Configs().withKP(0.3).withKI(0).withKD(0)
         .withKS(0.225).withKV(0.12).withKA(0.3).withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign))
-        .withCurrentLimits(new CurrentLimitsConfigs().withStatorCurrentLimit(40))
+        .withCurrentLimits(new CurrentLimitsConfigs().withStatorCurrentLimit(35))
         .withMotorOutput(new MotorOutputConfigs().withInverted(InvertedValue.Clockwise_Positive))
         ;
     }
@@ -63,8 +63,8 @@ public class ShooterConstants {
         public static final TalonFXConfiguration angleFalconConfiguration = new TalonFXConfiguration()
         .withMotionMagic(new MotionMagicConfigs().withMotionMagicAcceleration(130))
         .withSlot0(new Slot0Configs().withKP(0.3).withKI(0).withKD(0)
-        .withKS(0.225).withKV(0.12).withKA(0.3).withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign))
-        .withCurrentLimits(new CurrentLimitsConfigs().withStatorCurrentLimit(40))
+        .withKS(0).withKV(0).withKA(0).withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign))
+        .withCurrentLimits(new CurrentLimitsConfigs().withStatorCurrentLimit(35))
         .withMotorOutput(new MotorOutputConfigs().withInverted(InvertedValue.Clockwise_Positive))
         ;
     }
