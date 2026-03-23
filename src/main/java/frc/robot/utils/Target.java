@@ -27,9 +27,7 @@ public final class Target {
     public static Rotation2d getAimingRotation(Pose2d robotPose) {
   
         Optional<Alliance> alliance = DriverStation.getAlliance();
-        if (
-          alliance.get() == Alliance.Red) targetPose = REDPose;
-
+        if ( alliance.get() == Alliance.Red) targetPose = REDPose;
         else targetPose = BLUEPose;
         Translation2d targetToBot = targetPose.relativeTo(robotPose).getTranslation();
         return new Rotation2d(targetToBot.getX(), targetToBot.getY());
