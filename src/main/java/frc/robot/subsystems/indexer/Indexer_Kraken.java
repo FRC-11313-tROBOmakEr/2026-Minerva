@@ -8,10 +8,11 @@ import com.ctre.phoenix6.controls.VelocityVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 
 public class Indexer_Kraken extends SubsystemBase {
-  private final TalonFX indexerKraken = new TalonFX(IndexerConstants.Indexer_Kraken.Indexer_ID, IndexerConstants.Can);
+  private final TalonFX indexerKraken = new TalonFX(IndexerConstants.Indexer_Kraken.Indexer_ID, Constants.CANBus);
 
   /** Creates a new Indexer_Kraken. */
   public Indexer_Kraken() {

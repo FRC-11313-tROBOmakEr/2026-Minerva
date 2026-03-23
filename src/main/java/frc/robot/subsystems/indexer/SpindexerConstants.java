@@ -14,7 +14,6 @@ import com.ctre.phoenix6.signals.StaticFeedforwardSignValue;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
 public class SpindexerConstants  {
-  public static final CANBus Can = new CANBus("888");
 
   public static final class Spindexer_Karken {
     public static final int Spindexer_ID = 15;
@@ -24,7 +23,7 @@ public class SpindexerConstants  {
     public static final TalonFXConfiguration SpindexerConfiguration = new TalonFXConfiguration()
         .withSlot0(new Slot0Configs() .withKP(0.5).withKI(0.01).withKD(0.01)
         .withKS(0.75).withKV(0.0875).withKA(0.075).withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign))
-        .withCurrentLimits(new CurrentLimitsConfigs().withStatorCurrentLimit(40));
+        .withCurrentLimits(new CurrentLimitsConfigs().withSupplyCurrentLimit(35));
         // .withMotorOutput(new MotorOutputConfigs().withNeutralMode(NeutralModeValue.Coast))
         // .withInverted(InvertedValue.Clockwise_Positive))
         // .withMotionMagic(new MotionMagicConfigs().withMotionMagicAcceleration(2000).withMotionMagicCruiseVelocity(400)

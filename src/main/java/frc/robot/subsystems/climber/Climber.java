@@ -6,7 +6,6 @@ package frc.robot.subsystems.climber;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-
 import com.ctre.phoenix6.controls.Follower;
 import com.ctre.phoenix6.controls.VelocityDutyCycle;
 import com.ctre.phoenix6.hardware.TalonFX;
@@ -20,12 +19,13 @@ import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.config.SparkMaxConfig;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
+import frc.robot.Constants;
 
 
 public class Climber extends SubsystemBase {
   /** Creates a new Climber. */
-  private final TalonFX string= new TalonFX(ClimberConstants.string.String_ID);
-  private final TalonFX string2 = new TalonFX(ClimberConstants.string.String2_ID);
+  private final TalonFX string= new TalonFX(ClimberConstants.string.String_ID,Constants.CANBus);
+  private final TalonFX string2 = new TalonFX(ClimberConstants.string.String2_ID,Constants.CANBus);
   private final SparkMax angle = new SparkMax(ClimberConstants.Angle.Angle_ID, MotorType.kBrushless);
   private final SparkMaxConfig angleConfig = new SparkMaxConfig();
   

@@ -1,6 +1,7 @@
 package frc.robot.subsystems.intake;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.generated.TunerConstants;
 
 import com.ctre.phoenix6.hardware.TalonFX;
 
@@ -17,13 +18,14 @@ import com.revrobotics.spark.SparkBase.ControlType;
 import com.revrobotics.spark.config.SparkMaxConfig;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import com.revrobotics.spark.config.AbsoluteEncoderConfig;
+import frc.robot.Constants;
 
 
 
 
 
 public class Intake_Neo_Kraken extends SubsystemBase {
-  private final TalonFX roller = new TalonFX(Intake_Constants.Intake_Kraken_Roller.Roller_ID, Intake_Constants.Can);
+  private final TalonFX roller = new TalonFX(Intake_Constants.Intake_Kraken_Roller.Roller_ID, Constants.CANBus);
   private final SparkMax deploy = new SparkMax(Intake_Constants.Intake_Neo_Deploy.Deploy_ID, SparkLowLevel.MotorType.kBrushless);
   private final SparkClosedLoopController deployctrl = deploy.getClosedLoopController();
   private final SparkMaxConfig deployConfig = new SparkMaxConfig();

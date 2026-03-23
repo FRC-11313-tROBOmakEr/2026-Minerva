@@ -10,6 +10,8 @@ import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.generated.TunerConstants;
+import frc.robot.Constants;
 
 
 public class Robot extends TimedRobot {
@@ -28,7 +30,7 @@ public class Robot extends TimedRobot {
         m_robotContainer = new RobotContainer();
         hubNotifier = new HubNotifier(m_robotContainer.joysticks);
 
-        LimelightHelpers.SetIMUMode("alenwhy", 1);
+        LimelightHelpers.SetIMUMode(Constants.LimelightName, 1);
     }
 
     @Override
@@ -39,7 +41,7 @@ public class Robot extends TimedRobot {
 
     @Override
     public void disabledInit() {
-        LimelightHelpers.SetIMUMode("alenwhy", 1);
+        LimelightHelpers.SetIMUMode(Constants.LimelightName, 1);
     }
 
     @Override
@@ -47,7 +49,7 @@ public class Robot extends TimedRobot {
 
     @Override
     public void disabledExit() {
-        LimelightHelpers.SetIMUMode("alenwhy", 4);
+        LimelightHelpers.SetIMUMode(Constants.LimelightName, 4);
     }
 
     @Override

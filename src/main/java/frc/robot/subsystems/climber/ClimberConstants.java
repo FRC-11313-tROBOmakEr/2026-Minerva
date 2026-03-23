@@ -4,7 +4,6 @@
 
 package frc.robot.subsystems.climber;
 
-import com.ctre.phoenix6.CANBus;
 import com.ctre.phoenix6.configs.MotionMagicConfigs;
 import com.ctre.phoenix6.configs.MotorOutputConfigs;
 import com.ctre.phoenix6.configs.Slot0Configs;
@@ -15,23 +14,27 @@ import com.ctre.phoenix6.signals.NeutralModeValue;
 
 
 public class ClimberConstants {
-    public static final CANBus Can = new CANBus("888");
     public static class string{
         public static final int String_ID = 1;
         public static final int String2_ID = 2;
 
         public static double Out = 80;
         public static double Back = -80;
+        public static double position = 20;
 
         public static final TalonFXConfiguration stringConfiguration = new TalonFXConfiguration()
-        .withSlot0(new Slot0Configs() .withKP(0).withKI(0).withKD(0).withKG(0).withKV(0.2).withKA(0.3))
+        .withSlot0(new Slot0Configs()
+         .withKP(0.1).withKI(0).withKD(0)
+         .withKS(0).withKV(0).withKA(0).withKG(0))
         .withMotorOutput(new MotorOutputConfigs().withNeutralMode(NeutralModeValue.Brake)
         .withInverted(InvertedValue.Clockwise_Positive))
         .withMotionMagic(new MotionMagicConfigs().withMotionMagicAcceleration(2000).withMotionMagicCruiseVelocity(1000)
         .withMotionMagicJerk(60));
 
         public static final TalonFXConfiguration string2Configuration = new TalonFXConfiguration()
-        .withSlot1(new Slot1Configs() .withKP(0).withKI(0).withKD(0.5).withKG(0).withKV(0.2).withKA(0.3))
+        .withSlot1(new Slot1Configs() 
+        .withKP(0.1).withKI(0).withKD(0)
+        .withKS(0).withKV(0).withKA(0).withKG(0))
         .withMotorOutput(new MotorOutputConfigs().withNeutralMode(NeutralModeValue.Brake)
         .withInverted(InvertedValue.Clockwise_Positive))
         .withMotionMagic(new MotionMagicConfigs().withMotionMagicAcceleration(2000).withMotionMagicCruiseVelocity(1000)

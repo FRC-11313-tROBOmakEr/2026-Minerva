@@ -12,7 +12,6 @@ import com.ctre.phoenix6.signals.StaticFeedforwardSignValue;
 
 /** Add your docs here. */
 public class ShooterConstants {
-    public static final CANBus Can = new CANBus("888");
 
     public static final int angleMotor_ID = 4;
 
@@ -28,7 +27,7 @@ public class ShooterConstants {
         .withMotionMagic(new MotionMagicConfigs().withMotionMagicAcceleration(130))
         .withSlot0(new Slot0Configs().withKP(0.3).withKI(0).withKD(0)
         .withKS(0.225).withKV(0.12).withKA(0.3).withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign))
-        .withCurrentLimits(new CurrentLimitsConfigs().withStatorCurrentLimit(40))
+        .withCurrentLimits(new CurrentLimitsConfigs().withSupplyCurrentLimit(35))
         .withMotorOutput(new MotorOutputConfigs().withInverted(InvertedValue.Clockwise_Positive))
         ;
     }
@@ -53,6 +52,21 @@ public class ShooterConstants {
          public static final double maxAcceleration = 80;
          public static final double cruiseVelocity = 10;
          public static final double allowedProfileError = 50;
+    }
+
+    public static class AngleFalcon{
+        public static final int angleFalcon_ID = 90;
+        public static final boolean bigFlyWheel_Inverted = false;
+        public static double bigFlyWheel = 40;//rps
+
+
+        public static final TalonFXConfiguration angleFalconConfiguration = new TalonFXConfiguration()
+        .withMotionMagic(new MotionMagicConfigs().withMotionMagicAcceleration(130))
+        .withSlot0(new Slot0Configs().withKP(0.3).withKI(0).withKD(0)
+        .withKS(0).withKV(0).withKA(0).withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign))
+        .withCurrentLimits(new CurrentLimitsConfigs().withSupplyCurrentLimit(35))
+        .withMotorOutput(new MotorOutputConfigs().withInverted(InvertedValue.Clockwise_Positive))
+        ;
     }
 
     
