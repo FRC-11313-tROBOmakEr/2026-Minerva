@@ -167,8 +167,8 @@ public class Intake_Constants {
         
 //         .withMotorOutput(new MotorOutputConfigs().withNeutralMode(NeutralModeValue.Brake))
 //         .withCurrentLimits(new CurrentLimitsConfigs()
-//         .withStatorCurrentLimit(60)
-//         .withStatorCurrentLimitEnable(true))
+//         .withSupplyCurrentLimit(60)
+//         .withSupplyCurrentLimitEnable(true))
         
 //         .withClosedLoopGeneral(new ClosedLoopGeneralConfigs()
 //         .withContinuousWrap(false));

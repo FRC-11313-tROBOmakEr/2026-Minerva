@@ -26,7 +26,7 @@ public class IndexerConstants {
         .withMotorOutput(new MotorOutputConfigs().withNeutralMode(NeutralModeValue.Brake)
         .withInverted(InvertedValue.Clockwise_Positive))
         .withCurrentLimits(new CurrentLimitsConfigs()
-        .withStatorCurrentLimit(35));
+        .withSupplyCurrentLimit(35));
 
     }
 

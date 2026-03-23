@@ -15,7 +15,7 @@ public class Conveyor_Constants {
         .withKP(0.05).withKI(0.02).withKD(0)
         .withKS(0.05).withKV(0.03).withKA(0)
         .withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign))
-        .withCurrentLimits(new CurrentLimitsConfigs().withStatorCurrentLimit(35));
+        .withCurrentLimits(new CurrentLimitsConfigs().withSupplyCurrentLimit(35));
 
         public static double Conveyor_Start = 30;
 }
