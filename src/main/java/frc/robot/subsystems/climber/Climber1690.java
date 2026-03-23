@@ -14,8 +14,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Climber1690 extends SubsystemBase {
-  private final TalonFX string = new TalonFX(ClimberConstants.string.String_ID,Constants.CANBusName);
-  private final TalonFX string2 = new TalonFX(ClimberConstants.string.String2_ID,Constants.CANBusName);
+  private final TalonFX string = new TalonFX(ClimberConstants.string.String_ID,Constants.CANBus);
+  private final TalonFX string2 = new TalonFX(ClimberConstants.string.String2_ID,Constants.CANBus);
  
   public Climber1690() {
     string.getConfigurator().apply(ClimberConstants.string.stringConfiguration);

@@ -21,9 +21,9 @@ import com.ctre.phoenix6.controls.VelocityVoltage;
 import frc.robot.Constants;
 
 public class Intake_Kraken_Kraken extends SubsystemBase {
-  private final TalonFX roller = new TalonFX(Intake_Constants.Intake_Kraken_Roller.Roller_ID, Constants.CANBusName);
-  private final TalonFX deploy = new TalonFX(Intake_Constants.Intake_Kraken_Deploy.Deploy_ID, Constants.CANBusName);
-  private final CANcoder encoder = new CANcoder(Intake_Constants.Intake_Kraken_Deploy.Encoder_ID, Constants.CANBusName);
+  private final TalonFX roller = new TalonFX(Intake_Constants.Intake_Kraken_Roller.Roller_ID, Constants.CANBus);
+  private final TalonFX deploy = new TalonFX(Intake_Constants.Intake_Kraken_Deploy.Deploy_ID, Constants.CANBus);
+  private final CANcoder encoder = new CANcoder(Intake_Constants.Intake_Kraken_Deploy.Encoder_ID, Constants.CANBus);
   // public double dynamic;
 
   public Intake_Kraken_Kraken() {

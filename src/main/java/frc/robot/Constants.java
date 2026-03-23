@@ -4,8 +4,10 @@
 
 package frc.robot;
 
+import com.ctre.phoenix6.CANBus;
+
 /** Add your docs here. */
 public class Constants {
-    public static final String CANBusName = new String("888");
+    public static final CANBus CANBus = new CANBus("888");
     public static final String LimelightName = new String("limelight-alenwhy");
 }

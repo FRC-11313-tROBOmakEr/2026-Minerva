@@ -24,8 +24,8 @@ import frc.robot.Constants;
 
 public class Climber extends SubsystemBase {
   /** Creates a new Climber. */
-  private final TalonFX string= new TalonFX(ClimberConstants.string.String_ID,Constants.CANBusName);
-  private final TalonFX string2 = new TalonFX(ClimberConstants.string.String2_ID,Constants.CANBusName);
+  private final TalonFX string= new TalonFX(ClimberConstants.string.String_ID,Constants.CANBus);
+  private final TalonFX string2 = new TalonFX(ClimberConstants.string.String2_ID,Constants.CANBus);
   private final SparkMax angle = new SparkMax(ClimberConstants.Angle.Angle_ID, MotorType.kBrushless);
   private final SparkMaxConfig angleConfig = new SparkMaxConfig();
   

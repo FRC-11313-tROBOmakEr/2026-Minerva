@@ -31,9 +31,9 @@ import frc.robot.Constants;
 
 
 public class Shooter extends SubsystemBase {
-  private final TalonFX bigFlyWheel = new TalonFX(ShooterConstants.BigFlyWheel.bigFlyWheel_ID,Constants.CANBusName);
-  private final TalonFX smallFlyWheel = new TalonFX(ShooterConstants.SmallFlyWheel.smallFlyWheel_ID,Constants.CANBusName);
-  private final TalonFX angleFalcon = new TalonFX(ShooterConstants.AngleFalcon.angleFalcon_ID,Constants.CANBusName);
+  private final TalonFX bigFlyWheel = new TalonFX(ShooterConstants.BigFlyWheel.bigFlyWheel_ID,Constants.CANBus);
+  private final TalonFX smallFlyWheel = new TalonFX(ShooterConstants.SmallFlyWheel.smallFlyWheel_ID,Constants.CANBus);
+  private final TalonFX angleFalcon = new TalonFX(ShooterConstants.AngleFalcon.angleFalcon_ID,Constants.CANBus);
   private final SparkMax angle = new SparkMax(ShooterConstants.Angle.Angle_ID, MotorType.kBrushless);
   private final SparkMaxConfig angleConfig = new SparkMaxConfig();
   private final SparkClosedLoopController anglectrl = angle.getClosedLoopController();

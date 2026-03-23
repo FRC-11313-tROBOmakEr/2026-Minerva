@@ -25,7 +25,7 @@ import frc.robot.Constants;
 
 
 public class Intake_Neo_Kraken extends SubsystemBase {
-  private final TalonFX roller = new TalonFX(Intake_Constants.Intake_Kraken_Roller.Roller_ID, Constants.CANBusName);
+  private final TalonFX roller = new TalonFX(Intake_Constants.Intake_Kraken_Roller.Roller_ID, Constants.CANBus);
   private final SparkMax deploy = new SparkMax(Intake_Constants.Intake_Neo_Deploy.Deploy_ID, SparkLowLevel.MotorType.kBrushless);
   private final SparkClosedLoopController deployctrl = deploy.getClosedLoopController();
   private final SparkMaxConfig deployConfig = new SparkMaxConfig();

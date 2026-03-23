@@ -23,7 +23,7 @@ import com.revrobotics.spark.config.SparkMaxConfig;
 import frc.robot.Constants;
 
 public class Intake_Kraken_Neo extends SubsystemBase {
-  private final TalonFX deploy = new TalonFX(Intake_Constants.Intake_Kraken_Deploy.Deploy_ID, Constants.CANBusName);
+  private final TalonFX deploy = new TalonFX(Intake_Constants.Intake_Kraken_Deploy.Deploy_ID, Constants.CANBus);
   private final SparkMax roller = new SparkMax(Intake_Constants.Intake_Neo_Deploy.Deploy_ID, SparkLowLevel.MotorType.kBrushless);
   private final SparkClosedLoopController rollerctrl = roller.getClosedLoopController();
   private final SparkMaxConfig rollerConfig = new SparkMaxConfig();
