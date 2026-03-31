@@ -6,6 +6,7 @@ package frc.robot.subsystems.climber;
 
 import com.ctre.phoenix6.controls.Follower;
 import com.ctre.phoenix6.controls.MotionMagicVoltage;
+import com.ctre.phoenix6.controls.PositionVoltage;
 import com.ctre.phoenix6.controls.VelocityVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.MotorAlignmentValue;
@@ -28,6 +29,7 @@ public class Climber1690 extends SubsystemBase {
 
   public void back() {
     string.setControl(new MotionMagicVoltage(0).withPosition(ClimberConstants.string.position).withSlot(0));
+    string.setControl(new PositionVoltage(ClimberConstants.string.position).withSlot(0));
   }
 
   public void stop(){
