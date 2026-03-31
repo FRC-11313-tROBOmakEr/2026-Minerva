@@ -4,6 +4,7 @@ package frc.robot.subsystems.shooter;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.generated.TunerConstants;
+import frc.robot.subsystems.intake.Intake_Constants;
 
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkBase.ControlType;
@@ -23,6 +24,7 @@ import com.ctre.phoenix6.controls.Follower;
 import com.ctre.phoenix6.controls.MotionMagicVelocityDutyCycle;
 import com.ctre.phoenix6.controls.MotionMagicVoltage;
 import com.ctre.phoenix6.controls.VelocityVoltage;
+import com.ctre.phoenix6.hardware.CANcoder;
 import com.ctre.phoenix6.hardware.TalonFX;
 
 import com.ctre.phoenix6.signals.MotorAlignmentValue;
@@ -34,32 +36,11 @@ public class Shooter extends SubsystemBase {
   private final TalonFX bigFlyWheel = new TalonFX(ShooterConstants.BigFlyWheel.bigFlyWheel_ID,Constants.CANBus);
   private final TalonFX smallFlyWheel = new TalonFX(ShooterConstants.SmallFlyWheel.smallFlyWheel_ID,Constants.CANBus);
   private final TalonFX angleFalcon = new TalonFX(ShooterConstants.AngleFalcon.angleFalcon_ID,Constants.CANBus);
-  private final SparkMax angle = new SparkMax(ShooterConstants.Angle.Angle_ID, MotorType.kBrushless);
-  private final SparkMaxConfig angleConfig = new SparkMaxConfig();
-  private final SparkClosedLoopController anglectrl = angle.getClosedLoopController();
+  private final CANcoder angleEncoder = new CANcoder(Intake_Constants.Intake_Kraken_Deploy.Encoder_ID, Constants.CANBus);
+  
   private double degrees;
 
   public Shooter() {
-    // angleConfig.closedLoop
-    //     .feedbackSensor(FeedbackSensor.kAbsoluteEncoder)
-    //     .pid(ShooterConstants.Angle.Run_P,
-    //          ShooterConstants.Angle.Run_I, 
-    //          ShooterConstants.Angle.Run_D, 
-    //          ClosedLoopSlot.kSlot0)
-    //     .maxMotion.allowedProfileError(0.05, ClosedLoopSlot.kSlot0);
-
-    // angleConfig.closedLoop.feedForward
-    //     .kV(ShooterConstants.Angle.Run_F, ClosedLoopSlot.kSlot0);
-
-    
-    // angleConfig.closedLoop.maxMotion.maxAcceleration(ShooterConstants.Angle.maxAcceleration)
-    //                                   .cruiseVelocity(ShooterConstants.Angle.cruiseVelocity)
-    //                                   .allowedProfileError(ShooterConstants.Angle.allowedProfileError, ClosedLoopSlot.kSlot0);
-    // angleConfig.idleMode(IdleMode.kBrake);
-    // angleConfig.absoluteEncoder.zeroOffset(0.05);
-    // angleConfig.inverted(true);                              
-
-    // angle.configure(angleConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     
 
 
@@ -71,6 +52,7 @@ public class Shooter extends SubsystemBase {
 
   bigFlyWheel.getConfigurator().apply(ShooterConstants.BigFlyWheel.bigflywheelConfiguration);
   angleFalcon.getConfigurator().apply(ShooterConstants.AngleFalcon.angleFalconConfiguration);
+  angleEncoder.getConfigurator().apply(Intake_Constants.Intake_Kraken_Deploy.encoderConfiguration);
   
   
   }
@@ -85,9 +67,6 @@ public class Shooter extends SubsystemBase {
     bigFlyWheel.setControl(new VelocityVoltage(ShooterConstants.BigFlyWheel.bigFlyWheel).withSlot(0));
   
   }
-  // public void stopFlyWheels1() {
-  //   bigFlyWheel.setControl(new MotionMagicVelocityVoltage())
-  // }
 
   public void stopFlyWheels() {
     bigFlyWheel.stopMotor();
