@@ -22,8 +22,11 @@ public class SpindexerConstants  {
 
     public static final TalonFXConfiguration SpindexerConfiguration = new TalonFXConfiguration()
         .withSlot0(new Slot0Configs() .withKP(0.5).withKI(0.01).withKD(0.01)
-        .withKS(0.75).withKV(0.0875).withKA(0.075).withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign))
-        .withCurrentLimits(new CurrentLimitsConfigs().withSupplyCurrentLimit(35));
+        .withKS(0.75).withKV(0.0875).withKA(0.075)
+        .withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign))
+        .withCurrentLimits(new CurrentLimitsConfigs()
+        .withStatorCurrentLimitEnable(true)
+        .withSupplyCurrentLimit(35));
         // .withMotorOutput(new MotorOutputConfigs().withNeutralMode(NeutralModeValue.Coast))
         // .withInverted(InvertedValue.Clockwise_Positive))
         // .withMotionMagic(new MotionMagicConfigs().withMotionMagicAcceleration(2000).withMotionMagicCruiseVelocity(400)
