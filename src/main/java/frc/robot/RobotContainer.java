@@ -21,6 +21,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.RobotModeTriggers;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
+import frc.robot.command.Intakeout;
 import frc.robot.command.Shoot;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
@@ -65,6 +66,7 @@ public class RobotContainer {
     private final frc.robot.subsystems.indexer.Indexer_Neo indexer = new frc.robot.subsystems.indexer.Indexer_Neo();
     private final Shoot shoot = new Shoot (shooter, indexer , spindexer, conveyor);
     private final Shootstop shootstop = new Shootstop(shooter, indexer, spindexer, conveyor) ;
+    private final Intakeout intakeout = new Intakeout(intake);
 
 
 
@@ -133,8 +135,8 @@ public class RobotContainer {
         joystick2.a().whileTrue(shoot)
                     .onFalse(shootstop);
                     
-        joystick2.b().whileTrue(new InstantCommand(intake::rollerStart)).whileFalse(new InstantCommand(intake::rollerStop));
-        // joystick2.x().whileTrue(new InstantCommand(conveyor::run)).whileFalse(new InstantCommand(conveyor::stop));
+        joystick2.b().whileTrue(intakeout).whileFalse(new InstantCommand(intake::rollerStop));
+        joystick2.x().whileTrue(new InstantCommand(intake::Back));//.whileFalse(new InstantCommand(intake::DeployStop));
         //joystick2.x().whileTrue(new InstantCommand(intake::Out));
         //joystick2.y().whileTrue(new InstantCommand(conveyor::run)).whileFalse(new InstantCommand(conveyor::stop));
 
@@ -142,7 +144,6 @@ public class RobotContainer {
         joystick2.rightBumper().whileTrue(new InstantCommand(shooter::angledown)).onFalse(new InstantCommand(shooter::anglestop));
 
         //joystick.x().whileTrue(new InstantCommand(intake::rollerStart)).onFalse(new InstantCommand(intake::rollerStop));
-        joystick2.y().whileTrue(new InstantCommand(intake::Back));
     }
 
     public Command getAutonomousCommand() {
