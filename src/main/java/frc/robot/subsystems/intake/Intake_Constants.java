@@ -4,32 +4,22 @@
 
 package frc.robot.subsystems.intake;
 
-import java.lang.module.Configuration;
-
-import com.ctre.phoenix6.CANBus;
 import com.ctre.phoenix6.configs.CANcoderConfiguration;
-import com.ctre.phoenix6.configs.CANcoderConfigurator;
+
 import com.ctre.phoenix6.configs.ClosedLoopGeneralConfigs;
 import com.ctre.phoenix6.configs.CurrentLimitsConfigs;
-import com.ctre.phoenix6.configs.CustomParamsConfigs;
 import com.ctre.phoenix6.configs.FeedbackConfigs;
-import com.ctre.phoenix6.configs.HardwareLimitSwitchConfigs;
 import com.ctre.phoenix6.configs.MagnetSensorConfigs;
 import com.ctre.phoenix6.configs.MotionMagicConfigs;
 import com.ctre.phoenix6.configs.MotorOutputConfigs;
 import com.ctre.phoenix6.configs.Slot0Configs;
 import com.ctre.phoenix6.configs.Slot1Configs;
-import com.ctre.phoenix6.configs.SoftwareLimitSwitchConfigs;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
-import com.ctre.phoenix6.hardware.core.CoreCANcoder;
 import com.ctre.phoenix6.signals.FeedbackSensorSourceValue;
 import com.ctre.phoenix6.signals.GravityTypeValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
-import com.ctre.phoenix6.signals.SensorDirectionValue;
 import com.ctre.phoenix6.signals.StaticFeedforwardSignValue;
 
-
-import frc.robot.Constants;
 
 
 /** Add your docs here. */
@@ -76,9 +66,9 @@ public class Intake_Constants {
     .withGravityType(GravityTypeValue.Arm_Cosine))
 
     .withFeedback(new FeedbackConfigs()
-    .withFeedbackSensorSource(FeedbackSensorSourceValue.RotorSensor)
-    // .withFeedbackRemoteSensorID(Encoder_ID)
-    .withSensorToMechanismRatio(44.0*3/16.0))
+    .withFeedbackSensorSource(FeedbackSensorSourceValue.RotorSensor))
+    // .withFeedbackRemoteSensorID(Encoder_ID))
+
 
     .withMotorOutput(new MotorOutputConfigs()
     .withNeutralMode(NeutralModeValue.Brake))

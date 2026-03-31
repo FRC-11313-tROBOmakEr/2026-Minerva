@@ -72,8 +72,6 @@ public class Intake_Kraken_Kraken extends SubsystemBase {
   }
   public void Back(){
     System.out.println("deploy back");
-    // if(encoder.getPosition().getValueAsDouble()>0.0003) deploy.set(-0.06);
-    // else deploy.stopMotor();
     deploy.setControl(new PositionVoltage(Intake_Constants.Intake_Kraken_Deploy.BackPositionInRot).withSlot(1)
    //.withFeedForward(this.dynamic)
    );
@@ -85,6 +83,10 @@ public class Intake_Kraken_Kraken extends SubsystemBase {
 
   public double getCurrentPosition(){
     return deploy.getPosition().getValueAsDouble();
+  }
+
+  public boolean isIntakeDeployed(){
+    return Math.abs(deploy.getPosition().getValueAsDouble() - Intake_Constants.Intake_Kraken_Deploy.OutPositionInRot) < 0.05 ;
   }
 
 
