@@ -25,7 +25,7 @@ public class SpindexerConstants  {
         .withKS(0.75).withKV(0.0875).withKA(0.075)
         .withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign))
         .withCurrentLimits(new CurrentLimitsConfigs()
-        .withStatorCurrentLimitEnable(true)
+        .withSupplyCurrentLimitEnable(true)
         .withSupplyCurrentLimit(35));
         // .withMotorOutput(new MotorOutputConfigs().withNeutralMode(NeutralModeValue.Coast))
         // .withInverted(InvertedValue.Clockwise_Positive))
