@@ -291,11 +291,9 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
 
     @Override
     public void periodic() {
-        
-   
         rejectUpdate = false;
 
-         LimelightHelpers.SetRobotOrientation
+        LimelightHelpers.SetRobotOrientation
                 (Constants.LimelightName, getState().Pose.getRotation().getDegrees(),
                 0, 0, 0, 0, 0);
         
@@ -305,11 +303,8 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
 
         if (mt2.tagCount == 0) {
             rejectUpdate = true;
-
-            
         } else if (getPigeon2().getAngularVelocityZWorld().getValueAsDouble() > 720) {
             rejectUpdate = true;
-
         }
         SmartDashboard.putBoolean("reject", rejectUpdate);
         // SmartDashboard.putNumber("tagcount", mt2.tagCount);
@@ -324,6 +319,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
 
         bField.setRobotPose(this.getState().Pose);
         SmartDashboard.putData("Field", bField);
+
 
         if (!m_hasAppliedOperatorPerspective || DriverStation.isDisabled()) {
             DriverStation.getAlliance().ifPresent(allianceColor -> {

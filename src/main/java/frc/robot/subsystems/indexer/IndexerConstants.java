@@ -17,35 +17,17 @@ import com.ctre.phoenix6.signals.NeutralModeValue;
 public class IndexerConstants {
 
     public static class  Indexer_Kraken {
-        public static final int Indexer_ID = 1;
+        public static final int Indexer_ID = 33;
 
-        public static double Run = 80;//rps
+        public static double Run = 450;
         public static final TalonFXConfiguration IndexerConfiguration = new TalonFXConfiguration()
         .withSlot0(new Slot0Configs() 
-        .withKP(0.1).withKI(0).withKD(0.001))
+        .withKP(1).withKI(0).withKD(0.001))
         .withMotorOutput(new MotorOutputConfigs().withNeutralMode(NeutralModeValue.Brake)
         .withInverted(InvertedValue.Clockwise_Positive))
         .withCurrentLimits(new CurrentLimitsConfigs()
         .withSupplyCurrentLimit(35));
 
-    }
-
-    public static class  Indexer_Neo {
-        public static final int Indexer_ID = 1;
-        public static double RPM = 140;
-
-      
-        public static final double Run_P = 0.1;
-        public static final double Run_I = 0;
-        public static final double Run_D = 0.001;
-        public static final double Run_F = 0;
-
-        public static final double Max_Output = 1;//最大輸出
-        public static final double Min_Output = -1;//最小輸出
-
-         public static final double maxAcceleration = 2000;
-         public static final double cruiseVelocity = 1000;
-         public static final double allowedProfileError = 5;
     }
 
 

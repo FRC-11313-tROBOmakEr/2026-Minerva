@@ -12,7 +12,7 @@ import frc.robot.Constants;
 
 
 public class Indexer_Kraken extends SubsystemBase {
-  private final TalonFX indexerKraken = new TalonFX(IndexerConstants.Indexer_Kraken.Indexer_ID, Constants.CANBus);
+  private final TalonFX indexerKraken = new TalonFX(IndexerConstants.Indexer_Kraken.Indexer_ID);
 
   /** Creates a new Indexer_Kraken. */
   public Indexer_Kraken() {

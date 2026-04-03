@@ -15,21 +15,19 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Climber1690 extends SubsystemBase {
-  private final TalonFX string = new TalonFX(ClimberConstants.string.String_ID,Constants.CANBus);
-  private final TalonFX string2 = new TalonFX(ClimberConstants.string.String2_ID,Constants.CANBus);
+  private final TalonFX string = new TalonFX(ClimberConstants.string.String_ID);
  
   public Climber1690() {
     string.getConfigurator().apply(ClimberConstants.string.stringConfiguration);
-    string2.setControl(new Follower(string.getDeviceID(), MotorAlignmentValue.Opposed));
   }
 
   public void out() {
-    string.setControl(new VelocityVoltage(ClimberConstants.string.Out).withSlot(0));
+    string.set(0.8);
   }
 
   public void back() {
-    string.setControl(new MotionMagicVoltage(0).withPosition(ClimberConstants.string.position).withSlot(0));
-    string.setControl(new PositionVoltage(ClimberConstants.string.position).withSlot(0));
+    //string.setControl(new MotionMagicVoltage(0).withPosition(ClimberConstants.string.position).withSlot(0));
+    string.set(-0.8);
   }
 
   public void stop(){

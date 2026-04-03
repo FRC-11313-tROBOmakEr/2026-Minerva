@@ -12,8 +12,6 @@ import com.ctre.phoenix6.hardware.CANcoder;
 
 import static edu.wpi.first.units.Units.Kilogram;
 
-import javax.crypto.KeyGenerator;
-
 import com.ctre.phoenix6.controls.MotionMagicVoltage;
 import com.ctre.phoenix6.controls.PositionVoltage;
 import com.ctre.phoenix6.controls.VelocityVoltage;
@@ -22,18 +20,18 @@ import frc.robot.Constants;
 
 public class Intake_Kraken_Kraken extends SubsystemBase {
   private final TalonFX roller = new TalonFX(Intake_Constants.Intake_Kraken_Roller.Roller_ID, Constants.CANBus);
-  private final TalonFX deploy = new TalonFX(Intake_Constants.Intake_Kraken_Deploy.Deploy_ID, Constants.CANBus);
-  private final CANcoder encoder = new CANcoder(Intake_Constants.Intake_Kraken_Deploy.Encoder_ID, Constants.CANBus);
+  private final TalonFX deploy = new TalonFX(Intake_Constants.Intake_Kraken_Deploy.Deploy_ID);
+  // private final CANcoder encoder = new CANcoder(Intake_Constants.Intake_Kraken_Deploy.Encoder_ID, Constants.CANBus);
   // public double dynamic;
 
   public Intake_Kraken_Kraken() {
     roller.getConfigurator().apply(Intake_Constants.Intake_Kraken_Roller.rollerConfiguration);
     deploy.getConfigurator().apply(Intake_Constants.Intake_Kraken_Deploy.deployConfiguration);
-    encoder.getConfigurator().apply(Intake_Constants.Intake_Kraken_Deploy.encoderConfiguration);
+    // encoder.getConfigurator().apply(Intake_Constants.Intake_Kraken_Deploy.encoderConfiguration);
     //encoder.setPosition(0);
     //deploy.setPosition(0);
-    var absolutePos = encoder.getAbsolutePosition().waitForUpdate(0.1);
-    deploy.setPosition(absolutePos.getValueAsDouble()); 
+    // var absolutePos = encoder.getAbsolutePosition().waitForUpdate(0.1);
+    deploy.setPosition(0); 
   }
 
   @Override
@@ -72,7 +70,7 @@ public class Intake_Kraken_Kraken extends SubsystemBase {
   }
   public void Back(){
     System.out.println("deploy back");
-    deploy.setControl(new PositionVoltage(Intake_Constants.Intake_Kraken_Deploy.BackPositionInRot).withSlot(1)
+    deploy.setControl(new MotionMagicVoltage(Intake_Constants.Intake_Kraken_Deploy.BackPositionInRot).withSlot(1)
    //.withFeedForward(this.dynamic)
    );
   }
@@ -86,7 +84,7 @@ public class Intake_Kraken_Kraken extends SubsystemBase {
   }
 
   public boolean isIntakeDeployed(){
-    return Math.abs(deploy.getPosition().getValueAsDouble() - Intake_Constants.Intake_Kraken_Deploy.OutPositionInRot) < 0.05 ;
+    return Math.abs(deploy.getClosedLoopError().getValueAsDouble()) < 0.05 ;
   }
 
 

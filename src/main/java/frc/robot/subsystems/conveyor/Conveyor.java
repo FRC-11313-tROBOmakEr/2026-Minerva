@@ -9,7 +9,7 @@ import com.ctre.phoenix6.controls.VelocityVoltage;
 import frc.robot.Constants;
 
 public class Conveyor extends SubsystemBase {
-  private final TalonFX conveyor = new TalonFX(Conveyor_Constants.Conveyor_ID,Constants.CANBus);
+  private final TalonFX conveyor = new TalonFX(Conveyor_Constants.Conveyor_ID);
   public Conveyor() {
     conveyor.getConfigurator().apply(Conveyor_Constants.conveyorConfiguration);
   }

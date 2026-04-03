@@ -19,7 +19,7 @@ public class Intakeout extends ParallelCommandGroup {
       new InstantCommand(()->intake.Out()),
       new WaitUntilCommand(()->intake.isIntakeDeployed()),
       new InstantCommand(()->intake.DeployStop())
-      .alongWith(new InstantCommand(()->intake.rollerStart()))
+      //.alongWith(new InstantCommand(()->intake.rollerStart()))
     );
   }
 }
