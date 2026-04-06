@@ -34,6 +34,7 @@ import frc.robot.subsystems.indexer.Spindexer_Kraken;
 //import frc.robot.subsystems.intake.Intake_Constants;
 import frc.robot.subsystems.intake.Intake_Kraken_Kraken;
 import frc.robot.subsystems.shooter.Shooter;
+import frc.robot.subsystems.shooter.ShooterConstants.BigFlyWheel;
 import frc.robot.subsystems.conveyor.Conveyor;
 import frc.robot.command.Shootstop;
 import frc.robot.utils.Target;
@@ -170,6 +171,12 @@ public class RobotContainer {
         joystick2.povDown().onTrue(new InstantCommand(() -> {
             Shooter.degrees += 0.5;
             shooter.angleAdjust();
+        }));
+        joystick2.povLeft().onTrue(new InstantCommand(() -> {
+            BigFlyWheel.bigFlyWheel -= 1;
+        }));
+        joystick2.povRight().onTrue(new InstantCommand(() -> {
+            BigFlyWheel.bigFlyWheel += 1;
         }));
         // joystick2.leftBumper().onTrue(new InstantCommand(intake::rollerStart, intake)).onFalse(new InstantCommand(intake::rollerStop));
         //joystick2.rightBumper().whileTrue(new InstantCommand(intake::Back));
