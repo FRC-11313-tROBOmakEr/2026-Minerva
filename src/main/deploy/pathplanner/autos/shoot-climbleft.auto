@@ -33,6 +33,12 @@
           "data": {
             "pathName": "climbleft"
           }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "suck"
+          }
         }
       ]
     }

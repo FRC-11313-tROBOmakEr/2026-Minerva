@@ -49,6 +49,18 @@
         {
           "type": "path",
           "data": {
+            "pathName": "suck"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "rollerstop"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
             "pathName": "shoot2"
           }
         },
@@ -68,12 +80,6 @@
           "type": "named",
           "data": {
             "name": "shootstop"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "intake"
           }
         },
         {
