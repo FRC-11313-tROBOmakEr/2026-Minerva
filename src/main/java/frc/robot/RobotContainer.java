@@ -37,6 +37,7 @@ import frc.robot.subsystems.shooter.ShooterConstants.BigFlyWheel;
 import frc.robot.subsystems.conveyor.Conveyor;
 import frc.robot.command.Shootstop;
 import frc.robot.utils.Target;
+import frc.robot.command.auto.rollerstop;
 //auto
 import frc.robot.command.auto.suck;
 
@@ -77,6 +78,7 @@ public class RobotContainer {
 
     //auto
     private final suck suck = new suck(intake);
+    private final rollerstop rollerstop = new rollerstop(intake);
 
 
 
@@ -88,6 +90,7 @@ public class RobotContainer {
         NamedCommands.registerCommand("shootstop", shootstop);
         NamedCommands.registerCommand("intakeout", intakeout);
         NamedCommands.registerCommand("suck", suck);
+        NamedCommands.registerCommand("rollerstop", rollerstop);
         autoChooser = AutoBuilder.buildAutoChooser();
         SmartDashboard.putData("Auto Mode", autoChooser);
         
