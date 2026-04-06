@@ -30,10 +30,10 @@ public class Intake_Constants {
         public static final int Roller_ID = 11;
 
         public static final TalonFXConfiguration rollerConfiguration = new TalonFXConfiguration()
-        .withSlot0(new Slot0Configs().withKP(0.12).withKI(0).withKD(0)
-        .withKS(0.05).withKV(0.1).withKA(0).withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign));
+        .withSlot0(new Slot0Configs().withKP(0.3).withKI(0).withKD(0)
+        .withKS(0.15).withKV(0.05).withKA(0).withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign));
 
-        public static double Roller_Start = -60;//rps
+        public static double Roller_Start = -40;//rps
 
 
     }

@@ -25,7 +25,7 @@ public class ClimberConstants {
 
         public static final TalonFXConfiguration stringConfiguration = new TalonFXConfiguration()
         .withSlot0(new Slot0Configs()
-         .withKP(0.1).withKI(0).withKD(0)
+         .withKP(2).withKI(0).withKD(0)
          .withKS(0).withKV(0).withKA(0).withKG(0))
 
         .withMotorOutput(new MotorOutputConfigs().withNeutralMode(NeutralModeValue.Brake)
@@ -35,8 +35,8 @@ public class ClimberConstants {
         .withSupplyCurrentLimit(35))
         
         .withMotionMagic(new MotionMagicConfigs()
-        .withMotionMagicAcceleration(300)
-        .withMotionMagicCruiseVelocity(40)
+        .withMotionMagicAcceleration(1500)
+        .withMotionMagicCruiseVelocity(200)
         .withMotionMagicJerk(60));
 
         public static final TalonFXConfiguration string2Configuration = new TalonFXConfiguration()

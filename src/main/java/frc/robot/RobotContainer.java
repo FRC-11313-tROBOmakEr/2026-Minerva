@@ -8,7 +8,9 @@ import com.ctre.phoenix6.swerve.SwerveModule.DriveRequestType;
 import com.ctre.phoenix6.swerve.SwerveRequest;
 
 import com.pathplanner.lib.auto.AutoBuilder;
+import com.pathplanner.lib.auto.NamedCommands;
 import com.pathplanner.lib.commands.FollowPathCommand;
+import com.pathplanner.lib.commands.PathPlannerAuto;
 
 import edu.wpi.first.math.geometry.Rotation2d;
 import static edu.wpi.first.units.Units.*;
@@ -35,6 +37,8 @@ import frc.robot.subsystems.shooter.Shooter;
 import frc.robot.subsystems.conveyor.Conveyor;
 import frc.robot.command.Shootstop;
 import frc.robot.utils.Target;
+//auto import
+
 
 public class RobotContainer {
     private double MaxSpeed = 1 * TunerConstants.kSpeedAt12Volts.in(MetersPerSecond); // kSpeedAt12Volts desired top speed
@@ -49,7 +53,7 @@ public class RobotContainer {
     private final SwerveRequest.RobotCentric forwardStraight = new SwerveRequest.RobotCentric()
             .withDriveRequestType(DriveRequestType.OpenLoopVoltage);
     private final SwerveRequest.FieldCentricFacingAngle driveAutoAlign = new SwerveRequest.FieldCentricFacingAngle()
-    .withHeadingPID(0.5, 0.1, 0.3);
+    .withHeadingPID(0.5, 0.01, 0.2);
 
     private final Telemetry logger = new Telemetry(MaxSpeed);
     private final Shooter shooter = new Shooter();
@@ -77,8 +81,13 @@ public class RobotContainer {
     private final SendableChooser<Command> autoChooser;
 
     public RobotContainer() {
-        autoChooser = AutoBuilder.buildAutoChooser("Tests");
+        NamedCommands.registerCommand("", intakeout);
+        NamedCommands.registerCommand("", intakeout);
+        autoChooser = AutoBuilder.buildAutoChooser("auto");
+        autoChooser.addOption("", intakeout);
         SmartDashboard.putData("Auto Mode", autoChooser);
+
+        
 
         configureBindings();
 
@@ -135,10 +144,14 @@ public class RobotContainer {
 
         drivetrain.registerTelemetry(logger::telemeterize);
 
-        //joystick2.rightBumper().onTrue(intakeout);
+        
+        joystick2.rightBumper().onTrue(new InstantCommand(intake::Out));
         joystick2.b().whileTrue(shoot).onFalse(shootstop);
-        //joystick2.leftBumper().onTrue(new InstantCommand(intake::Back))
-        joystick2.a().whileTrue(intakeout);
+        joystick2.leftBumper().onTrue(new InstantCommand(intake::Back));
+        joystick2.x().whileTrue(new InstantCommand(intake::rollerStart)).onFalse(new InstantCommand(intake::rollerStop));
+        joystick2.a().whileTrue(new InstantCommand(climber::out)).onFalse(new InstantCommand(climber::stop));
+        joystick2.y().whileTrue(new InstantCommand(climber::back)).onFalse(new InstantCommand(climber::stop));
+        //joystick2.a().whileTrue(intakeout);
                     
         // joystick2.b().whileTrue(new InstantCommand(intake::Out));
         //joystick2.a().whileTrue(new InstantCommand(indexer::run)).onFalse(new InstantCommand(indexer::stop));
@@ -147,8 +160,8 @@ public class RobotContainer {
         //joystick2.y().whileTrue(new InstantCommand(shooter::out)).whileFalse(new InstantCommand(shooter::stopFlyWheels));
         //joystick2.x().whileTrue(new InstantCommand(intake::Out));
         //joystick2.y().whileTrue(new InstantCommand(conveyor::run)).whileFalse(new InstantCommand(conveyor::stop));
-        joystick2.leftBumper().whileTrue(new InstantCommand(shooter::angleup)).onFalse(new InstantCommand(shooter::anglestop));
-        joystick2.rightBumper().whileTrue(new InstantCommand(shooter::angledown)).onFalse(new InstantCommand(shooter::anglestop));
+        //joystick2.leftBumper().whileTrue(new InstantCommand(shooter::angleup)).onFalse(new InstantCommand(shooter::anglestop));
+        //joystick2.rightBumper().whileTrue(new InstantCommand(shooter::angledown)).onFalse(new InstantCommand(shooter::anglestop));
         
         joystick2.povUp().onTrue(new InstantCommand(() -> {
             Shooter.degrees -= 0.5;
@@ -161,8 +174,8 @@ public class RobotContainer {
         // joystick2.leftBumper().onTrue(new InstantCommand(intake::rollerStart, intake)).onFalse(new InstantCommand(intake::rollerStop));
         //joystick2.rightBumper().whileTrue(new InstantCommand(intake::Back));
         ///onFalse(new InstantCommand(intake::DeployStop));
-        joystick2.y().onTrue(new InstantCommand(intake::Back));
-        joystick2.x().whileTrue(new InstantCommand(intake::rollerStart)).onFalse(new InstantCommand(intake::rollerStop));
+        //joystick2.y().onTrue(new InstantCommand(intake::Back));
+        
     }   
 
     public Command getAutonomousCommand() {
