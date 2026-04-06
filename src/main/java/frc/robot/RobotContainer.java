@@ -34,6 +34,7 @@ import frc.robot.subsystems.indexer.Spindexer_Kraken;
 //import frc.robot.subsystems.intake.Intake_Constants;
 import frc.robot.subsystems.intake.Intake_Kraken_Kraken;
 import frc.robot.subsystems.shooter.Shooter;
+import frc.robot.subsystems.shooter.ShooterConstants;
 import frc.robot.subsystems.shooter.ShooterConstants.BigFlyWheel;
 import frc.robot.subsystems.conveyor.Conveyor;
 import frc.robot.command.Shootstop;
@@ -42,7 +43,7 @@ import frc.robot.utils.Target;
 
 
 public class RobotContainer {
-    private double MaxSpeed = 1 * TunerConstants.kSpeedAt12Volts.in(MetersPerSecond); // kSpeedAt12Volts desired top speed
+    private double MaxSpeed = 0.9 * TunerConstants.kSpeedAt12Volts.in(MetersPerSecond); // kSpeedAt12Volts desired top speed
     private double MaxAngularRate = RotationsPerSecond.of(0.75).in(RadiansPerSecond); // 3/4 of a rotation per second max angular velocity
 
     /* Setting up bindings for necessary control of the swerve drive platform */
@@ -58,7 +59,7 @@ public class RobotContainer {
 
     private final Telemetry logger = new Telemetry(MaxSpeed);
     private final Shooter shooter = new Shooter();
-    private final CommandXboxController joystick = new CommandXboxController(0);
+    private final CommandXboxController joystick = new CommandXboxController(3);
     private final CommandXboxController joystick2 = new CommandXboxController(1);
 
     public final CommandXboxController[] joysticks = {joystick};
@@ -120,7 +121,7 @@ public class RobotContainer {
             point.withModuleDirection(new Rotation2d(-joystick.getLeftY(), -joystick.getLeftX()))
         ));
 
-        joystick.x().whileTrue(drivetrain.applyRequest(
+        joystick.x().onTrue(drivetrain.applyRequest(
             ()->driveAutoAlign
             .withVelocityX(-joystick2.getLeftY() * MaxSpeed) 
             .withVelocityY(-joystick2.getLeftX() * MaxSpeed)
@@ -150,8 +151,8 @@ public class RobotContainer {
         joystick2.b().whileTrue(shoot).onFalse(shootstop);
         joystick2.leftBumper().onTrue(new InstantCommand(intake::Back));
         joystick2.x().whileTrue(new InstantCommand(intake::rollerStart)).onFalse(new InstantCommand(intake::rollerStop));
-        joystick2.a().whileTrue(new InstantCommand(climber::out)).onFalse(new InstantCommand(climber::stop));
-        joystick2.y().whileTrue(new InstantCommand(climber::back)).onFalse(new InstantCommand(climber::stop));
+        joystick2.a().onTrue(new InstantCommand(climber::out));
+        joystick2.y().onTrue(new InstantCommand(climber::back));
         //joystick2.a().whileTrue(intakeout);
                     
         // joystick2.b().whileTrue(new InstantCommand(intake::Out));
@@ -189,5 +190,7 @@ public class RobotContainer {
         /* Run the path selected from the auto chooser */
         return autoChooser.getSelected();
     }
+
+  
 
 }

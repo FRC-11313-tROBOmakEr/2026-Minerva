@@ -39,6 +39,7 @@ import frc.robot.LimelightHelpers;
 import frc.robot.LimelightHelpers.PoseEstimate;
 import frc.robot.generated.TunerConstants;
 import frc.robot.generated.TunerConstants.TunerSwerveDrivetrain;
+import frc.robot.utils.Target;
 import frc.robot.Constants;
 
 /**
@@ -320,6 +321,9 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         bField.setRobotPose(this.getState().Pose);
         SmartDashboard.putData("Field", bField);
 
+        SmartDashboard.putNumber("Target Degrees", Target.getAimingRotation(this.getState().Pose).getDegrees());
+
+        SmartDashboard.putNumber("dists", this.getState().Pose.getTranslation().getDistance(Target.targetPose.getTranslation()));
 
         if (!m_hasAppliedOperatorPerspective || DriverStation.isDisabled()) {
             DriverStation.getAlliance().ifPresent(allianceColor -> {

@@ -24,7 +24,10 @@ public final class Target {
   private static final Pose2d REDPose = new Pose2d(11.91, 4.035, new Rotation2d(180));
   private static final Pose2d BLUEPose = new Pose2d(4.62, 4.035, new Rotation2d(0));
   public static Pose2d targetPose;
+  public static Rotation2d target;
   public static CommandSwerveDrivetrain drivetrain;
+  public double distance = 1.511;
+  public double interval = 0.3011;
   /** Creates a new Target. */
 
     public static Rotation2d getAimingRotation(Pose2d robotPose) {
@@ -32,8 +35,10 @@ public final class Target {
         Optional<Alliance> alliance = DriverStation.getAlliance();
         if (alliance.get() == Alliance.Red) targetPose = REDPose;
         else targetPose = BLUEPose;
-        Translation2d targetToBot = targetPose.relativeTo(robotPose).getTranslation();
-        return new Rotation2d(targetToBot.getX(), targetToBot.getY());
+        double deltaX = robotPose.getX() - targetPose.getX();
+        double deltaY = robotPose.getY() - targetPose.getY();
+        target = new Rotation2d(deltaX,deltaY);
+        return target;
     }
 
      public double getDistanceToTarget(Pose2d robotPose) {
@@ -42,10 +47,13 @@ public final class Target {
 
     public double getDegrees(){
       return Math.abs(0.1*getDistanceToTarget(drivetrain.getState().Pose)-0);
-  
-    }
 
+    }
     
+    // public double getVelocity(){
+    //   return 
+    // }
+   
     
 
   }

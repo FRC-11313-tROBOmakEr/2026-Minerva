@@ -1,28 +1,14 @@
 
 package frc.robot.subsystems.shooter;
 
+import edu.wpi.first.units.measure.Velocity;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.intake.Intake_Constants;
 
-import com.revrobotics.spark.SparkMax;
-import com.revrobotics.spark.SparkBase.ControlType;
-import com.revrobotics.spark.config.SparkMaxConfig;
-import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
-import com.revrobotics.spark.ClosedLoopSlot;
-import com.revrobotics.spark.SparkClosedLoopController;
-import com.revrobotics.spark.FeedbackSensor;
-import com.revrobotics.spark.SparkLowLevel.MotorType;
-
-import com.revrobotics.PersistMode;
-import com.revrobotics.ResetMode;
-
-import java.lang.annotation.Target;
 
 import com.ctre.phoenix6.controls.Follower;
-import com.ctre.phoenix6.controls.MotionMagicVelocityDutyCycle;
-import com.ctre.phoenix6.controls.MotionMagicVoltage;
 import com.ctre.phoenix6.controls.PositionVoltage;
 import com.ctre.phoenix6.controls.VelocityVoltage;
 import com.ctre.phoenix6.hardware.CANcoder;
@@ -59,7 +45,9 @@ public class Shooter extends SubsystemBase {
 
   @Override
   public void periodic() {
+    SmartDashboard.putNumber("Target Velocity", ShooterConstants.BigFlyWheel.bigFlyWheel);
     SmartDashboard.putNumber("Current Velocity", bigFlyWheel.getVelocity().getValueAsDouble());
+
   }
 
 

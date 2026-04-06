@@ -22,14 +22,14 @@ public class ShooterConstants {
 
         public static final int bigFlyWheel_ID = 12;
         public static final boolean bigFlyWheel_Inverted = false;
-        public static double bigFlyWheel = 37;//rps
+        public static double bigFlyWheel = 48;//rps
 
         public static final TalonFXConfiguration bigflywheelConfiguration = new TalonFXConfiguration()
         .withMotionMagic(new MotionMagicConfigs()
         .withMotionMagicAcceleration(130))
 
         .withSlot0(new Slot0Configs()
-        .withKP(0.28).withKI(0).withKD(0)
+        .withKP(0.35).withKI(0).withKD(0)
         .withKS(0.293).withKV(0.117).withKA(0)
         .withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign))
 
