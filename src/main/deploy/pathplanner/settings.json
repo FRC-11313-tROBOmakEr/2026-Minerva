@@ -3,9 +3,16 @@
   "robotLength": 0.65,
   "holonomicMode": true,
   "pathFolders": [
-    "2026"
+    "yun",
+    "李育恩畫的"
   ],
-  "autoFolders": [],
+  "autoFolders": [
+    "yun",
+    "2026Automid",
+    "2026Autoright",
+    "南科",
+    "李育恩畫的超屌路徑"
+  ],
   "defaultMaxVel": 3.0,
   "defaultMaxAccel": 3.0,
   "defaultMaxAngVel": 540.0,

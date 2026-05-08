@@ -7,6 +7,7 @@ import java.util.function.Supplier;
 
 import com.ctre.phoenix6.SignalLogger;
 import com.ctre.phoenix6.Utils;
+import com.ctre.phoenix6.hardware.Pigeon2;
 import com.ctre.phoenix6.swerve.SwerveDrivetrainConstants;
 import com.ctre.phoenix6.swerve.SwerveModuleConstants;
 import com.ctre.phoenix6.swerve.SwerveRequest;
@@ -53,6 +54,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     private static final double kSimLoopPeriod = 0.004; // 4 ms
     private Notifier m_simNotifier = null;
     private double m_lastSimTime;
+    private final Pigeon2 m_Pigeon = new Pigeon2(0, "888");
 
     private final Field2d bField = new Field2d();
     private final Field2d vField = new Field2d();
@@ -155,6 +157,10 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
             startSimThread();
         }
         configureAutoBuilder();
+    }
+
+    public void set(){
+        m_Pigeon.setYaw(m_Pigeon.getYaw().getValueAsDouble()+180);
     }
 
     /**
@@ -290,10 +296,13 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         getPigeon2().setYaw(360);
     };
 
+    
     @Override
     public void periodic() {
         rejectUpdate = false;
 
+        SmartDashboard.putNumber("Pigeon",getPigeon2().getYaw().getValueAsDouble());
+        
         LimelightHelpers.SetRobotOrientation
                 (Constants.LimelightName, getState().Pose.getRotation().getDegrees(),
                 0, 0, 0, 0, 0);

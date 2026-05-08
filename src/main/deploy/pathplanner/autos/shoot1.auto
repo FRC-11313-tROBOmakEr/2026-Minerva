@@ -1,0 +1,37 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "shootleft"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "intakeleft"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "suck"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "climbleft"
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": true,
+  "folder": "yun",
+  "choreoAuto": false
+}

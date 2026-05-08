@@ -45,7 +45,7 @@
     "rotation": 93.36646066342982
   },
   "reversed": false,
-  "folder": null,
+  "folder": "yun",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 180.0

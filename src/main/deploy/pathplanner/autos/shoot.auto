@@ -7,7 +7,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "shoot1"
+            "pathName": "shootleft"
           }
         },
         {
@@ -32,6 +32,6 @@
     }
   },
   "resetOdom": true,
-  "folder": null,
+  "folder": "yun",
   "choreoAuto": false
 }

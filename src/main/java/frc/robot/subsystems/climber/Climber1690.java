@@ -24,16 +24,16 @@ public class Climber1690 extends SubsystemBase {
   }
 
   public void out() {
-    //string.set(-0.2);
-    //string.setControl(new PositionVoltage(-38));
-    string.setControl(new MotionMagicVoltage(0));
+    // string.set(-0.2);
+    // string.setControl(new PositionVoltage(-38));
+    string.setControl(new MotionMagicVoltage(49));
   }
 
   public void back() {
-    //string.set(0.2);
+    // string.set(0.2);
     //string.setControl(new MotionMagicVoltage(0).withPosition(ClimberConstants.string.position).withSlot(0));
     //string.setControl(new PositionVoltage(38));
-    string.setControl(new MotionMagicVoltage(-49));
+    string.setControl(new MotionMagicVoltage(0));
   }
 
   public void stop(){

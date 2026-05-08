@@ -7,7 +7,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "shoot1"
+            "pathName": "shootleft"
           }
         },
         {
@@ -19,13 +19,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "intake"
+            "pathName": "intakeleft"
           }
         },
         {
-          "type": "wait",
+          "type": "path",
           "data": {
-            "waitTime": 5.0
+            "pathName": "suck"
           }
         },
         {
@@ -38,6 +38,6 @@
     }
   },
   "resetOdom": true,
-  "folder": null,
+  "folder": "yun",
   "choreoAuto": false
 }

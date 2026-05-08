@@ -15,7 +15,8 @@ public class Shoot extends SequentialCommandGroup {
     addCommands(
       new InstantCommand(()-> shooter.out(),shooter),
       new InstantCommand(()-> indexer.run(),indexer),
-      new WaitUntilCommand(()->shooter.isVelocityTarget()),
+      //new WaitUntilCommand(()->shooter.isVelocityTarget()),
+      new WaitCommand(0.4),
       new InstantCommand(()->conveyor.run(),conveyor),
       new InstantCommand(()-> spindexer.run(),spindexer));
   }

@@ -35,25 +35,10 @@ public class ClimberConstants {
         .withSupplyCurrentLimit(35))
         
         .withMotionMagic(new MotionMagicConfigs()
-        .withMotionMagicAcceleration(1500)
-        .withMotionMagicCruiseVelocity(500)
-        .withMotionMagicJerk(60));
+        .withMotionMagicAcceleration(1800)
+        .withMotionMagicCruiseVelocity(600)
+        .withMotionMagicJerk(80));
 
-        public static final TalonFXConfiguration string2Configuration = new TalonFXConfiguration()
-        .withSlot1(new Slot1Configs() 
-        .withKP(0.1).withKI(0).withKD(0)
-        .withKS(0).withKV(0).withKA(0).withKG(0))
-
-        .withMotorOutput(new MotorOutputConfigs().withNeutralMode(NeutralModeValue.Brake)
-        .withInverted(InvertedValue.Clockwise_Positive))
-
-        .withCurrentLimits(new CurrentLimitsConfigs()
-        .withSupplyCurrentLimit(35))
-
-        .withMotionMagic(new MotionMagicConfigs()
-        .withMotionMagicAcceleration(2000)
-        .withMotionMagicCruiseVelocity(1000)
-        .withMotionMagicJerk(60));
     }
     
 }

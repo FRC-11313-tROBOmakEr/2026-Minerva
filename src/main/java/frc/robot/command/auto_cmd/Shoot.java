@@ -15,9 +15,9 @@ import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class Justshoot extends SequentialCommandGroup {
+public class Shoot extends SequentialCommandGroup {
   /** Creates a new Justshoot. */
-  public Justshoot(Shooter shooter,Indexer_Kraken indexer,Conveyor conveyor,Spindexer_Kraken spindexer) {
+  public Shoot(Shooter shooter,Indexer_Kraken indexer,Conveyor conveyor,Spindexer_Kraken spindexer) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(

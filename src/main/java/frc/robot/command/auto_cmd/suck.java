@@ -12,13 +12,14 @@ import frc.robot.subsystems.intake.Intake_Kraken_Kraken;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class suck extends SequentialCommandGroup {
+public class Suck extends SequentialCommandGroup {
   
-  public suck( Intake_Kraken_Kraken intake) {
+  public Suck( Intake_Kraken_Kraken intake) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new InstantCommand(intake::rollerStart, intake)
+      new InstantCommand(()->intake.Out(),intake),
+      new InstantCommand(()->intake.rollerStart(), intake)
     );
   }
 }

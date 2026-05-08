@@ -33,7 +33,7 @@ public class Intake_Constants {
         .withSlot0(new Slot0Configs().withKP(0.3).withKI(0).withKD(0)
         .withKS(0.15).withKV(0.05).withKA(0).withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign));
 
-        public static double Roller_Start = -45;//rps
+        public static double Roller_Start = -60;//rps
 
 
     }

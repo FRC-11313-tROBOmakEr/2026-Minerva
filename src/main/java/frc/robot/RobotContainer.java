@@ -1,3 +1,4 @@
+
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
@@ -14,6 +15,8 @@ import com.pathplanner.lib.commands.FollowPathCommand;
 import edu.wpi.first.math.geometry.Rotation2d;
 import static edu.wpi.first.units.Units.*;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -22,28 +25,24 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.RobotModeTriggers;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
-import frc.robot.command.Intakeout;
-// import frc.robot.command.Intakeout;
 import frc.robot.command.Shoot;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
 import frc.robot.subsystems.climber.Climber1690;
 import frc.robot.subsystems.indexer.Indexer_Kraken;
 import frc.robot.subsystems.indexer.Spindexer_Kraken;
-//import frc.robot.subsystems.intake.Intake_Constants;
 import frc.robot.subsystems.intake.Intake_Kraken_Kraken;
 import frc.robot.subsystems.shooter.Shooter;
-import frc.robot.subsystems.shooter.ShooterConstants;
 import frc.robot.subsystems.shooter.ShooterConstants.BigFlyWheel;
 import frc.robot.subsystems.conveyor.Conveyor;
 import frc.robot.command.Shootstop;
 import frc.robot.utils.Target;
-import frc.robot.command.auto.rollerstop;
+import frc.robot.command.auto_cmd.RollerStop;
 //auto
-import frc.robot.command.auto.suck;
+import frc.robot.command.auto_cmd.Suck;
 
 public class RobotContainer {
-    private double MaxSpeed = 0.9 * TunerConstants.kSpeedAt12Volts.in(MetersPerSecond); // kSpeedAt12Volts desired top speed
+    private double MaxSpeed = 1.1 * TunerConstants.kSpeedAt12Volts.in(MetersPerSecond); // kSpeedAt12Volts desired top speed
     private double MaxAngularRate = RotationsPerSecond.of(0.75).in(RadiansPerSecond); // 3/4 of a rotation per second max angular velocity
 
     /* Setting up bindings for necessary control of the swerve drive platform */
@@ -57,10 +56,12 @@ public class RobotContainer {
     private final SwerveRequest.FieldCentricFacingAngle driveAutoAlign = new SwerveRequest.FieldCentricFacingAngle()
     .withHeadingPID(0.4, 0, 0).withMaxAbsRotationalRate(MaxAngularRate*0.8);
 
+   
+
     private final Telemetry logger = new Telemetry(MaxSpeed);
     private final Shooter shooter = new Shooter();
     private final CommandXboxController joystick = new CommandXboxController(3);
-    private final CommandXboxController joystick2 = new CommandXboxController(1);
+    private final CommandXboxController joystick2 = new CommandXboxController(2);
 
     public final CommandXboxController[] joysticks = {joystick};
 
@@ -72,14 +73,13 @@ public class RobotContainer {
     private final Conveyor conveyor = new Conveyor();
     private final Climber1690 climber = new Climber1690();
     private final Indexer_Kraken indexer = new Indexer_Kraken();
-    private final Intakeout intakeout = new Intakeout(intake);
     private final Shoot shoot = new Shoot (shooter, indexer , spindexer, conveyor);
     private final Shootstop shootstop = new Shootstop(shooter, indexer, spindexer, conveyor);
     // private final Intakeout intakeout = new Intakeout(intake);
 
     //auto
-    private final suck suck = new suck(intake);
-    private final rollerstop rollerstop = new rollerstop(intake);
+    private final Suck suck = new Suck(intake);
+    private final RollerStop rollerstop = new RollerStop(intake);
 
 
 
@@ -89,9 +89,11 @@ public class RobotContainer {
     public RobotContainer() {
         NamedCommands.registerCommand("shoot", shoot);
         NamedCommands.registerCommand("shootstop", shootstop);
-        NamedCommands.registerCommand("intakeout", intakeout);
+        NamedCommands.registerCommand("intakeout", new InstantCommand(intake::Out));
         NamedCommands.registerCommand("suck", suck);
-        NamedCommands.registerCommand("rollerstop", rollerstop);
+        // NamedCommands.registerCommand("rollerstop", rollerstop);
+        // NamedCommands.registerCommand("pigeon", new InstantCommand(drivetrain::set));
+        
         autoChooser = AutoBuilder.buildAutoChooser();
         SmartDashboard.putData("Auto Mode", autoChooser);
         
@@ -128,6 +130,7 @@ public class RobotContainer {
             point.withModuleDirection(new Rotation2d(-joystick.getLeftY(), -joystick.getLeftX()))
         ));
 
+       joystick.y().onTrue(new InstantCommand(drivetrain::set,drivetrain));
         joystick.x().onTrue(drivetrain.applyRequest(
             ()->driveAutoAlign
             .withVelocityX(-joystick2.getLeftY() * MaxSpeed) 
@@ -153,13 +156,13 @@ public class RobotContainer {
 
         drivetrain.registerTelemetry(logger::telemeterize);
 
-        //joystick2.rightBumper().onTrue(intakeout);
+        joystick2.rightBumper().onTrue(new InstantCommand(intake::Out));
         joystick2.b().whileTrue(shoot).onFalse(shootstop);
         joystick2.leftBumper().onTrue(new InstantCommand(intake::Back));
         joystick2.x().whileTrue(new InstantCommand(intake::rollerStart)).onFalse(new InstantCommand(intake::rollerStop));
-        joystick2.a().whileTrue(new InstantCommand(climber::out)).onFalse(new InstantCommand(climber::stop));
-        joystick2.y().whileTrue(new InstantCommand(climber::back)).onFalse(new InstantCommand(climber::stop));
-        //joystick2.a().whileTrue(intakeout);
+        joystick2.y().onTrue(new InstantCommand(climber::out)).onFalse(new InstantCommand(climber::stop));
+        joystick2.a().onTrue(new InstantCommand(climber::back)).onFalse(new InstantCommand(climber::stop));
+      
                     
         // joystick2.b().whileTrue(new InstantCommand(intake::Out));
         //joystick2.a().whileTrue(new InstantCommand(indexer::run)).onFalse(new InstantCommand(indexer::stop));
@@ -168,8 +171,8 @@ public class RobotContainer {
         //joystick2.y().whileTrue(new InstantCommand(shooter::out)).whileFalse(new InstantCommand(shooter::stopFlyWheels));
         //joystick2.x().whileTrue(new InstantCommand(intake::Out));
         //joystick2.y().whileTrue(new InstantCommand(conveyor::run)).whileFalse(new InstantCommand(conveyor::stop));
-        joystick2.leftBumper().whileTrue(new InstantCommand(shooter::angleup)).onFalse(new InstantCommand(shooter::anglestop));
-        joystick2.rightBumper().whileTrue(new InstantCommand(shooter::angledown)).onFalse(new InstantCommand(shooter::anglestop));
+        // joystick2.leftBumper().whileTrue(new InstantCommand(shooter::angleup)).onFalse(new InstantCommand(shooter::anglestop));
+        // joystick2.rightBumper().whileTrue(new InstantCommand(shooter::angledown)).onFalse(new InstantCommand(shooter::anglestop));
         
         joystick2.povUp().onTrue(new InstantCommand(() -> {
             Shooter.degrees -= 0.5;

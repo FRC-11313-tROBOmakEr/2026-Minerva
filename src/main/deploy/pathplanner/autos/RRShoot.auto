@@ -7,37 +7,25 @@
         {
           "type": "path",
           "data": {
-            "pathName": "shoot1"
+            "pathName": "RRShoot"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Shoot"
           }
         },
         {
           "type": "wait",
           "data": {
-            "waitTime": 2.5
+            "waitTime": 6.0
           }
         },
         {
-          "type": "path",
+          "type": "named",
           "data": {
-            "pathName": "intake"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 5.0
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "climbleft"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "suck"
+            "name": "shootstop"
           }
         }
       ]

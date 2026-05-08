@@ -6,18 +6,18 @@ package frc.robot.command.auto_cmd;
 
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.subsystems.shooter.Shooter;
+import frc.robot.subsystems.intake.Intake_Kraken_Kraken;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class Shoot2cycle extends SequentialCommandGroup {
-  /** Creates a new Shoot2cycle. */
-  public Shoot2cycle(Shooter shooter) {
+public class SuckStop extends SequentialCommandGroup {
+  /** Creates a new SuckStop. */
+  public SuckStop(Intake_Kraken_Kraken intake) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new InstantCommand()
+      new InstantCommand(intake::rollerStop)
     );
   }
 }
